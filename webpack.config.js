@@ -1,5 +1,3 @@
-/// <reference path="typings/index.d.ts" />
-
 var fs = require('fs');
 var webpack = require('webpack');
 var path = require('path');
@@ -13,10 +11,13 @@ module.exports = {
         index: path.join(__dirname, 'js/index.js'),
         login: path.join(__dirname, 'js/login.js'),
         alltypes: path.join(__dirname, 'js/alltypes.js'),
-        createnewone: path.join(__dirname, 'js/createnewone.js')
+        createnewone: path.join(__dirname, 'js/createnewone.js'),
+        //Server
+        //database: path.join(__dirname, 'js/server/database.js'),
+        //server: path.join(__dirname, 'js/server/server.js')
     },
     output: {
-        path: path.join(__dirname, 'dist/'),
+        path: path.join(__dirname, 'dist/public/'),
         filename: '[name].js'
     },
 
@@ -57,12 +58,13 @@ module.exports = {
 
     plugins: [
         new CopyFilesPlugin([
-            //{ from: 'img', to: path.resolve(__dirname, 'dist/img') },
+            { from: 'img', to: path.resolve(__dirname, 'dist/public/img') },
             { from: 'html/index.html', to: path.resolve(__dirname, 'dist/') },
             { from: 'html/login.html', to: path.resolve(__dirname, 'dist/') },
             { from: 'html/alltypes.html', to: path.resolve(__dirname, 'dist/') },
-            { from: 'html/createnewone.html', to: path.resolve(__dirname, 'dist/') }
-
+            { from: 'html/createnewone.html', to: path.resolve(__dirname, 'dist/') },
+            { from: 'js/server', to: path.resolve(__dirname, 'dist/') },
+            { from: 'js/index_page_react.js', to: path.resolve(__dirname, 'dist/public') }
         ], {
             ignore: [
                 '*.gitignore',
@@ -71,7 +73,6 @@ module.exports = {
             copyUnmodified: true,
             debug: 'warning'
         }),
-        
         new UglifyJsPlugin({
             cacheFolder: path.resolve(__dirname, 'public/chached_uglify'),
             debug: true,
