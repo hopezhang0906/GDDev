@@ -1,0 +1,1 @@
+var Realm = require('realm')
