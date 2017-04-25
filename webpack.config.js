@@ -1,5 +1,3 @@
-/// <reference path="typings/index.d.ts" />
-
 var fs = require('fs');
 var webpack = require('webpack');
 var path = require('path');
@@ -11,6 +9,7 @@ module.exports = {
     devtool: 'source-map',
     entry: {
         index: path.join(__dirname, 'js/index.js'),
+        database: path.join(__dirname, 'js/database.js'),
         login: path.join(__dirname, 'js/login.js'),
         alltypes: path.join(__dirname, 'js/alltypes.js'),
         createnewone: path.join(__dirname, 'js/createnewone.js')
