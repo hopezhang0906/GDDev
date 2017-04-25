@@ -9,6 +9,7 @@
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="login.css" />
+    <script src="../js/login.js"></script>
 
     <!-- react file -->
     <script src="https://cdn.bootcss.com/react/15.4.2/react.js"></script>
@@ -31,7 +32,7 @@
 
 
             <div class="mdl-layout__header-row">
-                <button id="backButton" id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
+                <button onclick="skipToIndex()" id="backButton" id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
                  <i class="material-icons">arrow_back</i>
                  </button>
                 <!-- Title -->
@@ -49,9 +50,10 @@
             </div>
         </header>
 
+    <main id="bodyContent" class="mdl-layout__content">
 
-        <main class="mdl-layout__content">
-            <!--<div id="loginContainer">
+
+              	<div id="loginContainer">
                 <div id="img">
                     <p>WELCOME BACK!</p>
                 </div>
@@ -76,9 +78,9 @@
                     还没有账号？注册一个！</button></div>
                     
                 </div>    
-            </div>-->
+            </div>
 
-            <div id="loginContainer">
+            <!--<div id="loginContainer">
                 <div id="img">
                     <p>WELCOME！</p>
                 </div>
@@ -115,13 +117,10 @@
 
 
                 </div>
-            </div>
+            </div>-->
 
 
         </main>
     </div>
-
 </body>
-
-
 </html>

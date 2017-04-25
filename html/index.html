@@ -10,6 +10,7 @@
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="../js/index.js"></script>
 
     <!-- react file -->
     <script src="https://cdn.bootcss.com/react/15.4.2/react.js"></script>
@@ -62,7 +63,7 @@
             <p id="accountID">malikpersonal@outlook.com</p>
             <p id="personalStatement">Computing in Social science,PhD</p>-->
                 <div id="logInPanel">
-                    <button id="loginButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">登陆</button>
+                    <button id="loginButton"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="skipToLogIn('signin');">登陆</button>
                     <button id="signinButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">注册</button>
                 </div>
 
@@ -72,11 +73,7 @@
             <nav class="mdl-navigation">
 
                 <a id="menuListSelected" class="mdl-navigation__link" href=""> <i class="material-icons">description</i>浏览成果</a>
-
-
-
                 <a id="menuList" class="mdl-navigation__link" href=""><i class="material-icons">book</i>查看我的</a>
-                <a id="menuList" class="mdl-navigation__link" href=""><i class="material-icons">person</i>个人信息</a>
                 <a id="menuList" class="mdl-navigation__link" href=""><i class="material-icons">info</i>关于</a>
                 <a id="menuList" class="mdl-navigation__link" href=""><i class="material-icons">settings</i>其他设置</a>
             </nav>
