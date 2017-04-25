@@ -1,0 +1,310 @@
+
+#searchBox{
+    height: 56px;
+    max-height: 56px;
+    vertical-align: middle;
+    label{
+       top:12px;
+    }
+
+    #textField{
+        bottom: 8px;
+    }
+}
+
+#addNewButton{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    z-index: 4;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+
+}
+
+#headPicture{
+    height: 90px;
+    width: auto;
+    background-image: url('../img/coffeAndLaptop.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+
+    &::before {
+		content: '';
+		position: absolute;
+		width: 100%; 
+        height: inherit;
+		background-color:#3E50B4;
+		opacity: 0.35;
+		z-index: 2;
+	}
+
+        h2{
+        	position: absolute;
+	display:inline-block;
+	width: 100%;
+	line-height: 30px;
+	font-size: 18px;
+	color: white;
+	font-family: sans-serif;
+	align-content: center;
+	text-align: center;
+    z-index: 3;
+    padding-top: 30px;
+
+    }
+
+}
+
+#optionCard{
+    height: 56px;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.1);
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    line-height: 56px;
+    z-index: 4;
+
+    button{
+           position: relative;
+            width: 94px;
+            height: 32px;
+            border:2px;
+            border-radius: 20px;
+            border-color: #95989A;
+            border-style:solid;
+            background-color: white;
+            vertical-align: middle;
+            color:#95989A;
+            margin: auto auto;
+            line-height: 14px;
+
+        }
+
+button:active{
+
+            position: relative;
+            width: 94px;
+            height: 32px;
+            border:2px;
+            border-radius: 20px;
+            border-color: #FF4081;
+            border-style:solid;
+            background-color: white;
+            vertical-align: middle;
+            color:#FF4081;
+            margin: auto auto;
+    
+}
+
+#selectType{
+    margin-right: 5px;
+}
+
+#selectMajor{
+    margin-left: 5px;
+}
+
+}
+
+#resultList{
+
+
+#module{
+
+    margin-top: 15px;
+    height: 170px;
+    width: 90%;
+    max-width: 350px;
+    margin: 15px auto;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+    border-radius: 5px;
+    display: block;
+
+    
+    #picAndCaption{
+
+    height: 118px;
+    width: 100%;
+    max-width: 350px;
+    
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+    margin: 0 auto;
+    // text-align: center;
+    // vertical-align: middle;
+    // line-height: 20px;
+
+    &::before {
+		content: '';
+		position: absolute;
+		width: 90%; 
+        
+    max-width: 350px;
+        height: inherit;
+		background-color:rgba(66,66,66,0.5);
+		z-index: 2;
+	}
+
+    p{
+    position: relative;
+	display:inline-block;
+	line-height: 30px;
+	color: white;
+	font-family: sans-serif;
+    z-index: 3;
+    padding-top: 10px;
+    padding-left: 8px;
+
+    }
+
+    #moduleTitle
+    {
+       font-size: 20px;
+    
+    }
+    
+    #moduleType
+    {
+       font-size: 14px;
+       padding-top: 0px;
+    
+    }
+
+    #uploaderName
+    {
+       font-size: 14px;
+       
+       padding-top: 0px;
+    
+    }
+
+    
+
+
+    }
+
+    #action{
+    vertical-align: middle;
+    position: relative;
+    width: 100%;
+    height: 52px;
+      button{
+          float: right;
+          right: 8px;
+          opacity: 0.6;
+          margin-top: 10px;
+          margin-right: 5px;
+      }
+    }
+}
+
+@media screen and (min-width: 740px) { 
+
+#module{
+        float: left;
+        margin-left: 20px;
+
+}
+
+
+} 
+
+}
+
+
+
+
+#menu{
+
+    border: none;
+    box-shadow: 0px 5px 5.5px rgba(0,0,0,0.24);
+
+#personalInfo{
+    height: 172px;
+    width: 240px;
+    background-color: #3F51B5;
+    border: none;
+    line-height: 14px;
+
+    #logInPanel{
+
+        button{
+            width: 94px;
+            height: 36px;
+        }
+        #loginButton{
+
+            margin-top: 49px;
+            margin-left: 73px;
+        }
+        #signinButton{
+
+            margin-top: 19px;
+            margin-left: 73px;
+
+        }
+    }
+
+    #headshot{
+
+    height: 64px;
+    width: 64px;
+    border-radius: 32px;
+    background-image: url('../img/Aqdas_Malik2.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+    margin-left: 12px;
+    margin-top: 39px;
+
+    }
+
+    p{
+        margin-left: 12px;
+    }
+
+    #accountID{
+        font-size: 14px;
+        color: #FF80AB;
+        line-height: 10px;
+        margin-top: 15px;
+
+
+    }
+
+    #personalStatement{
+        font-size: 14px;
+        color:white;
+        line-height: 10px;
+    }
+}
+
+
+#menuList{
+    color: black;
+    i{
+        margin-right: 20px;
+    }
+}
+
+#menuList{
+    color: black;
+    font-size: 14px;
+    i{
+        margin-right: 20px;
+        color: rgba(0,0,0,0.54);
+    }
+}
+#menuListSelected{
+    color: #4285F4;
+    i{
+        margin-right: 20px;
+    }
+}
+
+}
+
