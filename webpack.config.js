@@ -53,6 +53,9 @@ module.exports = {
 
     resolve: {
         extensions: ['.js', '.es6', 'json: false', 'ts', 'less'],
+        alias: {
+         'vue$': 'vue/dist/vue.common.js'
+        },
         enforceExtension: false
     },
 
