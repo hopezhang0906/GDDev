@@ -19,7 +19,7 @@ $('.datepicker').datepicker({
 //         //a.style.borderBottom='0px solid #FF4081'
 //         type.innerHTML='radio_button_unchecked'
 //         isFirstimeChooseType=false
-        
+
 //     }
 //     else{
 //         isFirstimeChooseType=true
@@ -42,20 +42,20 @@ $('.datepicker').datepicker({
 // }
 
 
-function changeForms(){
+function changeForms() {
 
-    if(isFirstimeChooseType){
-          tab=document.getElementById('tab2')
-          tab.style.display='block'
-          tab.href='#fixed-'+typeChoosed
-          console.log('firstTIME'+tab.href)
+    if (isFirstimeChooseType) {
+        tab = document.getElementById('tab2')
+        tab.style.display = 'block'
+        tab.href = '#fixed-' + typeChoosed
+        console.log('firstTIME' + tab.href)
 
     }
-    else{
-          tab=document.getElementById('tab2')
-          tab.style.display='block'
-          tab.href='#fixed-'+typeChoosed
-          console.log(tab.href)
+    else {
+        tab = document.getElementById('tab2')
+        tab.style.display = 'block'
+        tab.href = '#fixed-' + typeChoosed
+        console.log(tab.href)
 
     }
 }
