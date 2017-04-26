@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -29,7 +32,7 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
-                
+
                 <!-- Title -->
                 <span class="mdl-layout-title"></span>
                 <!-- Add spacer, to align navigation to the right -->
@@ -55,12 +58,15 @@
         </header>
         <div id="menu" class="mdl-layout__drawer">
             <div id="personalInfo">
+                <div id="userinfo">
+                    <div id="headshot" v-bind:style="{backgroundImage: 'url(' + favicon + ')'}"></div>
+                    <p id="accountID">{{userEmail}}</p>
+                    <p id="personalStatement">{{userName}}</p>
+                </div>
 
-                <!--<div id="headshot"></div>
-            <p id="accountID">malikpersonal@outlook.com</p>
-            <p id="personalStatement">Computing in Social science,PhD</p>-->
+
                 <div id="logInPanel">
-                    <button id="signinButton"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >登陆</button>
+                    <button id="signinButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">登陆</button>
                     <button id="signupButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">注册</button>
                 </div>
 
@@ -69,10 +75,12 @@
 
             <nav class="mdl-navigation">
 
+
                 <a id="menuListSelected" class="mdl-navigation__link" href=""> <i class="material-icons">description</i>浏览成果</a>
                 <a id="menuList" class="mdl-navigation__link" href=""><i class="material-icons">book</i>查看我的</a>
                 <a id="menuList" class="mdl-navigation__link" href=""><i class="material-icons">info</i>关于</a>
                 <a id="menuList" class="mdl-navigation__link" href=""><i class="material-icons">settings</i>其他设置</a>
+
             </nav>
         </div>
         <main id="resultListContent" class="mdl-layout__content">
@@ -107,56 +115,25 @@
                         </div>
                     </div>
 
-                    <div id="module">
-                        <div id="picAndCaption" style="background-image: url('/public/img/xbox.jpg');">
-                            <p id="moduleTitle">Title goes here</p>
-                            <p id="moduleType">type</p>
-                            <p id="uploaderName">sub title </p>
+                    <div id="module" v-for="item in projects">
+                        <div id="picAndCaption"  v-bind:style="{backgroundImage: 'url(' + item.bgImg + ')'}">
+                            <p id="moduleTitle">{{item.title}}</p>
+                            <p id="moduleType">{{item.type}}</p>
+                            <p id="uploaderName">发布人:{{item.uploader}} </p>
                         </div>
                         <div id="action">
                             <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">reply</i>
-                    </button>
+                                <i class="material-icons">reply</i>
+                            </button>
                             <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">bookmark</i>
-                    </button>
+                                 <i v-bind:style="{color:item.isFavorite}" class="material-icons">bookmark</i>
+                            </button>
+                         </div>
 
-                        </div>
+
                     </div>
 
-                    <div id="module">
-                        <div id="picAndCaption" style="background-image: url('/public/img/social.jpg');">
-                            <p id="moduleTitle">Uses and Gratifications of digital photo sharing on Facebook</p>
-                            <p id="moduleType">论文</p>
-                            <p id="uploaderName">发布人:Aqdas Malik </p>
-                        </div>
-                        <div id="action">
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">reply</i>
-                    </button>
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">bookmark</i>
-                    </button>
-
-                        </div>
-                    </div>
-
-                    <div id="module">
-                        <div id="picAndCaption" style="background-image: url('/public/img/social.jpg');">
-                            <p id="moduleTitle">Uses and Gratifications of digital photo sharing on Facebook</p>
-                            <p id="moduleType">论文</p>
-                            <p id="uploaderName">发布人:Aqdas Malik </p>
-                        </div>
-                        <div id="action">
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">reply</i>
-                    </button>
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">bookmark</i>
-                    </button>
-
-                        </div>
-                    </div>
+                    <!--<project-item v-for="item in projects" v-bind:project="item"></project-item>-->
 
                 </div>
 
