@@ -7,6 +7,8 @@ var userInfoData = {
     favicon: '/public/img/Aqdas_Malik2.png',
     userEmail: 'malikpersonal@outlook.com',
     userName: 'Aqdas Malik',
+    userpassword: '123456',
+    userPersonalStatement:'Computing in Social science,PhD'
 }
 
 var resultListInfo = {
@@ -37,6 +39,19 @@ var resultListInfo = {
 }
 
 window.onload = (e) => {
+
+    var dialog = document.querySelector('dialog');
+    var showModalButton = document.querySelector('#addNewButton');
+    if (! dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+    showModalButton.addEventListener('click', function() {
+      dialog.showModal();
+    });
+    dialog.querySelector('.close').addEventListener('click', function() {
+      dialog.close();
+    });
+  
 
     //skip to sign in page
     var signinButton = document.getElementById("signinButton")

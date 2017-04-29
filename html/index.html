@@ -12,12 +12,6 @@
     <link rel="stylesheet" type="text/css" href="/public/index.css" />
     <script src="/public/index.js"></script>
 
-    <!-- react file -->
-    <script src="https://cdn.bootcss.com/react/15.4.2/react.js"></script>
-    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.js"></script>
-    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.js"></script>
-
-
     <!-- Material Design Lite -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -97,26 +91,8 @@
 
                 </div>
                 <div id="resultList">
-
-                    <div id="module">
-                        <div id="picAndCaption" style="background-image: url('/public/img/social.jpg');">
-                            <p id="moduleTitle">Uses and Gratifications of digital photo sharing on Facebook</p>
-                            <p id="moduleType">论文</p>
-                            <p id="uploaderName">发布人:Aqdas Malik </p>
-                        </div>
-                        <div id="action">
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">reply</i>
-                    </button>
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">bookmark</i>
-                    </button>
-
-                        </div>
-                    </div>
-
                     <div id="module" v-for="item in projects">
-                        <div id="picAndCaption"  v-bind:style="{backgroundImage: 'url(' + item.bgImg + ')'}">
+                        <div id="picAndCaption" v-bind:style="{backgroundImage: 'url(' + item.bgImg + ')'}">
                             <p id="moduleTitle">{{item.title}}</p>
                             <p id="moduleType">{{item.type}}</p>
                             <p id="uploaderName">发布人:{{item.uploader}} </p>
@@ -128,7 +104,7 @@
                             <button class="mdl-button mdl-js-button mdl-button--icon">
                                  <i v-bind:style="{color:item.isFavorite}" class="material-icons">bookmark</i>
                             </button>
-                         </div>
+                        </div>
 
 
                     </div>
@@ -144,6 +120,59 @@
             </div>
         </main>
     </div>
+    <dialog id="selectTypeDialog" class="mdl-dialog">
+        <h4 class="mdl-dialog__title">请选择成果类型</h4>
+        <div class="mdl-dialog__content">
+            <ul class="demo-list-icon mdl-list">
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">school</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         发明专利
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">library_books</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         论文
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">devices_other</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         游戏&软件
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">local_library</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         出版物
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">videocam</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         影视&艺术
+                        </button>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored close">
+            <i class="material-icons">close
+            </i>
+            </button>
+        </div>
+    </dialog>
 
 
     <script type="text/javascript">

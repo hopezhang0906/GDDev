@@ -14,9 +14,14 @@ app.get('/login', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/login.html'))
 })
 
-app.get('/creat', function (req, res) {
+app.get('/create', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/createnewone.html'))
 })
+
+app.get('/alltypes', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../dist/alltypes.html'))
+})
+
 
 app.listen(8860, function () {
     console.log("Go!");
