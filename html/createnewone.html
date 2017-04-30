@@ -9,18 +9,13 @@
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/public/createnewone.css" />
-
-    <!-- react file -->
-    <script src="https://cdn.bootcss.com/react/15.4.2/react.js"></script>
-    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.js"></script>
-    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.js"></script>
-    <script src="../js/createnewone.js"></script>
+    <script src="/public/createnewone.js"></script>
 
     <!-- Material Design Lite -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
+     
     <!-- Include Bootstrap Datepicker -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
@@ -43,73 +38,7 @@
         <main class="mdl-layout__content">
             <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
                 <div class="page-content">
-                    <!--<p id="listTitle">请选择成果类型</p>-->
-                    <!--<div id="typeList">
-                        <div class="demo-list-action mdl-list">
-                            <div class="mdl-list__item">
-                                <span class="mdl-list__item-primary-content">
-                                    <i class="material-icons mdl-list__item-avatar">school</i>
-                                    <span class="typeUnselected"  >发明专利</span>
-                                </span>
-                                <a id="tab-2" class="mdl-list__item-secondary-action" href="#">
-                                    <i id="typeUnselected" onclick="changeSelectType(this);changeForms();" class="material-icons">radio_button_unchecked</i></a>
-                            </div>
-                            <div class="mdl-list__item">
-                                <span href="#fixed-tab-2" class="mdl-list__item-primary-content">
-                                    <i  id="" class="material-icons mdl-list__item-avatar">library_books</i>
-                                    <span class="">论文</span>
-                                </span>
-                                <a id="tab-3" class="mdl-list__item-secondary-action" href="#"><i id="typeUnselected" onclick="changeSelectType(this);changeForms();" class="material-icons"> radio_button_unchecked</i></a>
-                            </div>
-
-                            <div class="mdl-list__item">
-                                <span id="typeUnselected" class="mdl-list__item-primary-content">
-                                    <i class="material-icons mdl-list__item-avatar">videogame_asset</i>
-                                    <span>数字游戏</span>
-                                </span>
-                                <span class="mdl-list__item-secondary-content">
-                                    <a id="tab-4" class="mdl-list__item-secondary-action" href="#"><i id="typeUnselected" onclick="changeSelectType(this)" class="material-icons">radio_button_unchecked</i></a>
-                                </span>
-                            </div>
-                            <div class="mdl-list__item">
-                                <span id="typeUnselected" class="mdl-list__item-primary-content">
-                                    <i class="material-icons mdl-list__item-avatar">devices_other</i>
-                                    <span>软件</span>
-                                </span>
-                                <span class="mdl-list__item-secondary-content">
-                                    <a id="tab-5" class="mdl-list__item-secondary-action" href="#"><i id="typeUnselected" onclick="changeSelectType(this)" class="material-icons">radio_button_unchecked</i></a>
-                                </span>
-                            </div>
-                            <div class="mdl-list__item">
-                                <span id="typeUnselected" class="mdl-list__item-primary-content">
-                                    <i class="material-icons mdl-list__item-avatar">local_library</i>
-                                    <span>出版物</span>
-                                </span>
-                                <span class="mdl-list__item-secondary-content">
-                                    <a id="tab-6" class="mdl-list__item-secondary-action" href="#"><i id="typeUnselected" onclick="changeSelectType(this)" class="material-icons">radio_button_unchecked</i></a>
-                                </span>
-                            </div>
-                            <div class="mdl-list__item">
-                                <span id="typeUnselected" class="mdl-list__item-primary-content">
-                                    <i class="material-icons mdl-list__item-avatar">videocam</i>
-                                    <span>影视成果</span>
-                                </span>
-                                <span class="mdl-list__item-secondary-content">
-                                    <a id="tab-7" class="mdl-list__item-secondary-action" href="#"><i id="typeUnselected" onclick="changeSelectType(this)" class="material-icons">radio_button_unchecked</i></a>
-                                </span>
-                            </div>
-                            <div class="mdl-list__item">
-                                <span id="typeUnselected" class="mdl-list__item-primary-content">
-                                    <i class="material-icons mdl-list__item-avatar">format_paint</i>
-                                    <span>艺术类</span>
-                                </span>
-                                <span class="mdl-list__item-secondary-content">
-                                    <a id="tab-8" class="mdl-list__item-secondary-action" href="#"><i id="typeUnselected" onclick="changeSelectType(this)" class="material-icons">radio_button_unchecked</i></a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>-->
-                                    <div id="patternFillOutForm" class="page-content">
+                    <div id="patternFillOutForm" class="page-content">
                     <div id="wholePanel">
                         <div id="chooseImg">
                             <p>select a product/depict photo</p>
@@ -118,41 +47,166 @@
                             <i class="material-icons">add_a_photo</i>
                         </button>
                         </div>
-                        <form id="firstOne" action="#">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" pattern="^[\\u4e00-\\u9fa5_a-zA-Z0-9-]{1,20}$">
+                        <div class="inputSection">
+                            <p>Basic Info</p>
+                            <form id="firstOne" action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" pattern="^[\\u4e00-\\u9fa5_a-zA-Z0-9-]{1,20}$">
+                                    <label class="mdl-textfield__label" for="sample3">专利名称</label>
+                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
+                                </div>
+                            </form>
+                            <form action="#">
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <label id="labelforTextArea">请输入摘要</label>
+                                    <textarea class="mdl-textfield__input" type="text" rows="3"></textarea>
+                                      
+                                </div>
+                            </form>
+                            <form action="#">
 
-                                <label class="mdl-textfield__label" for="sample3">专利名称</label>
-                                <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
-                            </div>
-
-                        </form>
-                        <form action="#">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input value="例:CN103445409A" class="mdl-textfield__input" type="text" pattern="^[a-zA-Z0-9]{10,12}$">
-
-                                <label class="mdl-textfield__label" for="sample3">申请公布号</label>
-                                <span class="mdl-textfield__error">11位</span>
-                            </div>
-
-                        </form>
-
-                        <form action="#">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <form id="dateRangeForm" method="post" class="form-horizontal">
-                                    <div class="form-group">
-                                        <div class=" date">
-                                            <div class="input-group input-append date" id="dateRangePicker">
-                                                <input type="text" class="form-control" name="date" />
-                                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <label id="labelforTextArea">选择项目结束日期</label>
+                                            <div class="form-group">
+                                                <div class=" date">
+                                                    <div class="input-group input-append date" id="dateRangePicker">
+                                                        <input type="text" class="form-control" name="date" />
+                                                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+
+                                        </form>
 
                                 </form>
+
+                        </div>
+                        <div id="descriptionSection" class="inputSection">
+                            <p>Template(Recommended)</p>
+                            <form id="firstOne" action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input value="例:CN103445409A" class="mdl-textfield__input" type="text" >
+                                    <label class="mdl-textfield__label" for="sample3">申请公布号</label>
+                                    <span class="mdl-textfield__error">11位</span>
+                                </div>
+                            </form>
+                            <form  action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input value="例:青岛歌尔声学科技有限公司" class="mdl-textfield__input" type="text">
+                                    <label class="mdl-textfield__label" for="sample3">申请人/单位</label>
+                                    <span class="mdl-textfield__error">11位</span>
+                                </div>
+                            </form>
+                            <form  action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input value="例:A44C5/00(2006.01)I" class="mdl-textfield__input" type="text">
+                                    <label class="mdl-textfield__label" for="sample3">分类号</label>
+                                    <span class="mdl-textfield__error">11位</span>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="CustomDescriptionSection" class="inputSection">
+                            <p>Custom Description</p>
+                            <div class="oneCustomItem">
+                                <form id="firstOne" action="#">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input id="descriptionTitle" value="例:文档链接" class="mdl-textfield__input" type="text" >
+                                    <label class="mdl-textfield__label" for="sample3">描述标题</label>
+                                    <span class="mdl-textfield__error">11位</span>
+                                    </div>
+                                </form>
+                                <button id="addCustomDescriptionButton" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                                    <i class="material-icons">add</i>
+                                </button>
+                                <form class="description" action="#">
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <label id="labelforTextArea">请输入描述</label>
+                                    <textarea  id="descriptionText" class="mdl-textfield__input" type="text" rows="3">link to the word or website</textarea>
+                                      
+                                </div>
+                                </form>
+                                <form class="addedDescription" action="#">
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <label id="labelforTextArea">链接地址</label>
+                                    <textarea disabled="disabled" class="mdl-textfield__input" type="text" rows="3">例:链接地址</textarea>
+                                      
+                                </div>
+                                 <button id="removeCreditButton" onclick="removeThisChip(this)"  class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                               <i class="material-icons">cancel</i>
+                                </button>
+                                </form>
+
+
                             </div>
 
-                        </form>
+
+                        </div>
+                        <div id="tagsSection" class="inputSection">
+                            <p>Tags</p>
+                            <form id="firstOne" class="addInfoInput" action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input id="inputForTag" value="核心技术/特别之处" class="mdl-textfield__input" type="text" >
+                                    <button id="addNewTagButton" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                                    <i class="material-icons">add</i>
+                                </button>
+                                    <label class="mdl-textfield__label" for="sample3">请输入自定义标签</label>
+                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
+                                </div>
+
+                            </form>
+                            
+                            <span id="chip" class="mdl-chip mdl-chip--deletable">
+                                <span class="mdl-chip__text">传感器</span>
+                                <button onclick="removeThisChip(this)"  id="removeTagButton" type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
+                            </span>
+
+
+                        </div>
+
+                         <div  id="creditsSection" class="inputSection">
+                            <p>Credits</p>
+                            <form id="inputForMaker" class="addInfoInput" action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input id="makerName"  value="张某某" class="mdl-textfield__input" type="text" >
+                                    <label class="mdl-textfield__label" for="sample3">请输入成员姓名</label>
+                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
+                                </div>
+
+                            </form>
+                            <form id="inputForMaker" class="addInfoInput" action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input  id="makerCredit" value="负责人" class="mdl-textfield__input" type="text" >
+                                    <label class="mdl-textfield__label" for="sample3">请输入其身份</label>
+                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
+                                </div>
+                            </form>
+                           <button id="addNewCreditButton" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                               <i class="material-icons">add</i>
+                                </button>
+                            <div id="creditAdded">
+                           <form id="inputForMaker" class="addInfoInput" action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input  disabled="disabled" value="张某某" class="mdl-textfield__input" type="text" >
+                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
+                                </div>
+
+                            </form>
+                            <form id="inputForMaker" class="addInfoInput" action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input  disabled="disabled" value="负责人" class="mdl-textfield__input" type="text" >
+                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
+                                </div>
+                            </form>
+                             <button id="removeCreditButton" onclick="removeThisChip(this)"  class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                               <i class="material-icons">cancel</i>
+                                </button>
+                            </div>
+
+                        </div>
+
+
+
+
                     </div>
 
                 </div>
@@ -173,7 +227,14 @@
     // Revalidate the date field
     });
 
-    });
+});
+
+function removeThisChip(item){
+
+  item.parentNode.remove()
+
+
+}
     </script>
 
 
