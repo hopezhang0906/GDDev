@@ -41,9 +41,9 @@
                     <div id="patternFillOutForm" class="page-content">
                     <div id="wholePanel">
                         <div id="chooseImg">
-                            <p>select a product/depict photo</p>
-
-                            <button id="addImg" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+                            <p id="hintToChooseImg">select a product/depict photo</p>
+                            <input id="fileInput" type="file" onchange="outputFileName()">
+                            <button onclick="selectFile()" id="addImg" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                             <i class="material-icons">add_a_photo</i>
                         </button>
                         </div>
@@ -235,6 +235,34 @@ function removeThisChip(item){
 
 
 }
+
+function selectFile(){ 
+//触发 文件选择的click事件 
+$("#fileInput").trigger("click"); 
+//其他code如 alert($("#file").attr("value")) 
+
+
+} 
+function outputFileName(){ 
+var str=document.getElementById("fileInput").value
+console.log(document.getElementById("fileInput").value)
+
+console.log(str.split("\\")[2]);
+var imgName=str.split("\\")[2];
+var chooseImg=document.getElementById("chooseImg")
+chooseImg.style.backgroundImage="url('/public/img/"+imgName+"')"
+if(document.getElementById("hintToChooseImg"))
+{
+var hintToChooseImg=document.getElementById("hintToChooseImg")
+
+hintToChooseImg.remove()
+}
+
+} 
+
+
+
+
     </script>
 
 
