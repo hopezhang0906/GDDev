@@ -150,7 +150,7 @@ button:active{
 	}
 
     p{
-    position: relative;
+    position: absolute;
 	display:inline-block;
 	line-height: 30px;
 	color: white;
@@ -170,7 +170,7 @@ button:active{
     #moduleType
     {
        font-size: 14px;
-       padding-top: 0px;
+       padding-top: 80px;
     
     }
 
@@ -178,7 +178,8 @@ button:active{
     {
        font-size: 14px;
        
-       padding-top: 0px;
+       padding-top: 80px;
+       padding-left: 60px;
     
     }
 
@@ -195,9 +196,13 @@ button:active{
       button{
           float: right;
           right: 8px;
-          opacity: 0.6;
+          opacity: 0.8;
           margin-top: 10px;
           margin-right: 5px;
+          i{
+              color: grey;
+          }
+          
       }
     }
 }
@@ -232,6 +237,8 @@ button:active{
 
     #logInPanel{
 
+        display: block;
+
         button{
             width: 94px;
             height: 36px;
@@ -249,12 +256,15 @@ button:active{
         }
     }
 
+
+    #userinfo{
+        display: block;
+
     #headshot{
 
     height: 64px;
     width: 64px;
     border-radius: 32px;
-    background-image: url('/public/img/Aqdas_Malik2.png');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -281,6 +291,10 @@ button:active{
         color:white;
         line-height: 10px;
     }
+
+    }
+
+
 }
 
 
@@ -308,3 +322,28 @@ button:active{
 
 }
 
+#selectTypeDialog{
+    h4{
+        font-size: 20px;
+    }
+    .close{
+        color:black; 
+    }
+    .selectTypeButton{
+    }
+    li{
+        i{
+            color: #FF4081;
+        }
+    }
+    .mdl-dialog__actions{
+        position: absolute;
+        float: right;
+        right: 10px;
+        top: 10px;
+        i{
+            color: black;
+        }
+    }
+
+}

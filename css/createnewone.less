@@ -25,16 +25,139 @@
 #patternFillOutForm{
     #wholePanel{
         width: 100%;
-        max-width: 500px;
+        max-width: 400px;
         //border: 1px solid black;
         margin: 0 auto;
+
+
+        .inputSection{
+            width: inherit;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(0,0,0,.14);
+            
+            p{
+                font-size: 15px;
+                color: #95989A;
+                padding-top: 30px;
+                padding-left: 20px;
+                font-family: sans-serif;
+            }
+            textarea{
+                color: #3e50b4;
+                border-bottom: 2px solid rgba(0,0,0,.14);
+            }
+            label{
+
+            }
+            #labelforTextArea{
+               // color:rgba(0,0,0,.26);
+                font-size: 12px;
+                color: #3e50b4;
+                //font-weight: 100;
+            }
+            #dateRangeForm{
+                margin-bottom: 20px;
+            }
+            #chip{
+                margin-left: 10px;
+
+            }
+            #addNewTagButton{
+                position: absolute;
+                float: right;
+                right: 10px;
+            }
+            .addInfoInput{
+            }
+
+                 #inputForMaker{
+                    width: 120px;
+                    position: relative;
+                    margin-left:30px;
+                    float: left;
+                    input{
+                    
+                    }
+                }
+
+        }
+        #creditsSection{
+                width: 100%;
+
+                border-bottom: 0px solid black;
+                #addNewCreditButton{
+                    position: relative;
+                    float: left;
+                    margin-top: 15px;
+                }
+                #removeCreditButton{
+                    position: relative;
+                    float: left;
+                    margin-top: 15px;
+                }
+
+
+
+
+
+            }
+        #descriptionSection{
+            position: relative;
+        }
+        #CustomDescriptionSection{
+            .oneCustomItem{
+                width: inherit;
+                form{
+                    width:120px;
+                    display: inline-block;
+                    position: relative;
+                    margin-left: 30px;
+                }
+                button{
+                    margin-left: 50px;
+                }
+                .description{
+                    width: 80%;
+                   padding-top: -10px;
+                   div{
+                       padding-top: 0px;
+                   }
+                }
+                .addedDescription{
+                    border: 1px solid rgba(0,0,0,.12);
+                    border-radius: 5px;
+                    width: 80%;
+                    margin-top: 10px;
+                    div{
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        label{
+                            color: rgba(0,0,0,.54);
+                        }
+                        textarea{
+                            color: rgba(0,0,0,.54);
+                        }
+                    }
+                    button{
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                    }
+                }
+            }
+        }
 
         #chooseImg{
             height: 130px;
             width: inherit;
             background-color:rgba(0, 0, 0, 0.2);
+            //background-image: url('/public/img/coffeAndLaptop.jpg');
             vertical-align: middle;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             text-align: center;
+
             p{
                 color: white;
                 font-size: 20px;
@@ -46,12 +169,16 @@
                 padding-top: 50px;
 
             }
+            input{
+               display: none;
+            }
 
 
             #addImg{
                 float: right;
                 right: 20px;
                 top: 50px;
+                
 
 
             }
@@ -87,9 +214,7 @@
 
         }
         
-            #firstOne{
-                margin-top: 30px;
-            }
+
 
 
     }

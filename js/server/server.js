@@ -14,8 +14,12 @@ app.get('/login', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../dist/login.html'))
 })
 
-app.get('/creat', (req, res) => {
+app.get('/create', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/createnewone.html'))
+})
+
+app.get('/alltypes', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../dist/alltypes.html'))
 })
 
 app.get('/database/project/:id', (req, res) => {
@@ -23,6 +27,6 @@ app.get('/database/project/:id', (req, res) => {
     res.json({ id: req.params.id })
 })
 
-app.listen(8860, () => {
+app.listen(8860, function () {
     console.log("Go!");
 })
