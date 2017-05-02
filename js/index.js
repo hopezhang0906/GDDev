@@ -1,7 +1,7 @@
 require('../css/index.less')
 
 
-var isSignedIn = true
+var isSignedIn = false
 
 var userInfoData = {
     favicon: '/public/img/Aqdas_Malik2.png',
@@ -86,11 +86,7 @@ window.onload = (e) => {
         el: '#userinfo',
         data: userInfoData
     })
-    Vue.component('picAndCaption-item', {
-        props: ['picAndCaption'],
-        template: '<li>123</li>',
 
-    })
     var resultList = new Vue({
         el: '#resultList',
         data: resultListInfo

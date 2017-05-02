@@ -6,7 +6,6 @@ var NewProjectTemplate = {
     title: '专利名称',
     abstract: '请输入摘要',
     finishDate: '请选择项目结束的日期',
-    img: '/public/img/wristRingProduct.jpg',
     tags: [
         {
             tag: '核心技术'
@@ -47,10 +46,10 @@ var ProjectAllInfo = {
     img: '/public/img/Aqdas_Malik2.png',
     tags: [
         {
-            tag: '多传感器'
+            tag: '例:多传感器'
         },
         {
-            tag: '智能'
+            tag: '例:智能'
         },
     ],
     makers: [
@@ -112,7 +111,7 @@ window.onload = (e) => {
          "<textarea disabled=\"disabled\" class=\"mdl-textfield__input\" type=\"text\" rows=\"3\">"+descriptionText.innerHTML+"</textarea>"+
          "</div>"+
          "<button id=\"removeCreditButton\" onclick=\"removeThisChip(this)\"  class=\"mdl-button mdl-js-button mdl-button--icon mdl-button--colored\">"+
-         "<i class=\"material-icons\">cancel</i>"+
+         "<i class=\"material-icons\">delete</i>"+
          "</button>"+
          "</form>"
 
@@ -145,7 +144,7 @@ window.onload = (e) => {
               "</div>"+
               "</form>"+
               "<button id=\"removeCreditButton\" onclick=\"removeThisChip(this)\"  class=\"mdl-button mdl-js-button mdl-button--icon mdl-button--colored\">"+
-              "<i class=\"material-icons\">cancel</i>"+
+              "<i class=\"material-icons\">delete</i>"+
               "</button>"+
               "</div>"
 
@@ -179,6 +178,16 @@ window.onload = (e) => {
 
     });
 
+
+    var basicInfo = new Vue({
+        el: '#basicInfo',
+        data: NewProjectTemplate
+    })
+
+    var descriptionSection = new Vue({
+        el: '#descriptionSection',
+        data: NewProjectTemplate
+    })
 
 
 
