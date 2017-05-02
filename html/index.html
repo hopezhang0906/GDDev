@@ -87,7 +87,7 @@
                 <div id="optionCard" class="box">
 
                     <button id="selectType">所有类型</button>
-                    <button id="selectMajor">所有领域</button>
+                    <button id="selectMajor">所有学院</button>
 
                 </div>
                 <div id="resultList">
@@ -117,7 +117,66 @@
     </div>
     <dialog id="selectTypeDialog" class="mdl-dialog">
         <h4 class="mdl-dialog__title">请选择成果类型</h4>
+        <div id="autoOverFlowSection">
+                    
         <div class="mdl-dialog__content">
+            <ul class="demo-list-icon mdl-list">
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">school</i>
+                        <button onclick="goToCreatePage('patent')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         发明专利
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">library_books</i>
+                        <button onclick="goToCreatePage('essay')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         论文
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">devices_other</i>
+                        <button onclick="goToCreatePage('software')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         游戏&软件
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">local_library</i>
+                        <button onclick="goToCreatePage('publication')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         出版物
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">videocam</i>
+                        <button onclick="goToCreatePage('art')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         影视&艺术
+                        </button>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        </div>
+
+        <div class="mdl-dialog__actions">
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored close">
+            <i class="material-icons">close
+            </i>
+            </button>
+        </div>
+    </dialog>
+
+    <dialog id="SortingTypeDialog" class="mdl-dialog dialog">
+        <h4 class="mdl-dialog__title">选择类型进行筛选</h4>
+        <div id="autoOverFlowSection">
+            <div class="mdl-dialog__content">
             <ul class="demo-list-icon mdl-list">
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
@@ -161,6 +220,99 @@
                 </li>
             </ul>
         </div>
+
+        </div>
+        
+        <div class="mdl-dialog__actions">
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored closeSortTypeDialog">
+            <i class="material-icons">close
+            </i>
+            </button>
+        </div>
+    </dialog>
+
+    <dialog id="SortingFacultyDialog" class="mdl-dialog dialog">
+        <h4 class="mdl-dialog__title">选择学院进行筛选</h4>
+        <div id="autoOverFlowSection">
+                    <div class="mdl-dialog__content">
+            <ul class="demo-list-icon mdl-list">
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">cast_connected</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         新闻传播学部
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">mode_edit</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         艺术学部
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">developer_board</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         理工学部
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">assignment</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         文法学部
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">map</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         经管学部
+                        </button>
+                    </span>
+                </li>
+                 <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">keyboard_voice</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         播音主持艺术学院
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">language</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         外国语学院
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">tap_and_play</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         广告学院
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">public</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         国际传媒教育学院
+                        </button>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        </div>
+
         <div class="mdl-dialog__actions">
             <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored close">
             <i class="material-icons">close
@@ -184,6 +336,12 @@
                 bar.style.top = 0
                 head.style.marginBottom = 0
             }
+        }
+
+        function goToCreatePage(type){
+            
+            window.location.href = "/create?"+type;
+
         }
     </script>
 

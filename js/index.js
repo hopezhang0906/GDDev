@@ -40,8 +40,13 @@ var resultListInfo = {
 
 window.onload = (e) => {
 
-    var dialog = document.querySelector('dialog');
+    var dialog = document.querySelector('#selectTypeDialog');
     var showModalButton = document.querySelector('#addNewButton');
+    var dialogForSortingType=document.getElementById("SortingTypeDialog")
+    var SortingFacultyDialog=document.getElementById("SortingFacultyDialog")
+    var sortedByTypeButton=document.getElementById("selectType");
+    var sortedByFacultyButton=document.getElementById("selectMajor");
+
     if (! dialog.showModal) {
       dialogPolyfill.registerDialog(dialog);
     }
@@ -51,6 +56,30 @@ window.onload = (e) => {
     dialog.querySelector('.close').addEventListener('click', function() {
       dialog.close();
     });
+
+   if (! dialogForSortingType.showModal) {
+      dialogPolyfill.registerDialog(dialogForSortingType);
+    }
+    sortedByTypeButton.addEventListener('click', function() {
+      dialogForSortingType.showModal();
+    });
+
+    dialogForSortingType.querySelector('.closeSortTypeDialog').addEventListener('click', function() {
+      dialogForSortingType.close();
+    });
+
+    if (! SortingFacultyDialog.showModal) {
+      dialogPolyfill.registerDialog(SortingFacultyDialog);
+    }
+    sortedByFacultyButton.addEventListener('click', function() {
+      SortingFacultyDialog.showModal();
+    });
+    SortingFacultyDialog.querySelector('.close').addEventListener('click', function() {
+      SortingFacultyDialog.close();
+    });
+
+
+
   
 
     //skip to sign in page
@@ -91,6 +120,7 @@ window.onload = (e) => {
         el: '#resultList',
         data: resultListInfo
     })
+
 }
 
 

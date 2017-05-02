@@ -66,8 +66,7 @@ module.exports = {
             { from: 'html/login.html', to: path.resolve(__dirname, 'dist/') },
             { from: 'html/alltypes.html', to: path.resolve(__dirname, 'dist/') },
             { from: 'html/createnewone.html', to: path.resolve(__dirname, 'dist/') },
-            { from: 'js/server', to: path.resolve(__dirname, 'dist/') },
-            { from: 'js/index_page_react.js', to: path.resolve(__dirname, 'dist/public') }
+            { from: 'js/server', to: path.resolve(__dirname, 'dist/') }
         ], {
             ignore: [
                 '*.gitignore',

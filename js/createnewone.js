@@ -1,7 +1,7 @@
 require('../css/createnewone.less')
 
 
-var NewProjectTemplate = {
+var patentTemplate = {
 
     title: '专利名称',
     abstract: '请输入摘要',
@@ -38,48 +38,51 @@ var NewProjectTemplate = {
     ]
 }
 
-var ProjectAllInfo = {
+var essayTemplate = {
 
-    title: '专利名称',
+    title: '论文标题',
     abstract: '请输入摘要',
-    finishDate: '请选择项目结束的日期',
-    img: '/public/img/Aqdas_Malik2.png',
+    finishDate: '请选择论文上线日期',
     tags: [
         {
-            tag: '例:多传感器'
-        },
-        {
-            tag: '例:智能'
+            tag: '涉及技术'
         },
     ],
     makers: [
         {
-            name: '高强',
-            credits: '发明人'
+            name: '张某某',
+            credits: '负责人'
         },
-        {
-            name: '戚建成',
-            credits: '发明人'
-        }
     ],
     description: [
         {
-            label: '申请公布号',
-            content: '例CN103445409A'
+            label: '期刊名称',
+            content: '例:Telematics and Informatics'
         },
         {
-            label: '申请人/单位',
-            content: '青岛歌尔声学科技有限公司',
+            label: '期刊页数',
+            content: '例:33卷(2016) 129-138',
         },
         {
-            label: '分类号',
-            content: 'A44C5/00(2006.01)I',
-        }
+            label: '字数',
+            content: '例:约2000字',
+        },
 
     ]
 }
 
+
+
 window.onload = (e) => {
+
+
+
+    var backButton = document.getElementById("backButton")
+
+    backButton.addEventListener("click", function () {
+
+        window.location.href = "/";
+    });
 
     //init format for boostrap date picker
     $('.datepicker').datepicker({
@@ -179,14 +182,18 @@ window.onload = (e) => {
     });
 
 
+    var addReactInfo = window.location.href;                                                                //获取url
+    var projectType = addReactInfo.split("?")[1]; 
+    console.log(projectType)
+    
     var basicInfo = new Vue({
         el: '#basicInfo',
-        data: NewProjectTemplate
+        data: eval(projectType+"Template")
     })
 
     var descriptionSection = new Vue({
         el: '#descriptionSection',
-        data: NewProjectTemplate
+        data: eval(projectType+"Template")
     })
 
 

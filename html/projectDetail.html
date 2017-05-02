@@ -57,36 +57,12 @@
                                     <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
                                 </div>
                             </form>
-                            <form  id="chooseFaculty" action="#">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input disabled="disabled" class="mdl-textfield__input" type="text" pattern="^[\\u4e00-\\u9fa5_a-zA-Z0-9-]{1,20}$">
-                                    <label id="inputFaculty"  class="mdl-textfield__label" for="sample5">请选择学院</label>
-                                    <button id="demo-menu-lower-right"
-                                            class="mdl-button mdl-js-button mdl-button--icon">
-                                    <i class="material-icons">arrow_drop_down</i>
-                                    </button>
-
-                                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                                        for="demo-menu-lower-right">
-                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item">新闻传播学部</li>
-                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item">艺术学部</li>
-                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item">理工学部</li>
-                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item">文法学部</li>
-                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item">经管学部</li>
-                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item">播音主持艺术学院</li>
-                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item">外国语学院</li>
-                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item">广告学院</li>
-                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item">国际传媒教育学院</li>
-                                    </ul>
-                                </div>
-                            </form>
                             <form action="#">
                             <div class="mdl-textfield mdl-js-textfield">
                                 <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" ></textarea>
                                 <label class="mdl-textfield__label" for="sample5">{{abstract}}</label>
                             </div>
                             </form>
-
                             <form action="#">
                                 <form id="dateRangeForm" method="post" class="form-horizontal">
                                 <label id="labelforTextArea">{{finishDate}}</label>
@@ -271,11 +247,6 @@ function outputFileName(){
 
 } 
 
-function chooseFaculty(item){
-    var inputFaculty=document.getElementById("inputFaculty")
-    inputFaculty.innerText=item.innerText
-
-}
 
 
 
