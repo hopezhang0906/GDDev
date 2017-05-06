@@ -158,6 +158,8 @@ button:active{
     z-index: 3;
     padding-top: 10px;
     padding-left: 8px;
+    width: 100%;
+    max-width: 350px;
 
     }
 
@@ -275,6 +277,7 @@ button:active{
 
     p{
         margin-left: 12px;
+        margin-top: 20px;
     }
 
     #accountID{
@@ -324,7 +327,7 @@ button:active{
 
 #selectTypeDialog{
     h4{
-        font-size: 20px;
+        font-size: 16px;
     }
     #autoOverFlowSection{
         width: auto;
@@ -358,7 +361,7 @@ button:active{
 
 #SortingTypeDialog{
     h4{
-        font-size: 20px;
+        font-size: 14px;
     }
     #autoOverFlowSection{
         width: auto;
@@ -368,8 +371,7 @@ button:active{
     .close{
         color:black; 
     }
-    .selectTypeButton{
-    }
+
     li{
         i{
             color: #FF4081;
@@ -392,7 +394,7 @@ button:active{
 
 #SortingFacultyDialog{
     h4{
-        font-size: 20px;
+        font-size: 16px;
     }
     #autoOverFlowSection{
         width: auto;
@@ -422,3 +424,64 @@ button:active{
     }
 
 }
+
+
+#dialogBgMask{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10;
+    background-color: black;
+    opacity: 0.36;
+    display: none;
+
+}
+
+#div_out{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    #selectTypeDialog{
+        position: fixed;
+        z-index: 11;
+        background-color: white;
+        width: 240px;
+        height: 360px;
+        margin-left: -120px;
+        margin-top: -180px;
+        border-radius: 3px;
+        box-shadow: 0px 5px 5.5px rgba(0,0,0,0.24);
+        display: none;
+        
+    }
+    #SortingTypeDialog{
+        position: fixed;
+        z-index: 11;
+        background-color: white;
+        width: 240px;
+        height: 360px;
+        margin-left: -120px;
+        margin-top: -180px;
+        border-radius: 3px;
+        box-shadow: 0px 5px 5.5px rgba(0,0,0,0.24);
+        display: none;
+        
+    }
+    #SortingFacultyDialog{
+        position: fixed;
+        z-index: 11;
+        background-color: white;
+        width: 280px;
+        height: 360px;
+        margin-left: -140px;
+        margin-top: -180px;
+        border-radius: 3px;
+        box-shadow: 0px 5px 5.5px rgba(0,0,0,0.24);
+        display: none;
+        
+    }
+    
+
+}
+    

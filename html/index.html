@@ -113,130 +113,23 @@
 
 
             </div>
+            
+
         </main>
     </div>
-    <dialog id="selectTypeDialog" class="mdl-dialog">
-        <h4 class="mdl-dialog__title">请选择成果类型</h4>
-        <div id="autoOverFlowSection">
-                    
-        <div class="mdl-dialog__content">
-            <ul class="demo-list-icon mdl-list">
-                <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">school</i>
-                        <button onclick="goToCreatePage('patent')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
-                         发明专利
-                        </button>
-                    </span>
-                </li>
-                <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">library_books</i>
-                        <button onclick="goToCreatePage('essay')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
-                         论文
-                        </button>
-                    </span>
-                </li>
-                <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">devices_other</i>
-                        <button onclick="goToCreatePage('software')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
-                         游戏&软件
-                        </button>
-                    </span>
-                </li>
-                <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">local_library</i>
-                        <button onclick="goToCreatePage('publication')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
-                         出版物
-                        </button>
-                    </span>
-                </li>
-                <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">videocam</i>
-                        <button onclick="goToCreatePage('art')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
-                         影视&艺术
-                        </button>
-                    </span>
-                </li>
-            </ul>
-        </div>
-        </div>
 
-        <div class="mdl-dialog__actions">
-            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored close">
-            <i class="material-icons">close
-            </i>
-            </button>
-        </div>
-    </dialog>
+   <div id="dialogBgMask">
 
-    <dialog id="SortingTypeDialog" class="mdl-dialog dialog">
-        <h4 class="mdl-dialog__title">选择类型进行筛选</h4>
-        <div id="autoOverFlowSection">
-            <div class="mdl-dialog__content">
-            <ul class="demo-list-icon mdl-list">
-                <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">school</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
-                         发明专利
-                        </button>
-                    </span>
-                </li>
-                <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">library_books</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
-                         论文
-                        </button>
-                    </span>
-                </li>
-                <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">devices_other</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
-                         游戏&软件
-                        </button>
-                    </span>
-                </li>
-                <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">local_library</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
-                         出版物
-                        </button>
-                    </span>
-                </li>
-                <li class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">videocam</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
-                         影视&艺术
-                        </button>
-                    </span>
-                </li>
-            </ul>
-        </div>
 
-        </div>
-        
-        <div class="mdl-dialog__actions">
-            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored closeSortTypeDialog">
-            <i class="material-icons">close
-            </i>
-            </button>
-        </div>
-    </dialog>
-
-    <dialog id="SortingFacultyDialog" class="mdl-dialog dialog">
+   </div>
+    <div id="div_out">
+    
+    <div id="SortingFacultyDialog" class="mdl-dialog dialog">
         <h4 class="mdl-dialog__title">选择学院进行筛选</h4>
         <div id="autoOverFlowSection">
                     <div class="mdl-dialog__content">
             <ul class="demo-list-icon mdl-list">
-                <li class="mdl-list__item">
+                <li style="margin-top:-25px;" class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">cast_connected</i>
                         <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
@@ -314,12 +207,138 @@
         </div>
 
         <div class="mdl-dialog__actions">
-            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored close">
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored closeSortedFacultyDialog">
             <i class="material-icons">close
             </i>
             </button>
         </div>
-    </dialog>
+    </div>
+
+    <div id="SortingTypeDialog" class="mdl-dialog dialog">
+        <h4 class="mdl-dialog__title">选择类型进行筛选</h4>
+        <div id="autoOverFlowSection">
+            <div class="mdl-dialog__content">
+            <ul class="demo-list-icon mdl-list">
+                <li style="margin-top:-25px;" class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">school</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         发明专利
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">library_books</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         论文
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">devices_other</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         游戏&软件
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">local_library</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         出版物
+                        </button>
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">videocam</i>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         影视&艺术
+                        </button>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        </div>
+        
+        <div class="mdl-dialog__actions">
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored closeSortedTypeDialog">
+            <i class="material-icons">close
+            </i>
+            </button>
+        </div>
+    </div>
+
+    <div id="selectTypeDialog">
+
+
+        <h4 class="mdl-dialog__title">请选择成果类型</h4>
+            <div id="autoOverFlowSection">
+                        
+                <div class="mdl-dialog__content">
+                    <ul class="demo-list-icon mdl-list">
+                        <li style="margin-top:-25px;" class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">school</i>
+                                <button onclick="goToCreatePage('patent')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                                发明专利
+                                </button>
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">library_books</i>
+                                <button onclick="goToCreatePage('essay')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                                论文
+                                </button>
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">devices_other</i>
+                                <button onclick="goToCreatePage('software')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                                游戏&软件
+                                </button>
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">local_library</i>
+                                <button onclick="goToCreatePage('publication')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                                出版物
+                                </button>
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">videocam</i>
+                                <button onclick="goToCreatePage('art')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                                影视&艺术
+                                </button>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mdl-dialog__actions">
+                <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored closeSelectTypeDialog">
+                <i class="material-icons">close
+                </i>
+                </button>
+            </div>
+        </div>
+    
+    
+    
+    
+    
+    </div>
+
+
 
 
     <script type="text/javascript">
@@ -343,6 +362,7 @@
             window.location.href = "/create?"+type;
 
         }
+
     </script>
 
 </body>
