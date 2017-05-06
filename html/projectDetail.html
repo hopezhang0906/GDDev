@@ -2,25 +2,21 @@
 <html>
 
 <head>
-    <title>createNewOnePage</title>
+    <title>projectDetail</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/public/createnewone.css" />
-    <script src="/public/createnewone.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/projectDetail.css" />
+    <script src="/public/projectDetail.js"></script>
 
     <!-- Material Design Lite -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
      
-    <!-- Include Bootstrap Datepicker -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
-    
+
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 
@@ -32,225 +28,38 @@
                 <button id="backButton" id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
              <i class="material-icons">arrow_back</i>
         </button>
+
                 <!-- Title -->
-                <span class="mdl-layout-title">创建成果</span>
+                <span class="mdl-layout-title"></span>
+            <button id="favoriteButton" class="mdl-button mdl-js-button mdl-button--icon">
+                <i style="color:#FF4081" class="material-icons">bookmark</i>
+            </button>
             </div>
+
         </header>
         <main class="mdl-layout__content">
             <section>
-                <div class="page-content">
-                    <div id="patternFillOutForm" class="page-content">
-                    <div id="wholePanel">
-                        <div id="chooseImg">
-                            <p id="hintToChooseImg">select a product/depict photo</p>
-                            <input id="fileInput" type="file" onchange="outputFileName()">
-                            <button onclick="selectFile()" id="addImg" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
-                            <i class="material-icons">add_a_photo</i>
-                        </button>
-                        </div>
-                        <div id="basicInfo" class="inputSection">
-                            <p>基本信息</p>
-                            <form id="firstOne" action="#">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" pattern="^[\\u4e00-\\u9fa5_a-zA-Z0-9-]{1,20}$">
-                                    <label class="mdl-textfield__label" for="sample5">{{title}}</label>
-                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
-                                </div>
-                            </form>
-                            <form action="#">
-                            <div class="mdl-textfield mdl-js-textfield">
-                                <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" ></textarea>
-                                <label class="mdl-textfield__label" for="sample5">{{abstract}}</label>
-                            </div>
-                            </form>
-                            <form action="#">
-                                <form id="dateRangeForm" method="post" class="form-horizontal">
-                                <label id="labelforTextArea">{{finishDate}}</label>
-                                    <div class="form-group">
-                                        <div class=" date">
-                                            <div class="input-group input-append date" id="dateRangePicker">
-                                                <input type="text" class="form-control" name="date" />
-                                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </form>
-                        </div>
-                        <div id="descriptionSection" class="inputSection">
-                            <p>推荐填写信息</p>
-                            <form id="firstOne" v-for="item in description" action="#">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input v-bind:placeholder="item.content" class="mdl-textfield__input" type="text" >
-                                    <label class="mdl-textfield__label" for="sample3">{{item.label}}</label>
-                                    <span class="mdl-textfield__error">11位</span>
-                                </div>
-                            </form>
-                        </div>
-                        <div id="CustomDescriptionSection" class="inputSection">
-                            <p>自定义描述信息</p>
-                            <div class="oneCustomItem">
-                                <form id="firstOne" action="#">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input placeholder="例:文档链接" id="descriptionTitle"  class="mdl-textfield__input" type="text" >
-                                    <label class="mdl-textfield__label" for="sample3">描述标题</label>
-                                    <span class="mdl-textfield__error">11位</span>
-                                     <button id="addCustomDescriptionButton" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                                    <i class="material-icons">add</i>
-                                </button>
-                                    </div>
-
-                                </form>
-
-                            <form class="description" action="#">
-                            <div class="mdl-textfield mdl-js-textfield">
-                                <textarea  id="descriptionText" class="mdl-textfield__input" type="text" rows= "3" id="sample5" ></textarea>
-                                <label class="mdl-textfield__label" for="sample5">website link/..</label>
-                            </div>
-                            </form>
-                                <form class="addedDescription" action="#">
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <label id="labelforTextArea">链接地址</label>
-                                    <textarea disabled="disabled" class="mdl-textfield__input" type="text" rows="3">例:链接地址</textarea>
-                                      
-                                </div>
-                                 <button id="removeCreditButton" onclick="removeThisChip(this)"  class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                               <i class="material-icons">delete</i>
-                                </button>
-                                </form>
-
-
-                            </div>
-
-
-                        </div>
-                        <div id="tagsSection" class="inputSection">
-                            <p>标签</p>
-                            <form id="firstOne" class="addInfoInput" action="#">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input id="inputForTag" value="核心技术/特别之处" class="mdl-textfield__input" type="text" >
-                                    <button id="addNewTagButton" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                                    <i class="material-icons">add</i>
-                                </button>
-                                    <label class="mdl-textfield__label" for="sample3">请输入自定义标签</label>
-                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
-                                </div>
-
-                            </form>
-                            
-                            <span id="chip" class="mdl-chip mdl-chip--deletable">
-                                <span class="mdl-chip__text">传感器</span>
-                                <button onclick="removeThisChip(this)"  id="removeTagButton" type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
-                            </span>
-
-
-                        </div>
-
-                         <div  id="creditsSection" class="inputSection">
-                            <p>成员与身份</p>
-                            <form id="inputForMaker" class="addInfoInput" action="#">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input id="makerName"  value="张某某" class="mdl-textfield__input" type="text" >
-                                    <label class="mdl-textfield__label" for="sample3">请输入成员姓名</label>
-                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
-                                </div>
-
-                            </form>
-                            <form id="inputForMaker" class="addInfoInput" action="#">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input  id="makerCredit" value="负责人" class="mdl-textfield__input" type="text" >
-                                    <label class="mdl-textfield__label" for="sample3">请输入其身份</label>
-                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
-                                </div>
-                            </form>
-                           <button id="addNewCreditButton" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                               <i class="material-icons">add</i>
-                                </button>
-                            <div id="creditAdded">
-                           <form id="inputForMaker" class="addInfoInput" action="#">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input  disabled="disabled" value="张某某" class="mdl-textfield__input" type="text" >
-                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
-                                </div>
-
-                            </form>
-                            <form id="inputForMaker" class="addInfoInput" action="#">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input  disabled="disabled" value="负责人" class="mdl-textfield__input" type="text" >
-                                    <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
-                                </div>
-                            </form>
-                             <button id="removeCreditButton" onclick="removeThisChip(this)"  class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                               <i class="material-icons">delete</i>
-                                </button>
-                            </div>
-
-                        </div>
-
-
-
-
-                    </div>
-
+                <div id="headImg">
+                    <p>Uses and Gratifications of digital photo sharing on Facebook</p>
                 </div>
+                <div id="uploadInfo">
+                    <div id="headShot"></div>
+                    <p id="uploaderName">Aqdas Malik</p>
+                    <p id="uploadDate">发表日期 2017/05/02</p> 
+                </div>
+
+                <div class="oneSection">
+                    <p>作者</p>
+
                 </div>
             </section>
+           
         </main>
     </div>
 
-    <script>
-//init datepicker settings
- $(document).ready(function () {
-      $('#dateRangePicker')
-    .datepicker({
-    format: 'mm/dd/yyyy',
-    startDate: '01/01/2010',
-    endDate: '12/30/2020'
-    })
-    .on('changeDate', function (e) {
-    // Revalidate the date field
-    });
+<script>
 
-});
-
-//remove addible item
-function removeThisChip(item){
-
-  item.parentNode.remove()
-
-
-}
-
-//link choose img button to input whoose type is file
-function selectFile(){ 
-//触发 文件选择的click事件 
-$("#fileInput").trigger("click"); 
-//其他code如 alert($("#file").attr("value")) 
-} 
-
-//get choosed img name and change the background-image url
-function outputFileName(){ 
-
-        var str=document.getElementById("fileInput").value
-        console.log(document.getElementById("fileInput").value)
-
-        console.log(str.split("\\")[2]);
-        var imgName=str.split("\\")[2];
-        var chooseImg=document.getElementById("chooseImg")
-        chooseImg.style.backgroundImage="url('/public/img/"+imgName+"')"
-        if(document.getElementById("hintToChooseImg"))
-        {
-        var hintToChooseImg=document.getElementById("hintToChooseImg")
-
-        hintToChooseImg.remove()
-        }
-
-} 
-
-
-
-
-    </script>
+</script>
 
 
 </body>

@@ -22,6 +22,10 @@ app.get('/alltypes', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/alltypes.html'))
 })
 
+app.get('/projectDetail', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../dist/projectDetail.html'))
+})
+
 app.get('/database/project/:id', (req, res) => {
     console.log('project request')
     res.json({ id: req.params.id })

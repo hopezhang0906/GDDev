@@ -85,10 +85,7 @@ window.onload = (e) => {
     });
 
     //init format for boostrap date picker
-    $('.datepicker').datepicker({
-        format: 'mm/dd/yyyy',
-        startDate: '-3d',
-    });
+
 
     //add tag button click fuction
     var addNewTagButton = document.getElementById("addNewTagButton")
@@ -111,7 +108,7 @@ window.onload = (e) => {
          "<form class=\"addedDescription\" action=\"#\">"+
          "<div class=\"mdl-textfield mdl-js-textfield\">"+
          "<label id=\"labelforTextArea\">"+descriptionTitle.value+"</label>"+
-         "<textarea disabled=\"disabled\" class=\"mdl-textfield__input\" type=\"text\" rows=\"3\">"+descriptionText.innerHTML+"</textarea>"+
+         "<textarea id=\"addedDescriptionText\" disabled=\"disabled\" class=\"mdl-textfield__input\" type=\"text\" rows=\"3\">"+descriptionText.value+"</textarea>"+
          "</div>"+
          "<button id=\"removeCreditButton\" onclick=\"removeThisChip(this)\"  class=\"mdl-button mdl-js-button mdl-button--icon mdl-button--colored\">"+
          "<i class=\"material-icons\">delete</i>"+
@@ -185,7 +182,6 @@ window.onload = (e) => {
     var addReactInfo = window.location.href;                                                                //获取url
     var projectType = addReactInfo.split("?")[1]; 
     console.log(projectType)
-    
     var basicInfo = new Vue({
         el: '#basicInfo',
         data: eval(projectType+"Template")
