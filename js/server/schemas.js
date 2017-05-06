@@ -1,54 +1,64 @@
-const ProjectSchema = {
-    name: "Project",
-    properties: {
-        id: 'string',
-        uploadedOn: 'date',
-        lastModifiedOn: 'date',
+module.exports = {
+    ProjectSchema: {
+        name: 'Project',
+        properties: {
+            id: 'string',
+            uploadedOn: { type: 'date', indexed: true },
+            lastModifiedOn: { type: 'date', indexed: true },
 
-        type: 'string',
-        title: 'string',
-        thumbnail: 'string',
-        tags: { type: 'list', objectType: 'string' },
+            type: { type: 'string', indexed: true },
+            title: { type: 'string', indexed: true },
+            thumbnail: 'string',
+            tags: { type: 'list', objectType: 'Tag' },
 
-        description: 'string',
-        finishedOn: 'date',
-        info: { type: 'list', objectType: 'Info' },
+            description: 'string',
+            finishedOn: { type: 'date', indexed: true },
+            info: { type: 'list', objectType: 'Info' },
 
-        uploader: { type: 'User' },
-        makers: { type: 'list', objectType: 'Maker' }
-    }
-}
+            uploader: 'User',
+            makers: { type: 'list', objectType: 'Maker' }
+        }
+    },
 
-const MakerSchema = {
-    name: 'Maker',
-    properties: {
-        id: { type: 'string', optional: true },
-        name: 'string',
-        role: 'string'
-    }
-}
+    TagSchema: {
+        name: 'Tag',
+        properties: {
+            name: { type: 'string', indexed: true },
+            description: { type: 'string', optional: true }
+        }
+    },
 
-const InfoSchema = {
-    name: 'Info',
-    properties: {
-        title: 'string',
-        content: 'string'
-    }
-}
+    MakerSchema: {
+        name: 'Maker',
+        properties: {
+            userId: { type: 'string', optional: true },
+            name: 'string',
+            role: 'string'
+        }
+    },
 
-const UserSchema = {
-    name: 'User',
-    properties: {
-        id: 'string',
-        signupOn: 'date',
+    InfoSchema: {
+        name: 'Info',
+        properties: {
+            title: 'string',
+            content: 'string'
+        }
+    },
 
-        email: 'string',
-        password: 'string',
+    UserSchema: {
+        name: 'User',
+        properties: {
+            id: 'string',
+            signupOn: 'date',
 
-        avatar: 'string',
-        name: 'string',
-        bio: 'string',
+            email: 'string',
+            password: 'string',
 
-        favorites: { type: 'list', objectType: 'Project' }
+            avatar: 'string',
+            name: 'string',
+            bio: 'string',
+
+            favorites: { type: 'list', objectType: 'Project' }
+        }
     }
 }
