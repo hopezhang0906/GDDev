@@ -1,10 +1,17 @@
-'use strict';
+'use strict'
 
-var path = require('path');
-var express = require('express');
+var path = require('path')
+var express = require('express')
+var bodyParser = require('body-parser')
 
-var app = express();
-app.use('/public', express.static(path.resolve(__dirname, '../dist/public')));
+var app = express()
+app.use('/public', express.static(path.resolve(__dirname, '../dist/public')))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+var schemas = require('./schemas')
+var database = require('./database')
+database.init()
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../dist/index.html'))
@@ -22,13 +29,65 @@ app.get('/alltypes', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/alltypes.html'))
 })
 
-app.get('/projectDetail', function (req, res) {
-    res.sendFile(path.resolve(__dirname, '../dist/projectDetail.html'))
+app.get('/db/get/project/:id', (req, res) => {
+    var id = req.params.id
+    if (id) {
+        var result = database.get.byId(schemas.ProjectSchema.name, id)
+        if (result) {
+            res.json({
+                status: 'OK',
+                result: result
+            })
+        } else {
+            res.json({
+                status: 'ZERO_RESULT'
+            })
+        }
+    } else {
+        res.json({
+            status: 'ERROR',
+            errorMessage: 'Missing id parameter'
+        })
+    }
 })
 
-app.get('/database/project/:id', (req, res) => {
-    console.log('project request')
-    res.json({ id: req.params.id })
+app.post('/db/edit/add', (req, res) => {
+    var object = req.body.project
+    if (object) {
+        database.edit.add(object)
+        res.json({ status: 'OK' })
+    } else {
+        res.json({
+            status: 'ERROR',
+            errorMessage: 'Missing object parameter'
+        })
+    }
+})
+
+app.post('/db/edit/update', (req, res) => {
+    var object = req.body.project
+    if (object) {
+        database.edit.update(object)
+        res.json({ status: 'OK' })
+    } else {
+        res.json({
+            status: 'ERROR',
+            errorMessage: 'Missing object parameter'
+        })
+    }
+})
+
+app.post('/db/edit/delete', (req, res) => {
+    var object = req.body.project
+    if (object) {
+        database.edit.delete(object)
+        res.json({ status: 'OK' })
+    } else {
+        res.json({
+            status: 'ERROR',
+            errorMessage: 'Missing object parameter'
+        })
+    }
 })
 
 app.listen(8860, function () {
