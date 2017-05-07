@@ -46,4 +46,5 @@ dist
 .vs
 
 #Realm
+realm-object-server
 default.realm*
