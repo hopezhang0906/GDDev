@@ -13,7 +13,8 @@ module.exports = {
         //...
         alltypes: path.join(__dirname, 'js/alltypes.js'),
         createnewone: path.join(__dirname, 'js/createnewone.js'),
-        projectDetail: path.join(__dirname, 'js/projectDetail.js')
+        projectDetail: path.join(__dirname, 'js/projectDetail.js'),
+        createTest: path.join(__dirname, 'js/createTest.js')
         //Server
         //database: path.join(__dirname, 'js/server/database.js'),
         //server: path.join(__dirname, 'js/server/server.js')
@@ -69,7 +70,9 @@ module.exports = {
             { from: 'html/alltypes.html', to: path.resolve(__dirname, 'dist/') },
             { from: 'html/createnewone.html', to: path.resolve(__dirname, 'dist/') },
             { from: 'html/projectDetail.html', to: path.resolve(__dirname, 'dist/') },
-            { from: 'js/server', to: path.resolve(__dirname, 'dist/') }
+            { from: 'js/server', to: path.resolve(__dirname, 'dist/') },
+            { from: 'html/createTest.html', to: path.resolve(__dirname, 'dist/') }
+
         ], {
             ignore: [
                 '*.gitignore',

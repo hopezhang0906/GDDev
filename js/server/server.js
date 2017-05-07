@@ -29,6 +29,11 @@ app.get('/alltypes', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/alltypes.html'))
 })
 
+app.get('/createTest', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../dist/createTest.html'))
+})
+
+
 app.get('/db/get/project/:id', (req, res) => {
     var id = req.params.id
     if (id) {
