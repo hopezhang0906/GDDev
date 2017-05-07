@@ -40,7 +40,7 @@ var resultListInfo = {
 
 
 $(document).ready(function() {
-    console.log("this  document is ready")
+console.log("this document is ready")
 
  var selectTypeDialog = document.querySelector('#selectTypeDialog');
  var dialogBgMask=document.getElementById('dialogBgMask');
@@ -150,86 +150,6 @@ $(document).ready(function() {
 
 window.onload = (e) => {
 
-//     var dialog = document.querySelector('#selectTypeDialog');
-//     var showModalButton = document.querySelector('#addNewButton');
-//     var dialogForSortingType=document.getElementById("SortingTypeDialog")
-//     var SortingFacultyDialog=document.getElementById("SortingFacultyDialog")
-//     var sortedByTypeButton=document.getElementById("selectType");
-//     var sortedByFacultyButton=document.getElementById("selectMajor");
-
-//     if (! dialog.showModal) {
-//       dialogPolyfill.registerDialog(dialog);
-//     }
-//     showModalButton.addEventListener('click', function() {
-//       dialog.showModal();
-//     });
-//     dialog.querySelector('.close').addEventListener('click', function() {
-//       dialog.close();
-//     });
-
-//    if (! dialogForSortingType.showModal) {
-//       dialogPolyfill.registerDialog(dialogForSortingType);
-//     }
-//     sortedByTypeButton.addEventListener('click', function() {
-//       dialogForSortingType.showModal();
-//     });
-
-//     dialogForSortingType.querySelector('.closeSortTypeDialog').addEventListener('click', function() {
-//       dialogForSortingType.close();
-//     });
-
-//     if (! SortingFacultyDialog.showModal) {
-//       dialogPolyfill.registerDialog(SortingFacultyDialog);
-//     }
-//     sortedByFacultyButton.addEventListener('click', function() {
-//       SortingFacultyDialog.showModal();
-//     });
-//     SortingFacultyDialog.querySelector('.close').addEventListener('click', function() {
-//       SortingFacultyDialog.close();
-//     });
-
-
-
-  
-
-//     //skip to sign in page
-//     var signinButton = document.getElementById("signinButton")
-
-//     signinButton.addEventListener("click", function () {
-
-//         window.location.href = "/login?signin";
-//     });
-
-//     //skip to sign up page
-//     var signupButton = document.getElementById("signupButton")
-
-//     signupButton.addEventListener("click", function () {
-
-//         window.location.href = "/login?signup";
-//     });
-
-//     if (isSignedIn) {
-//         console.log(isSignedIn)
-//         var loginPanel = document.getElementById('logInPanel')
-//         //var userinfoPanel=document.getElementById('personalInfo')
-//         loginPanel.style.display = 'none'
-//         //userinfoPanel.style.display='block'
-//     } else {
-
-//         console.log(isSignedIn)
-//         var userinfoPanel = document.getElementById('userinfo')
-//         userinfoPanel.style.display = 'none'
-//     }
-
-//     var userinfo = new Vue({
-//         el: '#userinfo',
-//         data: userInfoData
-//     })
-
-//     var resultList = new Vue({
-//         el: '#resultList',
-//         data: resultListInfo
-//     })
 
 }
 

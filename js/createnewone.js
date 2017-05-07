@@ -1,5 +1,5 @@
 require('../css/createnewone.less')
-
+//var request = require('request')
 
 var patentTemplate = {
 
@@ -80,6 +80,8 @@ $(document).ready(function() {
         window.location.href = "/";
     });
 
+
+
     //init format for boostrap date picker
 
 
@@ -93,27 +95,28 @@ $(document).ready(function() {
     //add description button click fuction
     var addCustomDescriptionButton=document.getElementById("addCustomDescriptionButton")
     var descriptionTitle=document.getElementById("descriptionTitle")
-    var descriptionText=document.getElementById("descriptionText")
+    var descriptionText=document.getElementById("descriptionText") 
 
+    var infoCount=0
     addCustomDescriptionButton.addEventListener("click",function(){
         console.log(descriptionTitle.value)
         console.log(descriptionText.innerHTML)
 
 
         var new_description = $(
-         "<form class=\"addedDescription\" action=\"#\">"+
+         "<div class=\"addedDescription\" action=\"#\">"+
          "<div class=\"mdl-textfield mdl-js-textfield\">"+
          "<label id=\"labelforTextArea\">"+descriptionTitle.value+"</label>"+
-         "<textarea id=\"addedDescriptionText\" disabled=\"disabled\" class=\"mdl-textfield__input\" type=\"text\" rows=\"3\">"+descriptionText.value+"</textarea>"+
+         `<input name="info[${infoCount}]" id=\"addedDescriptionText\"  class=\"mdl-textfield__input\" type=\"text\" rows=\"3\" value="${descriptionText.value}"/>`+"</input>"+
          "</div>"+
          "<button id=\"removeCreditButton\" onclick=\"removeThisChip(this)\"  class=\"mdl-button mdl-js-button mdl-button--icon mdl-button--colored\">"+
          "<i class=\"material-icons\">delete</i>"+
          "</button>"+
-         "</form>"
+         "</div>"
 
         ).hide();
-
-        $(".oneCustomItem").append(new_description);
+        infoCount++;
+        $("#CustomDescriptionSection").append(new_description);
 
         new_description.show('normal')
 
@@ -191,6 +194,11 @@ $(document).ready(function() {
 
 
 });
+
+function finalSubmit(e){
+    //e.preventDefault()
+    return false;
+}
 
 window.onload = (e) => {
 

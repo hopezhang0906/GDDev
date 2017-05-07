@@ -52,7 +52,9 @@ app.get('/db/get/project/:id', (req, res) => {
 })
 
 app.post('/db/edit/add', (req, res) => {
+    console.log(req.body)
     var object = req.body.project
+    //res.redirect('/')
     if (object) {
         database.edit.add(object)
         res.json({ status: 'OK' })
