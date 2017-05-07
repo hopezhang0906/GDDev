@@ -19,12 +19,6 @@ var patentTemplate = {
             tag: '核心技术'
         },
     ],
-    makers: [
-        {
-            name: '张某某',
-            credits: '负责人'
-        },
-    ],
     description: [
         {
             label: '申请公布号',
@@ -60,12 +54,6 @@ var essayTemplate = {
             tag: '涉及技术'
         },
     ],
-    makers: [
-        {
-            name: '张某某',
-            credits: '负责人'
-        },
-    ],
     description: [
         {
             label: '期刊名称',
@@ -85,6 +73,74 @@ var essayTemplate = {
     ]
 }
 
+var softwareTemplate = {
+
+    title: '产品名称',
+    abstract: '简介',
+    finishDate: '上线日期',
+    tags: [
+        {
+            tag: '涉及技术'
+        },
+    ],
+    description: [
+        {
+            label: '所在平台',
+            content: '例:windows/mac/android',
+        },
+        {
+            label: '支持语言',
+            content: '例:中文/英文',
+
+        },
+        {
+            label: '产品大小',
+            content: '例:223.6MB',
+
+        },
+
+    ]
+}
+
+var publicationTemplate = {
+
+    title: '出版物名称',
+    abstract: '内容简介',
+    finishDate: '出版日期',
+    tags: [
+        {
+            tag: '涉及技术'
+        },
+    ],
+    description: [
+        {
+            label: '出版社',
+            content: '例: 北京航空航天大学出版社',
+        },
+        {
+            label: 'ISBN',
+            content: '例:9787512417465',
+
+        },
+        {
+            label: '页数',
+            content: '例:300页',
+
+        },
+
+    ]
+}
+
+var artTemplate = {
+
+    title: '作品名称',
+    abstract: '作品简介',
+    finishDate: '完成日期',
+
+    description: [
+
+    ]
+}
 $(document).ready(function() {
 
        var backButton = document.getElementById("backButton")
