@@ -1,24 +1,28 @@
 var Realm = require('realm')
-var schemas = require('./schemas')
+var Schemas = require('./schemas')
 
 var DB = {
     realm: null,
     init: () => {
         realm = new Realm({
             schema: [
-                schemas.InfoSchema,
-                schemas.MakerSchema,
-                schemas.ProjectSchema,
-                schemas.TagSchema,
-                schemas.UserSchema
+                Schemas.InfoSchema,
+                Schemas.MakerSchema,
+                Schemas.ProjectSchema,
+                Schemas.TagSchema,
+                Schemas.UserSchema
             ]
         })
+    },
+
+    write: (operations) => {
+        realm.write(operations)
     },
 
     get: {
         byId: (type, id) => {
             let query = realm.objects(type)
-            return result = query.filtered(`id = "${id}"`)
+            return query.filtered(`id = "${id}"`)
         }
     },
 
@@ -26,16 +30,19 @@ var DB = {
 
     },
 
-    edit: {
-        add: (object) => {
+    project: {
+        add: (project, info, tags, makers) => {
             realm.write(() => {
-                realm.create(schemas.UserSchema.name, object)
+                let p = realm.create(Schemas.ProjectSchema.name, project)
+                p.info = info
+                p.tags = tags
+                p.makrs = makers
             })
         },
 
         update: (object) => {
             realm.write(() => {
-                realm.create(schemas.UserSchema.name, object, true)
+                realm.create(Schemas.ProjectSchema.name, object, true)
             })
         },
 
