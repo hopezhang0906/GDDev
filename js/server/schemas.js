@@ -7,7 +7,7 @@ module.exports = {
             lastModifiedOn: { type: 'date', indexed: true },
 
             type: { type: 'string', indexed: true },
-            //faculty: { type: 'string'},
+            faculty: { type: 'string'},
             title: { type: 'string', indexed: true },
             thumbnail: 'string',
             tags: { type: 'list', objectType: 'Tag' },

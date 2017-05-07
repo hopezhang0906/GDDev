@@ -43,25 +43,27 @@
                         <div id="wholePanel">
                             <div id="chooseImg">
                                 <p id="hintToChooseImg">select a product/depict photo</p>
-                                <input id="fileInput" type="file" onchange="outputFileName()">
+                                <input id="fileInput" name="thumbnail" type="file" onchange="outputFileName()">
                                 <button type="button" onclick="selectFile()" id="addImg" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                             <i class="material-icons">add_a_photo</i>
                         </button>
                             </div>
                             <div id="basicInfo" class="inputSection">
                                 <p>基本信息</p>
+                                <input type="text" name="type" style="display: none" id="submitType">
+                                <input type="text" name="uploader" style="display: none" id="submitUploader">
                                 <div id="firstOne" class="form" action="#">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input name="title" class="mdl-textfield__input" type="text" pattern="^[\\u4e00-\\u9fa5_a-zA-Z0-9-]{4,30}$">
-                                        <label class="mdl-textfield__label" for="sample5">{{title}}</label>
-                                        <span class="mdl-textfield__error">限4-40个字符，仅支持中英文、数字、减号或下划线</span>
+                                        <input id="projectTitle" name="title" class="mdl-textfield__input" type="text" pattern="^.{4,40}$">
+                                        <label class="mdl-textfield__label">{{title}}</label>
+                                        <span class="mdl-textfield__error">限4-40个字符</span>
                                     </div>
                                 </div>
                                 <div id="chooseFaculty" class="form">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input disabled="disabled" class="mdl-textfield__input" type="text" >
                                         <input name="faculty" id="submitFacultyInput" style="display:none;">
-                                        <label id="inputFaculty" class="mdl-textfield__label" for="sample5">请选择学院</label>
+                                        <label id="inputFaculty" class="mdl-textfield__label" >请选择学院</label>
                                     </div>
                                 </div>
                                 <div id="option">
@@ -81,9 +83,9 @@
                                     </ul>
                                 </div>
                                 <div class="form" >
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <textarea name="abstract" class="mdl-textfield__input" type="text" rows="3" ></textarea>
-                                        <label class="mdl-textfield__label" for="sample5">{{abstract}}</label>
+                                    <div id="descriptionArea" class="mdl-textfield mdl-js-textfield">
+                                        <textarea id="descriptionTextArea" name="description" class="mdl-textfield__input" type="text" rows="3" ></textarea>
+                                        <label id="descriptionLabel" class="mdl-textfield__label" >{{abstract}}</label>
                                     </div>
                                 </div>
 
@@ -93,7 +95,7 @@
                                         <div class="form-group">
                                             <div class=" date">
                                                 <div class="input-group input-append date" id="dateRangePicker">
-                                                    <input type="text" class="form-control" name="date" />
+                                                    <input id="submitDateInpute" type="text" class="form-control" name="finishedOn" />
                                                     <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                                                 </div>
                                             </div>
@@ -103,104 +105,70 @@
                             </div>
                             <div id="descriptionSection" class="inputSection">
                                 <p>推荐填写信息</p>
-                                <div id="firstOne" class="form" v-for="item in description" action="#">
+                                <div id="firstOne" class="form" v-for="(item,index) in description" action="#">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input v-bind:placeholder="item.content" class="mdl-textfield__input" type="text">
-                                        <label class="mdl-textfield__label" for="sample3">{{item.label}}</label>
-                                        <span class="mdl-textfield__error">11位</span>
+                                        <input v-bind:placeholder="item.content" v-bind:name="'infoContent['+index+']'" class="mdl-textfield__input" type="text" pattern="^.{4,40}$">
+                                        <label  class="mdl-textfield__label" for="sample3">{{item.label}}</label>
+                                        <input v-bind:name="'infoTitle['+index+']'" v-bind:value="item.label" style="display:none;"  >
+                                        <span class="mdl-textfield__error">限制4-40个字符</span>
                                     </div>
                                 </div>
                             </div>
 
+
                             <div id="CustomDescriptionSection" class="inputSection">
-                                <p>自定义描述信息</p>
+                                <p id="hintParagrah">自定义描述信息</p>
                                 <div class="oneCustomItem">
                                     <div id="firstOne" class="form" action="none">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                            <input placeholder="例:文档链接" id="descriptionTitle" class="mdl-textfield__input" type="text">
-                                            <label class="mdl-textfield__label" for="sample3">描述标题</label>
-                                            <span class="mdl-textfield__error">11位</span>
+                                            <input placeholder="例:文档链接" id="descriptionTitle" class="mdl-textfield__input" type="text" pattern="^.{4,40}$">
+                                            <label class="mdl-textfield__label" >描述标题</label>
+                                            <span class="mdl-textfield__error">限制4-40个字符</span>
                                         </div>
                                     </div>
                                     <div class="description form"  action="#">
                                         <div class="mdl-textfield mdl-js-textfield">
-                                            <textarea id="descriptionText" id="descriptionText" class="mdl-textfield__input" type="text" rows="3" id="sample5"></textarea>
-                                            <label class="mdl-textfield__label" for="sample5">website link/..</label>
+                                            <textarea id="descriptionText" class="mdl-textfield__input" type="text" rows="3"  ></textarea>
+                                            <label class="mdl-textfield__label" for="sample5">website link...</label>
                                         </div>
                                     </div>
                                     <button type="button" id="addCustomDescriptionButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">添加描述</button>
                                 </div>
 
-                                <div class="submitOneCustomItem">
-                                    <div id="firstOne" class="form" action="none">
-                                        <div style="padding-top: 5px;" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                            <input name="infoTitle" style="width: 275px;" placeholder="" id="descriptionTitle" class="mdl-textfield__input" type="text">
-                                            <span class="mdl-textfield__error">11位</span>
-                                        </div>
-                                    </div>
-                                    <div class="description form"  action="#">
-                                        <div class="mdl-textfield mdl-js-textfield">
-                                            <textarea name="infoContent" id="descriptionText" id="descriptionText" class="mdl-textfield__input" type="text" rows="3" ></textarea>
-                                        </div>
-                                    </div>
-                                     <button type="button" onclick="removeThisChip(this)" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                                     <i class="material-icons">delete</i>
-                                </button>
-                                </div>
-
 
                             </div>
                             <div id="tagsSection" class="inputSection">
-                                <p>标签</p>
+                                <p id="hintPForTag">标签</p>
                                 <div id="firstOne" class="form" class="addInfoInput" action="#">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input id="inputForTag" placeholder="核心技术/特别之处" class="mdl-textfield__input"  type="text">
+                                        <input id="inputForTag" placeholder="核心技术/特别之处" class="mdl-textfield__input"  pattern="^.{2,10}$" type="text">
 
-                                        <label class="mdl-textfield__label" for="sample3">请输入自定义标签</label>
-                                        <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
+                                        <label class="mdl-textfield__label" >请输入自定义标签</label>
+                                        <span class="mdl-textfield__error">限2-10个字符</span>
                                     </div>
                                     <button type="button" id="addNewTagButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">添加标签</button>
 
 
                                 </div>
 
-                                <span id="chip" class="mdl-chip mdl-chip--deletable">
-                                <span class="mdl-chip__text">传感器</span>
-                                <input name="tags" value="传感器" style="display: none">
-                                <button type="button" onclick="removeThisChip(this)" id="removeTagButton" type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
-                                </span>
                             </div>
 
                             <div id="creditsSection" class="inputSection">
-                                <p>成员与身份</p>
+                                <p id="hintPForMakers">成员与身份</p>
                                 <div id="inputForMaker" class="form" class="addInfoInput" action="#">
                                     <div id="makerNameItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input id="makerName" placeholder="例:李某" class="mdl-textfield__input" type="text">
+                                        <input id="makerName" placeholder="例:李某" class="mdl-textfield__input"  pattern="^.{2,10}$" type="text">
                                         <label class="mdl-textfield__label" for="sample3">请输入成员姓名</label>
-                                        <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
+                                        <span class="mdl-textfield__error">限2-10个字符</span>
                                     </div>
                                     <div id="makerCreditItem"  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input id="makerCredit" placeholder="例:主要作者" class="mdl-textfield__input" type="text">
+                                        <input id="makerCredit" placeholder="例:主要作者" class="mdl-textfield__input"  pattern="^.{2,10}$" type="text">
                                         <label class="mdl-textfield__label" for="sample3">请输入其身份</label>
-                                        <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
+                                        <span class="mdl-textfield__error">限2-10个字符</span>
                                     </div>
                                     
                                     <button type="button" id="addNewCreditButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">添加人员</button>
 
-                                </div>
-
-                                <div id="SubmitForMaker" class="form" class="addInfoInput" action="#">
-                                    <div id="makerNameItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input id="makerName" name="makerName"  placeholder="例:李某" class="mdl-textfield__input" type="text">
-                                        <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
-                                    </div>
-                                    <div id="makerCreditItem"  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input id="makerCredit" name="makerRole"  placeholder="例:主要作者" class="mdl-textfield__input" type="text">
-                                        <span class="mdl-textfield__error">限20个字符，仅支持中英文、数字、减号或下划线</span>
-                                    </div>
-                                    <button type="button" id="removeCreditButton" onclick="removeThisChip(this)" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                                     <i class="material-icons">delete</i>
-                                </button>
                                 </div>
 
                             </div>
@@ -218,9 +186,9 @@
 $(document).ready(function () {
     $('#dateRangePicker')
         .datepicker({
-            format: 'mm/dd/yyyy',
-            startDate: '01/01/2010',
-            endDate: '12/30/2020'
+            format: 'yyyy-mm-dd',
+            startDate: '2000-01-01',
+            endDate: '2020-01-01'
         })
         .on('changeDate', function (e) {
         });
@@ -265,6 +233,8 @@ function chooseFaculty(item) {
     var inputFaculty = document.getElementById("inputFaculty")
     var submitFacultyInput = document.getElementById("submitFacultyInput")
     inputFaculty.innerText = item.innerText
+    inputFaculty.style.color='#3e50b4'
+    inputFaculty.style.fontWeight='100'
     submitFacultyInput.value=item.innerText
 
 }
@@ -272,22 +242,97 @@ function chooseFaculty(item) {
 function finalSubmit(){
 
     var myForm=document.getElementById('fillOutForm')
-    myForm.submit()
-    // if(123){
 
-    // }
-    // else{
-        
-    //     if(123){
+    //console.log(checkThumNail())
+    //console.log(checkTitle())
+    console.log(checkDate())
+    if(checkThumNail()&&checkTitle()&&checkFaculty()&&checkDescription()&&checkDate())
+    {
+        myForm.submit()
+    }else{
+        console.log('submit failed invalid input')
+    }
+    //myForm.submit()
 
-    //     }
-    //     else{
-
-    //     }
-
-    // }
 
 }
+
+function checkThumNail(){
+
+    var fileInput=document.getElementById('fileInput')
+    var hintToChooseImg=document.getElementById('hintToChooseImg')
+    if(fileInput.value==null||fileInput.value=="")
+    {
+        console.log('invalid thumbnail')
+        hintToChooseImg.innerText='请选择图片！'
+        hintToChooseImg.style.color='#d50000'
+        return false
+    }else{
+        return true
+    }
+
+}
+
+function checkTitle(){
+    var projectTitle=document.getElementById('projectTitle').value
+    var zz = /^.{4,40}$/;
+    if (!zz.test(projectTitle)) {
+        console.log('invalid title')
+        return false
+    } else {
+        return true
+    }
+}
+
+function checkFaculty(){
+
+    var submitFacultyInput=document.getElementById('submitFacultyInput')
+    var inputFaculty=document.getElementById('inputFaculty')
+    if(submitFacultyInput.value==null||submitFacultyInput.value=="")
+    {
+        console.log('invalid faculty')
+        inputFaculty.style.color='#d50000'
+        //inputFaculty.style.fontWeight='100'
+        return false
+    }else{
+        return true
+    }
+}
+
+function checkDescription(){
+    
+    var descriptionTextArea=document.getElementById('descriptionTextArea').value
+    var zz = /^.{15,}$/;
+    if (!zz.test(descriptionTextArea)) {
+        var descriptionLabel=document.getElementById('descriptionLabel')
+        descriptionLabel.innerHTML='请输入15个字符以上！'
+        descriptionLabel.style.color='#d50000'
+        var descriptionArea=document.getElementById('descriptionArea')
+        descriptionArea.className='mdl-textfield mdl-js-textfield is-upgraded'
+        //document.getElementById('descriptionTextArea').value='';
+
+        console.log('invalid description')
+        return false
+    } else {
+        return true
+    }
+}
+
+function checkDate(){
+    var submitDateInpute=document.getElementById('submitDateInpute').value
+    var zz = /^\d{4}-\d{2}-\d{2}$/;
+    if (!zz.test(submitDateInpute)) {
+        console.log('invalid date')
+        var labelforTextArea=document.getElementById('labelforTextArea')
+        labelforTextArea.innerHTML='请输入正确日期格式'
+        labelforTextArea.style.color='#d50000'
+        return false
+    } else {
+        return true
+    }
+}
+
+
     </script>
 
 
