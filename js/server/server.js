@@ -35,6 +35,10 @@ app.get('/createTest', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/createTest.html'))
 })
 
+app.get('/projectDetail', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../dist/projectDetail.html'))
+})
+
 
 app.get('/db/get/project/:id', (req, res) => {
     var id = req.params.id

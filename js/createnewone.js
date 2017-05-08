@@ -329,10 +329,4 @@ function finalSubmit(e){
 }
 
 
-function selectFile() {
-
-    //触发 文件选择的click事件 
-    $("#fileInput").trigger("click");
-    //其他code如 alert($("#file").attr("value")) 
-}
 
