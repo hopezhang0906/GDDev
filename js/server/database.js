@@ -31,6 +31,14 @@ var DB = {
     },
 
     project: {
+        query: (sort, filter) => {
+            var query = realm.objects('Project')
+            var result = query
+            if (filter != null) result = result.filtered(filter)
+            if (sort != null) result = result.sorted(sort)
+            return result.length == 0 ? null : result[0]
+        },
+
         add: (object) => {
             console.log(object)
             realm.write(() => {
@@ -40,7 +48,7 @@ var DB = {
 
         update: (object) => {
             realm.write(() => {
-                realm.create(Project.schema.name, object, true)
+                realm.create('Project', object, true)
             })
         },
 

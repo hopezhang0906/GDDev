@@ -39,12 +39,11 @@ app.get('/projectDetail', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/projectDetail.html'))
 })
 
-
-app.get('/db/get/project/:id', (req, res) => {
+app.get('/project/detail/:id', (req, res) => {
     var id = req.params.id
     if (id) {
-        var result = database.get.byId(schemas.ProjectSchema.name, id)
-        if (result) {
+        var result = id == 'all' ? database.project.query() : database.project.query(null, `id == "${id}"`)
+        if (result != null) {
             res.json({
                 status: 'OK',
                 result: result
@@ -58,6 +57,29 @@ app.get('/db/get/project/:id', (req, res) => {
         res.json({
             status: 'ERROR',
             errorMessage: 'Missing id parameter'
+        })
+    }
+})
+
+app.get('/project/query/', (req, res) => {
+    var sort = req.query.sort
+    var filter = req.query.filter
+    if (sort != null || filter != null) {
+        var result = database.project.query(sort, filter)
+        if (result != null) {
+            res.json({
+                status: 'OK',
+                result: result
+            })
+        } else {
+            res.json({
+                status: 'ZERO_RESULT'
+            })
+        }
+    } else {
+        res.json({
+            status: 'ERROR',
+            errorMessage: 'Missing parameter'
         })
     }
 })
