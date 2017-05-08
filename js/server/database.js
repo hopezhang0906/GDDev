@@ -34,6 +34,7 @@ var DB = {
         query: (sort, filter) => {
             var query = realm.objects('Project')
             var result = query
+            if (filter == null && sort == null) return query
             if (filter != null) result = result.filtered(filter)
             if (sort != null) result = result.sorted(sort)
             return result.length == 0 ? null : result[0]

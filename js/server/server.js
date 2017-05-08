@@ -42,10 +42,10 @@ app.get('/projectDetail', function (req, res) {
 app.get('/project/detail/:id', (req, res) => {
     var id = req.params.id
     if (id) {
-        var result = id == 'all' ? database.project.query() : database.project.query(null, `id == "${id}"`)
+        var result = database.project.query(null, `id == "${id}"`)
         if (result != null) {
             res.json({
-                status: 'OK',
+                status: 'OK', 
                 result: result
             })
         } else {
@@ -64,22 +64,15 @@ app.get('/project/detail/:id', (req, res) => {
 app.get('/project/query/', (req, res) => {
     var sort = req.query.sort
     var filter = req.query.filter
-    if (sort != null || filter != null) {
-        var result = database.project.query(sort, filter)
-        if (result != null) {
-            res.json({
-                status: 'OK',
-                result: result
-            })
-        } else {
-            res.json({
-                status: 'ZERO_RESULT'
-            })
-        }
+    var result = database.project.query(sort, filter)
+    if (result != null) {
+        res.json({
+            status: 'OK',
+            result: result
+        })
     } else {
         res.json({
-            status: 'ERROR',
-            errorMessage: 'Missing parameter'
+            status: 'ZERO_RESULT'
         })
     }
 })
