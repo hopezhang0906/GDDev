@@ -35,6 +35,8 @@
     "express": "^4.15.2",
     "jquery": "^3.2.1",
     "material-datepicker": "0.0.1",
+    "md5": "^2.2.1",
+    "randomstring": "^1.1.5",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "realm": "^1.2.0",

@@ -19,34 +19,121 @@ app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../dist/index.html'))
 })
 
-app.get('/login', (req, res) => {
+app.get('/portal', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../dist/login.html'))
 })
 
-app.get('/create', function (req, res) {
+app.get('/project/create', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/createnewone.html'))
 })
 
-app.get('/alltypes', function (req, res) {
-    res.sendFile(path.resolve(__dirname, '../dist/alltypes.html'))
-})
-
-app.get('/createTest', function (req, res) {
+app.get('/project/create/test', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/createTest.html'))
 })
 
-app.get('/projectDetail', function (req, res) {
+app.get('/project', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/projectDetail.html'))
 })
 
-app.get('/project/detail/:id', (req, res) => {
+app.post('/portal/signup', (req, res) => {
+    var body = req.body
+    if (body == {}) {
+        res.json({
+            status: 'INVALID_BODY'
+        })
+    }
+
+    body.id = shortid.generate()
+    body.signUpOn = new Date()
+    database.portal.signup(body)
+})
+
+app.get('/portal/signout', (req, res) => {
+    var token = req.param.token
+    if (token != null) {
+        if (database.portal.validate(token)) {
+            database.portal.invalidate(token)
+            res.json({
+                status: 'OK'
+            })
+        } else {
+            res.statusCode = 403
+            res.json({
+                status: 'INVALID_TOKEN'
+            })
+        }
+    } else {
+        res.json({
+            status: 'INVALID_PARAMETERS'
+        })
+    }
+})
+
+app.get('/portal/token/:token', (req, res) => {
+    var token = req.param.token
+    if (token != null) {
+        if (database.portal.validate(token)) {
+            res.json({
+                status: 'OK'
+            })
+        } else {
+            res.statusCode = 403
+            res.json({
+                status: 'INVALID_TOKEN'
+            })
+        }
+    } else {
+        res.json({
+            status: 'INVALID_PARAMETERS'
+        })
+    }
+})
+
+app.post('/portal/auth', (req, res) => {
+    var username = req.body.username
+    var password = req.body.password
+    if (username != null && password != null) {
+        async.parallel([
+            (cb) => {
+                database.portal.auth({
+                    email: username,
+                    password: password
+                }, cb)
+            }
+        ], (err, r) => {
+            if (err != null) {
+                res.status = 500
+                res.json({
+                    status: 'INTERNAL_ERROR'
+                })
+            }
+            if (r[0] == null) {
+                res.json({
+                    status: 'INVALID_CREDENTIALS'
+                })
+            } else {
+                res.json({
+                    status: 'OK',
+                    token: r[0]
+                })
+            }
+        })
+    } else {
+        res.json({
+            status: 'INVALID_PARAMETERS'
+        })
+    }
+})
+
+app.get('/portal/detail/:id', (req, res) => {
     var id = req.params.id
     if (id) {
-        var result = database.project.query(null, `id == "${id}"`)
+        var result = database.portal.query(null, `id == "${id}"`)
         if (result != null) {
+            delete result[0].password
             res.json({
-                status: 'OK', 
-                result: result
+                status: 'OK',
+                result: result[0]
             })
         } else {
             res.json({
@@ -55,8 +142,28 @@ app.get('/project/detail/:id', (req, res) => {
         }
     } else {
         res.json({
-            status: 'ERROR',
-            errorMessage: 'Missing id parameter'
+            status: 'INVALID_PARAMETERS'
+        })
+    }
+})
+
+app.get('/project/detail/:id', (req, res) => {
+    var id = req.params.id
+    if (id) {
+        var result = database.project.query(null, `id == "${id}"`)
+        if (result != null) {
+            res.json({
+                status: 'OK',
+                result: result[0]
+            })
+        } else {
+            res.json({
+                status: 'ZERO_RESULT'
+            })
+        }
+    } else {
+        res.json({
+            status: 'INVALID_PARAMETERS'
         })
     }
 })
@@ -77,30 +184,6 @@ app.get('/project/query/', (req, res) => {
     }
 })
 
-function combineArray(obj, keys, names, cb) {
-    var result = new Array()
-    let a = obj[keys[0]]
-    let b = obj[keys[1]]
-    if (a == null || b == null) cb()
-
-    var l = a.length
-    if (l == 0) cb()
-
-    for (var i in a) {
-        result.push({
-            [names[0]]: a[i],
-            [names[1]]: b[i]
-        })
-        if (i == l - 1) {
-            delete obj[keys[0]]
-            delete obj[keys[1]]
-            obj[names[2]] = result
-            cb()
-            return
-        }
-    }
-}
-
 app.post('/project/add', (req, res) => {
     let body = req.body
     if (!body) {
@@ -109,6 +192,7 @@ app.post('/project/add', (req, res) => {
             errorMessage: 'Missing object parameter'
         })
     }
+
     async.parallel([
         //info
         (cb) => {
@@ -129,11 +213,35 @@ app.post('/project/add', (req, res) => {
         body.uploadedOn = body.lastModifiedOn = new Date()
         body.finishedOn = new Date(body.finishedOn)
         database.project.add(body)
-        res.redirect('/')
+        res.redirect(`/project?id=${body.id}`)
     })
+
+    function combineArray(obj, keys, names, cb) {
+        var result = new Array()
+        let a = obj[keys[0]]
+        let b = obj[keys[1]]
+        if (a == null || b == null) cb()
+
+        var l = a.length
+        if (l == 0) cb()
+
+        for (var i in a) {
+            result.push({
+                [names[0]]: a[i],
+                [names[1]]: b[i]
+            })
+            if (i == l - 1) {
+                delete obj[keys[0]]
+                delete obj[keys[1]]
+                obj[names[2]] = result
+                cb()
+                return
+            }
+        }
+    }
 })
 
-app.post('/db/edit/update', (req, res) => {
+app.post('/project/update', (req, res) => {
     var object = req.body.project
     if (object) {
         database.edit.update(object)
@@ -146,7 +254,7 @@ app.post('/db/edit/update', (req, res) => {
     }
 })
 
-app.post('/db/edit/delete', (req, res) => {
+app.post('/project/delete', (req, res) => {
     var object = req.body.project
     if (object) {
         database.edit.delete(object)

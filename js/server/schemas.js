@@ -61,5 +61,14 @@ module.exports = {
 
             favorites: { type: 'list', objectType: 'Project' }
         }
+    },
+
+    TokenSchema: {
+        name: 'Token',
+        properties: {
+            userId: 'string',
+            token: 'string',
+            expireOn: 'date'
+        }
     }
 }

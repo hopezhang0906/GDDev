@@ -1,23 +1,12 @@
+'use strict'
+
 var Realm = require('realm')
 var schemas = require('./schemas')
-
-class Project extends Realm.Object {}
-Project.schema = schemas.ProjectSchema
-
-class Info extends Realm.Object {}
-Project.schema = schemas.InfoSchema
-
-class Tag extends Realm.Object {}
-Project.schema = schemas.TagSchema
-
-class Maker extends Realm.Object {}
-Project.schema = schemas.MakerSchema
-
-class User extends Realm.Object {}
-Project.schema = schemas.UserSchema
+var randomstring = require('randomstring')
+var md5 = require('md5')
+var realm
 
 var DB = {
-    realm: null,
     init: () => {
         realm = new Realm({
             schema: [
@@ -30,20 +19,60 @@ var DB = {
         })
     },
 
+    portal: {
+        signup: (object, cb) => {
+            realm.write(()=>{
+                realm.create('User', object)
+            })
+        },
+
+        auth: (cred, cb) => {
+            let users = realm.objects('User')
+            let user = users.filtered(`email == "${cred.email} AND password == "${cred.password}"`)
+            if (user.length != 0) {
+                let date = new Date()
+                let token = realm.create('Token', {
+                    userId: user.id,
+                    token: md5(new Date().getMilliseconds) + randomstring.generate(30),
+                    expireOn: date.setDate(date.getDate() + 20)
+                })
+                cb(null, token)
+            } else cb(null, null)
+        },
+
+        validate: (t) => {
+            let tokens = realm.objects('Token')
+            let token = tokens.filtered(`token == "${t}"`)
+            return token.length != 0
+        },
+
+        invalidate: (t) => {
+            let tokens = realm.objects('Token')
+            let token = tokens.filtered(`token == "${t}"`)
+            delete(token)
+        },
+
+        query: (sort, filter) => {
+            var query = realm.objects('User')
+            var result = query
+            if (filter != null) result = result.filtered(filter)
+            if (sort != null) result = result.sorted(sort)
+            return result.length == 0 ? null : result
+        }
+    },
+
     project: {
         query: (sort, filter) => {
             var query = realm.objects('Project')
             var result = query
-            if (filter == null && sort == null) return query
             if (filter != null) result = result.filtered(filter)
             if (sort != null) result = result.sorted(sort)
-            return result.length == 0 ? null : result[0]
+            return result.length == 0 ? null : result
         },
 
         add: (object) => {
-            console.log(object)
             realm.write(() => {
-                let project = realm.create('Project', object)
+                realm.create('Project', object)
             })
         },
 
@@ -51,13 +80,13 @@ var DB = {
             realm.write(() => {
                 realm.create('Project', object, true)
             })
-        },
-
-        delete: (object) => {
-            realm.write(() => {
-                realm.delete(object)
-            })
         }
+    },
+
+    delete: (object) => {
+        realm.write(() => {
+            realm.delete(object)
+        })
     }
 }
 
