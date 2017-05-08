@@ -49,7 +49,7 @@ var DB = {
         invalidate: (t) => {
             let tokens = realm.objects('Token')
             let token = tokens.filtered(`token == "${t}"`)
-            delete(token)
+            DB.delete(token)
         },
 
         query: (sort, filter) => {
