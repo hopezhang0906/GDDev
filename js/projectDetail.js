@@ -77,19 +77,14 @@ window.onload = (e) => {
     // .pipe()
 
 $.ajax({
-        url: '/db/get/project/:HJ0DNjp1-',
+        url: '/project/detail/HJ0DNjp1-',
         datatype: 'json',
         type: 'get',
         success: function (data) {
-            console.log(data)
-        }
-    });
-
-$.get("/db/get/project/:HJ0DNjp1-", function(data){
-
-  alert("Data Loaded: " + data);
-});
-
+            console.log(data.result)
+            projectData=data.result
+            //console.log(projectData)
+            
 
 
     var basicInfo = new Vue({
@@ -118,6 +113,15 @@ $.get("/db/get/project/:HJ0DNjp1-", function(data){
         data: projectData
     })
 
+
+
+        }
+    });
+
+// $.get("/db/get/project/:HJ0DNjp1-", function(data){
+
+//   alert("Data Loaded: " + data);
+// });
 
 
 

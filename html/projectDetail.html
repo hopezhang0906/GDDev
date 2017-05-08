@@ -66,13 +66,13 @@
 
                                 <div id="firstOne" class="form" action="#">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input disabled="disabled" id="projectTitle" name="title" v-bind:value="type" class="mdl-textfield__input" type="text">
+                                        <input placeholder="default" disabled="disabled" id="projectTitle" name="title" v-bind:value="type" class="mdl-textfield__input" type="text">
                                         <label style="font-size: 15px;" class="mdl-textfield__label">类型</label>
                                     </div>
                                 </div>
                                 <div id="chooseFaculty" class="form">
                                     <div  style="border-bottom: 0px" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input v-bind:value="faculty" disabled="disabled" class="mdl-textfield__input" type="text" >
+                                        <input placeholder="default" v-bind:value="faculty" disabled="disabled" class="mdl-textfield__input" type="text" >
                                         <label style="font-size: 15px;" id="inputFaculty" class="mdl-textfield__label" >学院</label>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                         <div class="form-group">
                                             <div class=" date">
                                                 <div class="input-group input-append date" id="dateRangePicker">
-                                                    <input disabled="disabled" v-bind:value="finishDate" id="submitDateInpute" type="text" class="form-control" name="finishedOn" />
+                                                    <input  disabled="disabled" v-bind:value="finishedOn" id="submitDateInpute" type="text" class="form-control" name="finishedOn" />
                                                     <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                                                 </div>
                                             </div>
@@ -102,7 +102,7 @@
                                 <p id="hintPForMakers">成员与身份</p>
                                 <div v-for="item in makers"  id="inputForMaker" class="form" class="addInfoInput" action="#">
                                     <div id="makerNameItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input width="80px" id="makerName" disabled="disabled" v-bind:value="item.name" class="mdl-textfield__input"  type="text">                    
+                                        <input  placeholder="default" width="80px" id="makerName" disabled="disabled" v-bind:value="item.name" class="mdl-textfield__input"  type="text">                    
                                     </div>
                                     <div id="makerCreditItem"  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input id="makerCredit" v-bind:value="item.role" disabled="disabled" class="mdl-textfield__input"  type="text">
