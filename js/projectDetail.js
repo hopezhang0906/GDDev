@@ -75,14 +75,22 @@ window.onload = (e) => {
     // //console.log(response.headers['content-type']) // 'image/png'
     // })
     // .pipe()
+var addReactInfo = window.location.href;   
+var projectID = addReactInfo.split("?")[1]; 
 
 $.ajax({
-        url: '/project/detail/HJ0DNjp1-',
+        url: '/project/detail/'+projectID,
         datatype: 'json',
         type: 'get',
         success: function (data) {
             console.log(data.result)
             projectData=data.result
+            var uploadedOndate=data.result.uploadedOn
+            var finishedOndate=data.result.finishedOn
+            uploadedOndate=uploadedOndate.split("T")[0]
+            finishedOndate=finishedOndate.split("T")[0]
+            projectData.uploadedOn=uploadedOndate
+            projectData.finishedOn=finishedOndate
             //console.log(projectData)
             
 

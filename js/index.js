@@ -11,32 +11,32 @@ var userInfoData = {
     userPersonalStatement:'Computing in Social science,PhD'
 }
 
-var resultListInfo = {
-    projects: [
-        {
-            title: 'Uses and Gratifications of digital photo sharing on Facebook',
-            type: '论文',
-            uploader: 'Aqdas Malik',
-            isFavorite: '#FF4081',
-            bgImg: '/public/img/social.jpg'
-        },
-        {
-            title: '多功能智能手环',
-            type: '专利',
-            uploader: '高强',
-            isFavorite: 'grey',
-            bgImg: '/public/img/wristRingProduct.jpg'
-        },
-        {
-            title: 'Hacking the Xbox',
-            type: '出版物',
-            uploader: 'Andrew Huang',
-            isFavorite: 'grey',
-            bgImg: '/public/img/xbox.jpg'
-        }
-    ]
+// var resultListInfo = {
+//     projects: [
+//         {
+//             title: 'Uses and Gratifications of digital photo sharing on Facebook',
+//             type: '论文',
+//             uploader: 'Aqdas Malik',
+//             isFavorite: '#FF4081',
+//             bgImg: '/public/img/social.jpg'
+//         },
+//         {
+//             title: '多功能智能手环',
+//             type: '专利',
+//             uploader: '高强',
+//             isFavorite: 'grey',
+//             bgImg: '/public/img/wristRingProduct.jpg'
+//         },
+//         {
+//             title: 'Hacking the Xbox',
+//             type: '出版物',
+//             uploader: 'Andrew Huang',
+//             isFavorite: 'grey',
+//             bgImg: '/public/img/xbox.jpg'
+//         }
+//     ]
 
-}
+// }
 
 
 $(document).ready(function() {
@@ -135,18 +135,58 @@ console.log("this document is ready")
         userinfoPanel.style.display = 'none'
     }
 
+
+    $.ajax({
+        url: '/project/query',
+        datatype: 'json',
+        type: 'get',
+        success: function (data) {
+            console.log(data.result)
+            //console.log(projectData)
+            var resultList = new Vue({
+            el: '#resultList',
+            data: data
+    })
+
+
+        }
+    });
+
     var userinfo = new Vue({
         el: '#userinfo',
         data: userInfoData
     })
 
-    var resultList = new Vue({
-        el: '#resultList',
-        data: resultListInfo
-    })
+
+
 
 });
 
+function signInAuth(){
+
+    var username=document.getElementById('usernameAuthen').value
+    var userpassword=document.getElementById('userpasswordAuthen').value
+    var zzForEmail = /^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}$/;
+    var zzForPassword =/^[a-zA-Z]\w{5,17}$/;
+    if(username==''||userpassword==''){
+        console.log('invalid input')
+    }else{
+
+            $.ajax({
+            url: "",
+            type: "post",
+            dataType: "json",
+            data: "{username:"+username+",userpassword:"+userpassword+"}",
+            success: function (res) {
+
+            }
+
+            });
+
+
+}
+
+}
 
 window.onload = (e) => {
 
@@ -154,3 +194,26 @@ window.onload = (e) => {
 }
 
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
+
+function clearCookie(name) {  
+    setCookie(name, "", -1);  
+}  

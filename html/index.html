@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
-    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/public/index.css" />
     <script src="/public/index.js"></script>
 
@@ -91,18 +89,20 @@
 
                 </div>
                 <div id="resultList">
-                    <div id="module" v-for="item in projects">
-                        <div id="picAndCaption" v-bind:style="{backgroundImage: 'url(' + item.bgImg + ')'}">
+                    <div id="module"  v-for="item in result">
+                        <div id="picAndCaption" v-bind:style="{backgroundImage: 'url(/public/img/' + item.thumbnail + ')'}">
                             <p id="moduleTitle">{{item.title}}</p>
+                            <p id="projectId" style="display: none">{{item.id}}</p>
                             <p id="moduleType">{{item.type}}</p>
-                            <p id="uploaderName">发布人:{{item.uploader}} </p>
+                            <p id="uploaderId" style="display: none" >{{item.uploaderId}}</p>      
+                            <p id="uploaderName">发布人:{{item.uploaderId}} </p>
                         </div>
-                        <div id="action">
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
+                        <div id="action" >
+                            <button v-bind:id="item.id" onclick="goToProjectDetailPage(this)" class="mdl-button mdl-js-button mdl-button--icon">
                                 <i class="material-icons">reply</i>
                             </button>
                             <button class="mdl-button mdl-js-button mdl-button--icon">
-                                 <i v-bind:style="{color:item.isFavorite}" class="material-icons">bookmark</i>
+                                 <i style="color:grey" class="material-icons">bookmark</i>
                             </button>
                         </div>
                     </div>
@@ -360,6 +360,12 @@
         function goToCreatePage(type){
             
             window.location.href = "/create?"+type;
+
+        }
+
+        function goToProjectDetailPage(item){
+           var projectID=item.id
+           window.location.href = "/projectDetail?"+projectID;
 
         }
 
