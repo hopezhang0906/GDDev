@@ -1,37 +1,56 @@
 require('../css/projectDetail.less')
 
-var patentTemplate = {
+//var request = require('request');
 
-    title: '专利名称',
-    abstract: '请输入摘要',
-    finishDate: '请选择项目结束的日期',
+var projectData = {
+
+    uploadedOn: '2017-05-12BkegRx2py-',
+    finishDate: '2017-05-12',
+    uploaderId:'Aqdas Malik',
+    type:'论文',
+    faculty:'理工学部',
+    title:'Uses and Gratifications of digital photo sharing on Facebook',
+    thumbnail:'social.jpg',
+    description:'Despite the rapid adoption of Facebook as a means of photo sharing, minimal research hasbeen conducted to understand user gratiﬁcation behind this activity. In order to addressthis gap, the current study examines users’ gratiﬁcations in sharing photos on Facebookby applying Uses and Gratiﬁcation (U&G) theory. ',
     tags: [
         {
-            tag: '核心技术'
+            name: 'FaceBook'
+        },{
+            name: 'Photo sharing'
+        },{
+            name: 'Social networking sites'
+        },{
+            name: 'cross-sectional research'
         },
     ],
     makers: [
         {
-            name: '张某某',
-            credits: '负责人'
+            name: 'Aqdas Malik',
+            role: 'writer'
+        },{
+            name: 'Amandeep Dhir',
+            role: 'co-writer'
+        },{
+            name: 'Marko Nieminen',
+            role: 'co-writer'
         },
     ],
-    description: [
+    info: [
         {
-            label: '申请公布号',
-            content: '例CN103445409A'
+            title: '期刊名称',
+            content: 'Telematics and Informatics'
         },
         {
-            label: '申请人/单位',
-            content: '青岛歌尔声学科技有限公司',
+            title: '期刊页数',
+            content: '33卷(2016) 129-138',
         },
         {
-            label: '分类号',
-            content: 'A44C5/00(2006.01)I',
+            title: '字数',
+            content: '约2000字',
         },
         {
-            label: '代理人/机构',
-            content: '潍坊正信专利事务所',
+            title: 'Pdf Link',
+            content: 'https://www.researchgate.net/publication/279314060_Uses_and_Gratifications_of_digital_photo_sharing_on_Facebook',
         }
 
     ]
@@ -42,13 +61,64 @@ var patentTemplate = {
 window.onload = (e) => {
 
 
-
     var backButton = document.getElementById("backButton")
 
     backButton.addEventListener("click", function () {
 
         window.location.href = "/";
     });
+
+    // request
+    // .get('/db/get/project/:HJ0DNjp1-')
+    // .on('response', function(response) {
+    // console.log(response.statusCode) // 200
+    // //console.log(response.headers['content-type']) // 'image/png'
+    // })
+    // .pipe()
+
+$.ajax({
+        url: '/db/get/project/:HJ0DNjp1-',
+        datatype: 'json',
+        type: 'get',
+        success: function (data) {
+            console.log(data)
+        }
+    });
+
+$.get("/db/get/project/:HJ0DNjp1-", function(data){
+
+  alert("Data Loaded: " + data);
+});
+
+
+
+    var basicInfo = new Vue({
+        el: '#basicInfo',
+        data: projectData
+    })
+
+
+    var tagsSection = new Vue({
+        el: '#tagsSection',
+        data: projectData
+    })
+
+    var creditsSection = new Vue({
+        el: '#creditsSection',
+        data: projectData
+    })
+
+    var CustomDescriptionSection = new Vue({
+        el: '#CustomDescriptionSection',
+        data: projectData
+    })
+
+    var uploadInfoAndPhoto = new Vue({
+        el: '#uploadInfoAndPhoto',
+        data: projectData
+    })
+
+
 
 
 }

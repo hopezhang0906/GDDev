@@ -39,38 +39,47 @@
         </header>
         <main class="mdl-layout__content">
             <section>
-                <div id="headImg">
-                    <p>Uses and Gratifications of digital photo sharing on Facebook</p>
+                <div id="uploadInfoAndPhoto">
+                <div id="headImg" v-bind:style="{backgroundImage: 'url(/public/img/' + thumbnail + ')'}">
+                    <p>{{title}}</p>
                 </div>
                 <div id="uploadInfo">
                     <div id="headShot"></div>
-                    <p id="uploaderName">Aqdas Malik</p>
-                    <p id="uploadDate">发表日期 2017-05-02</p> 
+                    <p id="uploaderName">{{uploaderId}}</p>
+                    <p id="uploadDate">发表日期 {{uploadedOn}}</p> 
+                </div>
                 </div>
 
+
                 <div class="oneSection">
-<form id="fillOutForm" class="page-content" action="http://localhost:8860/db/edit/add" method="post">
+                <form id="fillOutForm" class="page-content" action="http://localhost:8860/db/edit/add" method="post">
                         <div id="wholePanel">
+                             <div  id="tagsSection" class="inputSection">
+                                <p style="padding-top: 0px" id="hintPForTag">标签</p>
+                                <span id="chip"  v-for="item in tags" class="mdl-chip mdl-chip--deletable">
+                                    <span style="font-size: 16px" class="mdl-chip__text">{{item.name}}</span>
+                                    </span>
+
+                            </div>
                             <div id="basicInfo" class="inputSection">
                                 <p>基本信息</p>
-                                <input type="text" name="type" style="display: none" id="submitType">
-                                <input type="text" name="uploader" style="display: none" id="submitUploader">
+
                                 <div id="firstOne" class="form" action="#">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input disabled="disabled" id="projectTitle" name="title" value="论文" class="mdl-textfield__input" type="text">
+                                        <input disabled="disabled" id="projectTitle" name="title" v-bind:value="type" class="mdl-textfield__input" type="text">
                                         <label style="font-size: 15px;" class="mdl-textfield__label">类型</label>
                                     </div>
                                 </div>
                                 <div id="chooseFaculty" class="form">
                                     <div  style="border-bottom: 0px" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input value="信息工程学院" disabled="disabled" class="mdl-textfield__input" type="text" >
+                                        <input v-bind:value="faculty" disabled="disabled" class="mdl-textfield__input" type="text" >
                                         <label style="font-size: 15px;" id="inputFaculty" class="mdl-textfield__label" >学院</label>
                                     </div>
                                 </div>
                                 <div class="form" >
                                     <div class="mdl-textfield mdl-js-textfield">
                                          <label style="font-size: 15px;color: rgba(0,0,0,.26);">概要</label>
-                                        <p style="padding-top: 0px;padding-left: 0px;padding-bottom: 0px;font-size: 18px;color:#3e50b4" type="text" >123 12312 12312 3123123 1231231231232311233333333333333333333333333333333333333333333333</p>
+                                        <p style="padding-top: 0px;padding-left: 0px;padding-bottom: 0px;font-size: 18px;color:#3e50b4" type="text" >{{description}}</p>
                                     </div>
                                 </div>
 
@@ -80,7 +89,7 @@
                                         <div class="form-group">
                                             <div class=" date">
                                                 <div class="input-group input-append date" id="dateRangePicker">
-                                                    <input disabled="disabled" value="2017-05-02" id="submitDateInpute" type="text" class="form-control" name="finishedOn" />
+                                                    <input disabled="disabled" v-bind:value="finishDate" id="submitDateInpute" type="text" class="form-control" name="finishedOn" />
                                                     <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                                                 </div>
                                             </div>
@@ -91,12 +100,12 @@
                             
                             <div id="creditsSection" class="inputSection">
                                 <p id="hintPForMakers">成员与身份</p>
-                                <div id="inputForMaker" class="form" class="addInfoInput" action="#">
+                                <div v-for="item in makers"  id="inputForMaker" class="form" class="addInfoInput" action="#">
                                     <div id="makerNameItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input width="80px" id="makerName" value="李某" class="mdl-textfield__input"  type="text">                    
+                                        <input width="80px" id="makerName" disabled="disabled" v-bind:value="item.name" class="mdl-textfield__input"  type="text">                    
                                     </div>
                                     <div id="makerCreditItem"  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input id="makerCredit" value="主要作者" class="mdl-textfield__input"  type="text">
+                                        <input id="makerCredit" v-bind:value="item.role" disabled="disabled" class="mdl-textfield__input"  type="text">
                                     </div>
                                     
                                 </div>
@@ -105,30 +114,19 @@
 
 
                             <div id="CustomDescriptionSection" class="inputSection">
-                                <p id="hintParagrah">自定义描述信息</p>
-
-
-                            </div>
-                            <div id="tagsSection" class="inputSection">
-                                <p id="hintPForTag">标签</p>
-                                <div id="firstOne" class="form" class="addInfoInput" action="#">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input id="inputForTag" placeholder="核心技术/特别之处" class="mdl-textfield__input"  pattern="^.{2,10}$" type="text">
-
-                                        <label class="mdl-textfield__label" >请输入自定义标签</label>
-                                        <span class="mdl-textfield__error">限2-10个字符</span>
+                                <p id="hintParagrah">描述信息</p>
+                                <div v-for="item in info"  class="form" >
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                         <label style="font-size: 15px;color: rgba(0,0,0,.26);">{{item.title}}</label>
+                                        <p style="padding-top: 0px;padding-left: 0px;padding-bottom: 0px;font-size: 18px;color:#3e50b4" type="text" >{{item.content}}</p>
                                     </div>
-                                    <button type="button" id="addNewTagButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">添加标签</button>
-
-
                                 </div>
 
                             </div>
 
+
                         </div>
-                        <div id="submitButtonOut">
-                             <button type="button" onclick="finalSubmit()" id="finalSubmitButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">提交</button>
-                        </div>
+
                     </form>
 
                 </div>
