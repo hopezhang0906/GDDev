@@ -1,7 +1,7 @@
 require('../css/index.less')
 
 
-var isSignedIn = true
+var isSignedIn = false
 
 var userInfoData = {
     favicon: '/public/img/Aqdas_Malik2.png',

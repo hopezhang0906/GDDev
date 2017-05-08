@@ -1,6 +1,5 @@
 require('../css/projectDetail.less')
 
-
 var patentTemplate = {
 
     title: '专利名称',

@@ -1,6 +1,21 @@
 var Realm = require('realm')
 var schemas = require('./schemas')
 
+class Project extends Realm.Object {}
+Project.schema = schemas.ProjectSchema
+
+class Info extends Realm.Object {}
+Project.schema = schemas.InfoSchema
+
+class Tag extends Realm.Object {}
+Project.schema = schemas.TagSchema
+
+class Maker extends Realm.Object {}
+Project.schema = schemas.MakerSchema
+
+class User extends Realm.Object {}
+Project.schema = schemas.UserSchema
+
 var DB = {
     realm: null,
     init: () => {
@@ -15,27 +30,17 @@ var DB = {
         })
     },
 
-    get: {
-        byId: (type, id) => {
-            let query = realm.objects(type)
-            return result = query.filtered(`id = "${id}"`)
-        }
-    },
-
-    user: {
-
-    },
-
-    edit: {
+    project: {
         add: (object) => {
+            console.log(object)
             realm.write(() => {
-                realm.create(schemas.UserSchema.name, object)
+                let project = realm.create('Project', object)
             })
         },
 
         update: (object) => {
             realm.write(() => {
-                realm.create(schemas.UserSchema.name, object, true)
+                realm.create(Project.schema.name, object, true)
             })
         },
 

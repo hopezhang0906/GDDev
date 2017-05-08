@@ -3,6 +3,8 @@
 var path = require('path')
 var express = require('express')
 var bodyParser = require('body-parser')
+var shortid = require('shortid')
+var async = require('async')
 
 var app = express()
 app.use('/public', express.static(path.resolve(__dirname, '../dist/public')))
@@ -29,6 +31,15 @@ app.get('/alltypes', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/alltypes.html'))
 })
 
+app.get('/createTest', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../dist/createTest.html'))
+})
+
+app.get('/projectDetail', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../dist/projectDetail.html'))
+})
+
+
 app.get('/db/get/project/:id', (req, res) => {
     var id = req.params.id
     if (id) {
@@ -51,19 +62,60 @@ app.get('/db/get/project/:id', (req, res) => {
     }
 })
 
-app.post('/db/edit/add', (req, res) => {
-    console.log(req.body)
-    var object = req.body.project
-    //res.redirect('/')
-    if (object) {
-        database.edit.add(object)
-        res.json({ status: 'OK' })
-    } else {
+function combineArray(obj, keys, names, cb) {
+    var result = new Array()
+    let a = obj[keys[0]]
+    let b = obj[keys[1]]
+    if (a == null || b == null) cb()
+
+    var l = a.length
+    if (l == 0) cb()
+
+    for (var i in a) {
+        result.push({
+            [names[0]]: a[i],
+            [names[1]]: b[i]
+        })
+        if (i == l - 1) {
+            delete obj[keys[0]]
+            delete obj[keys[1]]
+            obj[names[2]] = result
+            cb()
+            return
+        }
+    }
+}
+
+app.post('/project/add', (req, res) => {
+    let body = req.body
+    if (!body) {
         res.json({
             status: 'ERROR',
             errorMessage: 'Missing object parameter'
         })
     }
+    async.parallel([
+        //info
+        (cb) => {
+            combineArray(body, ['infoTitle', 'infoContent'], ['title', 'content', 'info'], cb)
+        },
+        //tags
+        (cb) => {
+            combineArray(body, ['tags', 'tags'], ['name', 'description', 'tags'], cb)
+        },
+        //makers
+        (cb) => {
+            combineArray(body, ['makersName', 'makersRole'], ['name', 'role', 'makers'], cb)
+        }
+    ],
+    (err, r) => {
+        body.id = shortid.generate()
+        body.uploaderId = shortid.generate()
+        body.uploadedOn = body.lastModifiedOn = new Date()
+        body.finishedOn = new Date(body.finishedOn)
+        database.project.add(body)
+        res.redirect('/')
+    })
 })
 
 app.post('/db/edit/update', (req, res) => {

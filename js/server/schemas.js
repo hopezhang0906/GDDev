@@ -16,7 +16,7 @@ module.exports = {
             finishedOn: { type: 'date', indexed: true },
             info: { type: 'list', objectType: 'Info' },
 
-            uploader: 'User',
+            uploaderId: 'string',
             makers: { type: 'list', objectType: 'Maker' }
         }
     },

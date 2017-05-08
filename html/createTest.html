@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://localhost:8860/create?essay -->
+<html class="mdl-js">
+
+<head>
+    <title>createNewOnePage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/createnewone.css" />
+    <script src="/public/createTest.js"></script>
+
+    <!-- Material Design Lite -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <!-- Include Bootstrap Datepicker -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- Simple header with fixed tabs. -->
+    <div class="mdl-layout__container">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header is-small-screen is-upgraded" data-upgraded=",MaterialLayout">
+            <header class="mdl-layout__header is-casting-shadow">
+                <div class="mdl-layout__header-row">
+                    <button type="button" id="backButton" class="mdl-button mdl-js-button mdl-button--icon" data-upgraded=",MaterialButton">
+             <i class="material-icons">arrow_back</i>
+        </button>
+                    <!-- Title -->
+                    <span class="mdl-layout-title">创建成果</span>
+                </div>
+            </header>
+            <main class="mdl-layout__content">
+                <section>
+                    <div class="page-content">
+                        <form id="fillOutForm" class="page-content" action="/project/add" method="post">
+                            <div id="wholePanel">
+                                <div id="chooseImg" style="background-image: url(&quot;/public/img/xbox.jpg&quot;);">
+
+                                    <input value="default.jpg" id="fileInput" name="thumbnail">
+                                    <button type="button" onclick="selectFile()" id="addImg" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored"
+                                        data-upgraded=",MaterialButton">
+                            <i class="material-icons">add_a_photo</i>
+                        </button>
+                                </div>
+                                <div id="basicInfo" class="inputSection">
+                                    <p>基本信息</p> 
+                                    <input type="text" name="type" id="submitType" value="essay" style="display: none;">
+                                    <input
+                                        type="text" name="uploader" id="submitUploader" value="123123" style="display: none;">
+                                        <div id="firstOne" action="#" class="form">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty"
+                                                data-upgraded=",MaterialTextfield"
+                                                ><input id="projectTitle" value="project title" name="title" type="text" pattern="^.{4,40}$" class="mdl-textfield__input">                                                <label class="mdl-textfield__label">论文标题</label> <span class="mdl-textfield__error">限4-40个字符</span></div>
+                                        </div>
+                                        <div id="chooseFaculty" class="form">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-disabled is-upgraded"
+                                                data-upgraded=",MaterialTextfield"><input value="文法学部" disabled="disabled" type="text" class="mdl-textfield__input"> <input name="faculty"
+                                                    id="submitFacultyInput" value="文法学部" style="display: none;"> <label id="inputFaculty"
+                                                    class="mdl-textfield__label" style="color: rgb(62, 80, 180); font-weight: 100;">文法学部</label></div>
+                                        </div>
+                                        <div id="option"><button type="button" id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon"
+                                                data-upgraded=",MaterialButton"><i class="material-icons">arrow_drop_down</i></button>
+                                            <div class="mdl-menu__container is-upgraded" style="right: -2px; top: 32px; width: 280px; height: 448px;">
+                                                <div class="mdl-menu__outline mdl-menu--bottom-right" style="width: 280px; height: 448px;"></div>
+                                                <ul for="demo-menu-lower-right" class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-animating"
+                                                    data-upgraded=",MaterialMenu,MaterialRipple" style="clip: rect(0px 280px 0px 280px);">
+                                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item mdl-js-ripple-effect"
+                                                        tabindex="-1" data-upgraded=",MaterialRipple" style="">新闻传播学部<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span>
+                                                    </li>
+                                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item mdl-js-ripple-effect"
+                                                        tabindex="-1" data-upgraded=",MaterialRipple" style="">艺术学部<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span>
+                                                    </li>
+                                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item mdl-js-ripple-effect"
+                                                        tabindex="-1" data-upgraded=",MaterialRipple" style="">理工学部<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span>
+                                                    </li>
+                                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item mdl-js-ripple-effect"
+                                                        tabindex="-1" data-upgraded=",MaterialRipple" style="">文法学部<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple" style="width: 570.169px; height: 570.169px; transform: translate(-50%, -50%) translate(70px, 11px);"></span></span>
+                                                    </li>
+                                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item mdl-js-ripple-effect"
+                                                        tabindex="-1" data-upgraded=",MaterialRipple" style="">经管学部<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span>
+                                                    </li>
+                                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item mdl-js-ripple-effect"
+                                                        tabindex="-1" data-upgraded=",MaterialRipple" style="">播音主持艺术学院<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span>
+                                                    </li>
+                                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item mdl-js-ripple-effect"
+                                                        tabindex="-1" data-upgraded=",MaterialRipple" style="">外国语学院<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span>
+                                                    </li>
+                                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item mdl-js-ripple-effect"
+                                                        tabindex="-1" data-upgraded=",MaterialRipple" style="">广告学院<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span>
+                                                    </li>
+                                                    <li onclick="chooseFaculty(this)" class="mdl-menu__item mdl-js-ripple-effect"
+                                                        tabindex="-1" data-upgraded=",MaterialRipple" style="">国际传媒教育学院<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form">
+                                            <div id="descriptionArea" class="mdl-textfield mdl-js-textfield is-upgraded is-dirty"
+                                                data-upgraded=",MaterialTextfield"><textarea id="descriptionTextArea" value="12345678901234567890" name="description" type="text" rows="3" class="mdl-textfield__input">12345678901234567890</textarea>                                                <label id="descriptionLabel" class="mdl-textfield__label">请输入摘要</label></div>
+                                        </div>
+                                        <div action="#" class="form">
+                                            <div id="dateRangeForm" method="post" class="form"><label id="labelforTextArea">请选择论文上线日期</label>
+                                                <div class="form-group">
+                                                    <div class=" date">
+                                                        <div id="dateRangePicker" class="input-group input-append date"><input value="2017-01-01" id="submitDateInpute" type="text" name="finishedOn" class="form-control">                                                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div id="descriptionSection" class="inputSection">
+                                    <p>推荐填写信息</p>
+                                    <div id="firstOne" action="#" class="form">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder is-upgraded is-dirty"
+                                            data-upgraded=",MaterialTextfield">
+                                        <input value="Telematics" placeholder="例:Telematics and Informatics" name="infoContent[0]" type="text"
+                                                pattern="^.{4,40}$" class="mdl-textfield__input"> <label for="sample3" class="mdl-textfield__label">期刊名称</label>                                            <input value="123" name="infoTitle[0]" style="display: none;"> <span class="mdl-textfield__error">限制4-40个字符</span></div>
+                                    </div>
+                                    <div id="firstOne" action="#" class="form">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder is-upgraded is-dirty"
+                                            data-upgraded=",MaterialTextfield"><input value="vol 22 page 20-30" placeholder="例:33卷(2016) 129-138" name="infoContent[1]" type="text" pattern="^.{4,40}$"
+                                                class="mdl-textfield__input"> <label for="sample3" class="mdl-textfield__label">期刊页数</label>                                            <input name="infoTitle[1]" value="12333" style="display: none;"> <span class="mdl-textfield__error">限制4-40个字符</span></div>
+                                    </div>
+                                    <div id="firstOne" action="#" class="form">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder is-upgraded is-dirty"
+                                            data-upgraded=",MaterialTextfield"><input value="3999" placeholder="例:约2000字" name="infoContent[2]" type="text" pattern="^.{4,40}$"
+                                                class="mdl-textfield__input"> <label for="sample3" class="mdl-textfield__label">字数</label>                                            <input value="123333" name="infoTitle[2]" style="display: none;"> <span class="mdl-textfield__error">限制4-40个字符</span></div>
+                                    </div>
+                                </div>
+
+
+                                <div id="CustomDescriptionSection" class="inputSection">
+                                    <p id="hintParagrah" style="color: rgb(149, 152, 154);">自定义描述信息</p>
+                                    <div class="oneCustomItem">
+                                        <div id="firstOne" class="form" action="none">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder is-upgraded is-dirty" data-upgraded=",MaterialTextfield">
+                                                <input placeholder="例:文档链接" id="descriptionTitle" class="mdl-textfield__input" type="text" pattern="^.{4,40}$">
+                                                <label class="mdl-textfield__label">描述标题</label>
+                                                <span class="mdl-textfield__error">限制4-40个字符</span>
+                                            </div>
+                                        </div>
+                                        <div class="description form" action="#">
+                                            <div class="mdl-textfield mdl-js-textfield is-upgraded is-dirty" data-upgraded=",MaterialTextfield">
+                                                <textarea id="descriptionText" class="mdl-textfield__input" type="text" rows="3"></textarea>
+                                                <label class="mdl-textfield__label" for="sample5">website link...</label>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="addCustomDescriptionButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                                            data-upgraded=",MaterialButton,MaterialRipple">添加描述<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 566.61px; height: 566.61px; transform: translate(-50%, -50%) translate(105px, 28px);"></span></span></button>
+                                    </div>
+
+
+                                    <div class="submitOneCustomItem">
+                                        <div id="firstOne" class="form">
+                                            <div style="padding-top: 5px;" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"><input disabled="disabled" style="width: 275px;" value="web link" id="descriptionTitle"
+                                                    class="mdl-textfield__input" type="text"><input name="infoTitle[5]" value="web link"
+                                                    style="display: none"></div>
+                                        </div>
+                                        <div class="description form">
+                                            <div class="mdl-textfield mdl-js-textfield"><textarea disabled="disabled" id="descriptionText" class="mdl-textfield__input"
+                                                    type="text" rows="3">http blabla info1</textarea><input name="infoContent[5]"
+                                                    value="http blabla info1" style="display:none"></div>
+                                        </div><button type="button" onclick="removeThisChip(this)" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"><i class="material-icons">delete</i></button></div>
+                                </div>
+                                <div id="tagsSection" class="inputSection">
+                                    <p id="hintPForTag" style="color: rgb(149, 152, 154);">标签</p>
+                                    <div id="firstOne" class="form" action="#">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder is-upgraded is-dirty" data-upgraded=",MaterialTextfield">
+                                            <input id="inputForTag" placeholder="核心技术/特别之处" class="mdl-textfield__input" pattern="^.{2,10}$" type="text">
+
+                                            <label class="mdl-textfield__label">请输入自定义标签</label>
+                                            <span class="mdl-textfield__error">限2-10个字符</span>
+                                        </div>
+                                        <button type="button" id="addNewTagButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">添加标签<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 566.61px; height: 566.61px; transform: translate(-50%, -50%) translate(101px, 16px);"></span></span></button>
+
+
+                                    </div>
+
+                                    <span id="chip" class="mdl-chip mdl-chip--deletable"><span class="mdl-chip__text">tag1</span>
+                                    <input
+                                        name="tags[0]" value="tag1" style="display:none"><button type="button" onclick="removeThisChip(this)" id="removeTagButton" class="mdl-chip__action"><i class="material-icons">cancel</i></button></span>
+                                        <span
+                                            id="chip" class="mdl-chip mdl-chip--deletable"><span class="mdl-chip__text">tag2</span><input name="tags[1]" value="tag2" style="display:none">
+                                            <button
+                                                type="button" onclick="removeThisChip(this)" id="removeTagButton" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
+                                                </span>
+                                </div>
+
+                                <div id="creditsSection" class="inputSection">
+                                    <p id="hintPForMakers" style="color: rgb(149, 152, 154);">成员与身份</p>
+                                    <div id="inputForMaker" class="form" action="#">
+                                        <div id="makerNameItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder is-upgraded is-dirty"
+                                            data-upgraded=",MaterialTextfield">
+                                            <input id="makerName" placeholder="例:李某" class="mdl-textfield__input" pattern="^.{2,10}$" type="text">
+                                            <label class="mdl-textfield__label" for="sample3">请输入成员姓名</label>
+                                            <span class="mdl-textfield__error">限2-10个字符</span>
+                                        </div>
+                                        <div id="makerCreditItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder is-upgraded is-dirty"
+                                            data-upgraded=",MaterialTextfield">
+                                            <input id="makerCredit" placeholder="例:主要作者" class="mdl-textfield__input" pattern="^.{2,10}$" type="text">
+                                            <label class="mdl-textfield__label" for="sample3">请输入其身份</label>
+                                            <span class="mdl-textfield__error">限2-10个字符</span>
+                                        </div>
+
+                                        <button type="button" id="addNewCreditButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">添加人员<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 566.61px; height: 566.61px; transform: translate(-50%, -50%) translate(145px, 17px);"></span></span></button>
+
+                                    </div>
+
+                                    <div id="SubmitForMaker" class="form">
+                                        <div id="makerNameItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"><input id="makerName" value="tom" disabled="disabled" class="mdl-textfield__input"
+                                                type="text"><input style="display:none" value="tom" name="makersName[0]" type="text"></div>
+                                        <div
+                                            id="makerCreditItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"><input id="makerCredit" disabled="disabled" value="writer" class="mdl-textfield__input"
+                                                type="text"><input name="makersRole[0]" value="writer" style="display:none" type="text"></div>
+                                    <button
+                                        type="button" id="removeCreditButton" onclick="removeThisChip(this)" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"><i class="material-icons">delete</i></button>
+                                </div>
+                                <div id="SubmitForMaker" class="form">
+                                    <div id="makerNameItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"><input id="makerName" value="tom" disabled="disabled" class="mdl-textfield__input" type="text">
+                                        <input
+                                            style="display:none" value="tom" name="makersName[1]" type="text"></div>
+                                    <div id="makerCreditItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"><input id="makerCredit" disabled="disabled" value="writer" class="mdl-textfield__input"
+                                            type="text"><input name="makersRole[1]" value="writer" style="display:none" type="text"></div>
+                                    <button
+                                        type="button" id="removeCreditButton" onclick="removeThisChip(this)" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"><i class="material-icons">delete</i></button>
+                                </div>
+                            </div>
+                    </div>
+                    <div id="submitButtonOut">
+                        <button type="button" onclick="finalSubmit()" id="finalSubmitButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            data-upgraded=",MaterialButton,MaterialRipple">提交<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                    </div>
+                    </form>
+        </div>
+        </section>
+        </main>
+    </div>
+    </div>
+
+    <script>
+                                                       $(document).ready(function () {
+                                                           $('#dateRangePicker')
+                                                               .datepicker({
+                                                                   format: 'yyyy-mm-dd',
+                                                                   startDate: '2000-01-01',
+                                                                   endDate: '2020-01-01'
+                                                               })
+                                                               .on('changeDate', function (e) {
+                                                               });
+
+                                                       });
+
+                                                       function selectFile() {
+
+                                                           //触发 文件选择的click事件 
+                                                           $("#fileInput").trigger("click");
+                                                           //其他code如 alert($("#file").attr("value")) 
+                                                       }
+
+                                                       //remove addible item
+                                                       function removeThisChip(item) {
+
+                                                           item.parentNode.remove()
+
+
+                                                       }
+
+                                                       //link choose img button to input whoose type is file
+
+
+                                                       //get choosed img name and change the background-image url
+                                                       function outputFileName() {
+
+                                                           var str = document.getElementById("fileInput").value
+                                                           console.log(document.getElementById("fileInput").value)
+
+                                                           console.log(str.split("\\")[2]);
+                                                           var imgName = str.split("\\")[2];
+                                                           var chooseImg = document.getElementById("chooseImg")
+                                                           chooseImg.style.backgroundImage = "url('/public/img/" + imgName + "')"
+                                                           if (document.getElementById("hintToChooseImg")) {
+                                                               var hintToChooseImg = document.getElementById("hintToChooseImg")
+
+                                                               hintToChooseImg.remove()
+                                                           }
+
+                                                       }
+
+                                                       function chooseFaculty(item) {
+                                                           var inputFaculty = document.getElementById("inputFaculty")
+                                                           var submitFacultyInput = document.getElementById("submitFacultyInput")
+                                                           inputFaculty.innerText = item.innerText
+                                                           inputFaculty.style.color = '#3e50b4'
+                                                           inputFaculty.style.fontWeight = '100'
+                                                           submitFacultyInput.value = item.innerText
+
+                                                       }
+
+                                                       function finalSubmit() {
+
+                                                           var myForm = document.getElementById('fillOutForm')
+
+                                                           //console.log(checkThumNail())
+                                                           //console.log(checkTitle())
+
+                                                               myForm.submit()
+
+                                                           //myForm.submit()
+
+
+                                                       }
+
+                                                       function checkThumNail() {
+
+                                                           var fileInput = document.getElementById('fileInput')
+                                                           var hintToChooseImg = document.getElementById('hintToChooseImg')
+                                                           if (fileInput.value == null || fileInput.value == "") {
+                                                               console.log('invalid thumbnail')
+                                                               hintToChooseImg.innerText = '请选择图片！'
+                                                               hintToChooseImg.style.color = '#d50000'
+                                                               return false
+                                                           } else {
+                                                               return true
+                                                           }
+
+                                                       }
+
+                                                       function checkTitle() {
+                                                           var projectTitle = document.getElementById('projectTitle').value
+                                                           var zz = /^.{4,40}$/;
+                                                           if (!zz.test(projectTitle)) {
+                                                               console.log('invalid title')
+                                                               return false
+                                                           } else {
+                                                               return true
+                                                           }
+                                                       }
+
+                                                       function checkFaculty() {
+
+                                                           var submitFacultyInput = document.getElementById('submitFacultyInput')
+                                                           var inputFaculty = document.getElementById('inputFaculty')
+                                                           if (submitFacultyInput.value == null || submitFacultyInput.value == "") {
+                                                               console.log('invalid faculty')
+                                                               inputFaculty.style.color = '#d50000'
+                                                               //inputFaculty.style.fontWeight='100'
+                                                               return false
+                                                           } else {
+                                                               return true
+                                                           }
+                                                       }
+
+                                                       function checkDescription() {
+
+                                                           var descriptionTextArea = document.getElementById('descriptionTextArea').value
+                                                           var zz = /^.{15,}$/;
+                                                           if (!zz.test(descriptionTextArea)) {
+                                                               var descriptionLabel = document.getElementById('descriptionLabel')
+                                                               descriptionLabel.innerHTML = '请输入15个字符以上！'
+                                                               descriptionLabel.style.color = '#d50000'
+                                                               var descriptionArea = document.getElementById('descriptionArea')
+                                                               descriptionArea.className = 'mdl-textfield mdl-js-textfield is-upgraded'
+                                                               //document.getElementById('descriptionTextArea').value='';
+
+                                                               console.log('invalid description')
+                                                               return false
+                                                           } else {
+                                                               return true
+                                                           }
+                                                       }
+
+                                                       function checkDate() {
+                                                           var submitDateInpute = document.getElementById('submitDateInpute').value
+                                                           var zz = /^\d{4}-\d{2}-\d{2}$/;
+                                                           if (!zz.test(submitDateInpute)) {
+                                                               console.log('invalid date')
+                                                               var labelforTextArea = document.getElementById('labelforTextArea')
+                                                               labelforTextArea.innerHTML = '请输入正确日期格式'
+                                                               labelforTextArea.style.color = '#d50000'
+                                                               return false
+                                                           } else {
+                                                               return true
+                                                           }
+                                                       }
+    </script>
+
+
+
+
+
+    <audio controls="controls" style="display: none;"></audio>
+</body>
+<style type="text/css">
+    #yddContainer {
+        display: block;
+        font-family: Microsoft YaHei;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        top: -4px;
+        left: -4px;
+        font-size: 12px;
+        border: 1px solid
+    }
+    
+    #yddTop {
+        display: block;
+        height: 22px
+    }
+    
+    #yddTopBorderlr {
+        display: block;
+        position: static;
+        height: 17px;
+        padding: 2px 28px;
+        line-height: 17px;
+        font-size: 12px;
+        color: #5079bb;
+        font-weight: bold;
+        border-style: none solid;
+        border-width: 1px
+    }
+    
+    #yddTopBorderlr .ydd-sp {
+        position: absolute;
+        top: 2px;
+        height: 0;
+        overflow: hidden
+    }
+    
+    .ydd-icon {
+        left: 5px;
+        width: 17px;
+        padding: 0px 0px 0px 0px;
+        padding-top: 17px;
+        background-position: -16px -44px
+    }
+    
+    .ydd-close {
+        right: 5px;
+        width: 16px;
+        padding-top: 16px;
+        background-position: left -44px
+    }
+    
+    #yddKeyTitle {
+        float: left;
+        text-decoration: none
+    }
+    
+    #yddMiddle {
+        display: block;
+        margin-bottom: 10px
+    }
+    
+    .ydd-tabs {
+        display: block;
+        margin: 5px 0;
+        padding: 0 5px;
+        height: 18px;
+        border-bottom: 1px solid
+    }
+    
+    .ydd-tab {
+        display: block;
+        float: left;
+        height: 18px;
+        margin: 0 5px -1px 0;
+        padding: 0 4px;
+        line-height: 18px;
+        border: 1px solid;
+        border-bottom: none
+    }
+    
+    .ydd-trans-container {
+        display: block;
+        line-height: 160%
+    }
+    
+    .ydd-trans-container a {
+        text-decoration: none;
+    }
+    
+    #yddBottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 22px;
+        line-height: 22px;
+        overflow: hidden;
+        background-position: left -22px
+    }
+    
+    .ydd-padding010 {
+        padding: 0 10px
+    }
+    
+    #yddWrapper {
+        color: #252525;
+        z-index: 10001;
+        background: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);
+    }
+    
+    #yddContainer {
+        background: #fff;
+        border-color: #4b7598
+    }
+    
+    #yddTopBorderlr {
+        border-color: #f0f8fc
+    }
+    
+    #yddWrapper .ydd-sp {
+        background-image: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)
+    }
+    
+    #yddWrapper a,
+    #yddWrapper a:hover,
+    #yddWrapper a:visited {
+        color: #50799b
+    }
+    
+    #yddWrapper .ydd-tabs {
+        color: #959595
+    }
+    
+    .ydd-tabs,
+    .ydd-tab {
+        background: #fff;
+        border-color: #d5e7f3
+    }
+    
+    #yddBottom {
+        color: #363636
+    }
+    
+    #yddWrapper {
+        min-width: 250px;
+        max-width: 400px;
+    }
+</style>
+
+</html>

@@ -39,7 +39,7 @@
         <main class="mdl-layout__content">
             <section>
                 <div class="page-content">
-                    <form id="fillOutForm" class="page-content" action="http://localhost:8860/db/edit/add" method="post">
+                    <form id="fillOutForm" class="page-content" action="/project/add" method="post">
                         <div id="wholePanel">
                             <div id="chooseImg">
                                 <p id="hintToChooseImg">select a product/depict photo</p>
@@ -195,6 +195,12 @@ $(document).ready(function () {
 
 });
 
+function selectFile() {
+
+    //触发 文件选择的click事件 
+    $("#fileInput").trigger("click");
+    //其他code如 alert($("#file").attr("value")) 
+}
 
 //remove addible item
 function removeThisChip(item) {
@@ -205,11 +211,7 @@ function removeThisChip(item) {
 }
 
 //link choose img button to input whoose type is file
-function selectFile() {
-    //触发 文件选择的click事件 
-    $("#fileInput").trigger("click");
-    //其他code如 alert($("#file").attr("value")) 
-}
+
 
 //get choosed img name and change the background-image url
 function outputFileName() {

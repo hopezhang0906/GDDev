@@ -1,4 +1,4 @@
-require('../css/createnewone.less')
+require('../css/createTest.less')
 //var request = require('request')
 var currentUser = {
     favicon: '/public/img/Aqdas_Malik2.png',
@@ -329,4 +329,10 @@ function finalSubmit(e){
 }
 
 
+function selectFile() {
+
+    //触发 文件选择的click事件 
+    $("#fileInput").trigger("click");
+    //其他code如 alert($("#file").attr("value")) 
+}
 
