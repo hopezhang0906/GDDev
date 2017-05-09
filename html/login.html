@@ -6,15 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
-    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/public/login.css" />
     <script src="/public/login.js"></script>
 
-    <!-- react file -->
-    <script src="https://cdn.bootcss.com/react/15.4.2/react.js"></script>
-    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.js"></script>
-    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.js"></script>
 
 
     <!-- Material Design Lite -->
@@ -59,7 +53,7 @@
                     <div id="img">
                         <p>WELCOME BACK!</p>
                     </div>
-                    <form id="inputSection">
+                    <form class="inputSection">
                         <div id="accountInput" class="form">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input id="usernameAuthen" name="email" class="mdl-textfield__input" type="text" pattern="^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}$">
@@ -74,7 +68,7 @@
                                 <span class="mdl-textfield__error">以字母开头，长度在6~18之间，只能包含字母、数字和下划线)</span>
                             </div>
                         </div>
-                        <button type="button" id="signinButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        <button  type="button" id="signinButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                     登陆</button>
                         <div><button type="button" id="signupButton" class="mdl-button mdl-js-button mdl-js-ripple-effect">
                     还没有账号？注册一个！</button></div>
@@ -90,24 +84,25 @@
                     <div id="img">
                         <p>WELCOME！</p>
                     </div>
-                    <div id="inputSection">
+                    <form id="inputSectionForm" class="inputSection" action="/portal/signup" method="POST">
+                    <input style="display:none" name="avatar" value="default.jpg" type="text">
                         <div id="accountInput" class="form">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input name="email" class="mdl-textfield__input" type="text" pattern="^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}$">
+                                <input id="signupEmail" name="email" class="mdl-textfield__input" type="text" pattern="^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}$">
                                 <label class="mdl-textfield__label" for="sample3">注册邮箱</label>
                                 <span class="mdl-textfield__error">请输入正确的邮箱格式</span>
                             </div>
                         </div>
                         <div class="form">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input name="password" class="mdl-textfield__input" type="text" pattern="^[a-zA-Z]\w{5,17}$">
+                                <input id="signupPassword" name="password" class="mdl-textfield__input" type="text" pattern="^[a-zA-Z]\w{5,17}$">
                                 <label class="mdl-textfield__label" for="sample3">密码</label>
                                 <span class="mdl-textfield__error">以字母开头，长度在6~18之间，只能包含字母、数字和下划线</span>
                             </div>
                         </div>
                         <div class="form">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input name="name" class="mdl-textfield__input" type="text" pattern="^[\\u4e00-\\u9fa5_a-zA-Z0-9-]{1,16}$">
+                                <input id="signupName" name="name" class="mdl-textfield__input" type="text" pattern="^[\\u4e00-\\u9fa5_a-zA-Z0-9-]{1,16}$">
                                 <label class="mdl-textfield__label" for="sample3">用户名称</label>
                                 <span class="mdl-textfield__error">限16个字符，仅支持中英文、数字、减号或下划线</span>
                             </div>
@@ -118,11 +113,11 @@
                                 <label id="personalIntro" class="mdl-textfield__label" for="sample5">eg:Computing in Social science,PhD</label>
                             </div>
                         </div>
-                        <button type="button" id="signupButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        <button type="button" onclick="signup()" id="signupButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                     确认注册</button>
 
 
-                    </div>
+                    </form>
                 </div>
 
             </div>
@@ -131,7 +126,20 @@
     </div>
 
     <script>
-
+        function signup(){
+            var signupEmail=document.getElementById('signupEmail').value
+            var signupPassword=document.getElementById('signupPassword').value
+            var signupName=document.getElementById('signupName').value
+            var zzForEmail = /^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}$/;
+            var zzForPassword =/^[a-zA-Z]\w{5,17}$/;
+            var zzForName=/^[\\u4e00-\\u9fa5_a-zA-Z0-9-]{1,16}$/;
+            if(!zzForEmail.test(signupEmail)&&!zzForPassword.test(signupPassword)&&!zzForName.test(signupName)){
+                console.log('invalid input')
+         }else{
+             var myForm=document.getElementById('inputSectionForm')
+             myForm.submit()
+         }
+        }
     </script>
 </body>
 

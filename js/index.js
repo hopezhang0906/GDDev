@@ -1,5 +1,5 @@
 require('../css/index.less')
-
+var async =require('async')
 
 var isSignedIn = false
 
@@ -111,7 +111,7 @@ console.log("this document is ready")
 
     signinButton.addEventListener("click", function () {
 
-        window.location.href = "/login?signin";
+        window.location.href = "/portal?signin";
     });
 
     //skip to sign up page
@@ -119,74 +119,293 @@ console.log("this document is ready")
 
     signupButton.addEventListener("click", function () {
 
-        window.location.href = "/login?signup";
+        window.location.href = "/portal?signup";
     });
 
-    if (isSignedIn) {
-        console.log(isSignedIn)
+
+    console.log(getCookie('token'));
+
+    var tempToken=JSON.parse(getCookie('token'))
+    console.log(tempToken);
+    console.log(tempToken.token);
+    var tempTokenString=tempToken.token;
+    var tempUserId=tempToken.userId;
+
+
+async.waterfall([
+    function(callback) {
+        $.ajax({
+            url: '/portal/token/'+tempTokenString,
+            datatype: 'json',
+            type: 'get',
+            success: (res) => {
+                callback(null, res.status == 'OK')
+            }
+        });
+    },
+    function(arg1, callback) {
+        // arg1 now equals 'one' and arg2 now equals 'two'
+        console.log('tokenValidation:'+arg1)
+        if(arg1){
         var loginPanel = document.getElementById('logInPanel')
         //var userinfoPanel=document.getElementById('personalInfo')
         loginPanel.style.display = 'none'
         //userinfoPanel.style.display='block'
-    } else {
 
-        console.log(isSignedIn)
+        }else{
+        
         var userinfoPanel = document.getElementById('userinfo')
         userinfoPanel.style.display = 'none'
+
+        }
+        callback(null,arg1);
+    },
+    function(arg1, callback) {
+        if(arg1){
+
+        $.ajax({
+
+
+        url: '/portal/detail/'+tempUserId,
+        datatype: 'json',
+        type: 'get',
+        success: function (res) {
+                console.log(res)
+                var userinfo =new Vue({
+                    el: '#userinfo',
+                    data: res.result
+                })
+                
+            }
+        });
+
+
+
+    }else{
+        console.log(arg1)
+
+        }
+        callback(null, 'done');
     }
+], function (err, result) {
+    // result now equals 'done'
+});
 
 
-    $.ajax({
-        url: '/project/query',
+   var filterType=''
+   var filterFaculty=''
+   var filterKeywords=''
+
+   var wholeFilter=''
+
+   var selectTypeButton=document.getElementById('selectType')
+   var selectMajorButton=document.getElementById('selectMajor')
+
+async.waterfall([
+    function(callback) {
+        var addReactInfo = window.location.href;   
+        if(addReactInfo.split("?")[1]){
+            var filterTemp=addReactInfo.split("?")[1];
+            if(filterTemp.split("=")[0]=='type')
+            {
+                filterType =filterTemp.split("=")[1];
+                console.log(filterType)
+                if(filterType=="ALL"){
+                    console.log('filter all types')
+
+                }else{
+                selectTypeButton.innerHTML=filterType;
+                selectTypeButton.style.borderColor='#FF4081'
+                selectTypeButton.style.color='#FF4081'
+                filterType='type=="'+filterType+'"'
+                wholeFilter='filter='+filterType
+                console.log(wholeFilter)
+
+
+                }
+
+            }else{
+                if(filterTemp.split("=")[0]=='faculty'){
+                filterFaculty =filterTemp.split("=")[1];
+                console.log(filterFaculty)
+                if(filterFaculty=="ALL"){
+                console.log('filter all faculty')
+                }else{
+                var encodeFaculty =decodeURI(filterFaculty)
+                selectMajorButton.innerHTML=encodeFaculty;
+                selectMajorButton.style.borderColor='#FF4081'
+                selectMajorButton.style.color='#FF4081'
+                filterFaculty='faculty=="'+filterFaculty+'"'
+                wholeFilter='filter='+filterFaculty   
+                console.log(wholeFilter)
+                }
+
+
+            }else{
+                    filterKeywords=filterTemp.split("=")[1];
+                    console.log(filterKeywords)
+                    filterKeywords='title CONTAINS"'+filterKeywords+'"'
+                    wholeFilter='filter='+filterKeywords
+                    console.log(wholeFilter)
+
+                }
+
+            }
+            
+
+        }else{
+
+            console.log('no filter')
+            
+        }
+        
+        callback(null)
+    },
+    function(callback) {
+        var addReactInfo = window.location.href;   
+        if(addReactInfo.split("?")[2]){
+            var filterTemp=addReactInfo.split("?")[2];
+            if(filterTemp.split("=")[0]=='type')
+            {
+                filterType =filterTemp.split("=")[1];
+                console.log(filterType)
+                if(filterType=="ALL"){
+                    console.log('second filter all types')
+                }else{
+                
+                selectTypeButton.innerHTML=filterType;
+                selectTypeButton.style.borderColor='#FF4081'
+                selectTypeButton.style.color='#FF4081'
+                filterType='type=="'+filterType+'"'
+                wholeFilter=wholeFilter+'AND '+filterType
+                console.log(wholeFilter)
+
+                }
+
+            }else{
+                if(filterTemp.split("=")[0]=='faculty'){
+
+                filterFaculty =filterTemp.split("=")[1];
+                console.log(filterFaculty)
+                if(filterFaculty=='ALL'){
+                    console.log('second filter all faculty')               
+                 }else{
+                var temp1=addReactInfo.split("?")[1]
+                var filterType =temp1.split("=")[1];
+                console.log(filterType)
+                 var encodeFaculty =decodeURI(filterFaculty)
+
+                selectMajorButton.innerHTML=encodeFaculty;
+                selectMajorButton.style.borderColor='#FF4081'
+                selectMajorButton.style.color='#FF4081'
+                filterFaculty='faculty=="'+filterFaculty+'"'
+                if(filterType=='ALL'){
+                    wholeFilter=filterFaculty
+                    console.log(wholeFilter)
+                 }else{
+                    wholeFilter=wholeFilter+'AND '+filterFaculty   
+                    console.log(wholeFilter)
+                 }
+
+
+                }
+
+            }else{
+                    filterKeywords=filterTemp.split("=")[1];
+                    console.log(filterKeywords)
+                    filterKeywords='title CONTAINS"'+filterKeywords+'"'
+                    wholeFilter=wholeFilter+'AND '+filterKeywords
+                    console.log(wholeFilter)
+
+                }
+
+            }
+            
+
+        }else{
+
+            console.log('no filter after second?')
+            
+        }
+      
+        callback(null);
+    },    function(callback) {
+                var addReactInfo = window.location.href;   
+        if(addReactInfo.split("?")[3]){
+            var filterTemp=addReactInfo.split("?")[3];
+            if(filterTemp.split("=")[0]=='type')
+            {
+                filterType =filterTemp.split("=")[1];
+                console.log(filterType)
+                selectTypeButton.innerHTML=filterType;
+                selectTypeButton.style.borderColor='#FF4081'
+                selectTypeButton.style.color='#FF4081'
+                filterType='type=="'+filterType+'"'
+                wholeFilter=wholeFilter+'AND '+filterType
+                console.log(wholeFilter)
+            }else{
+                if(filterTemp.split("=")[0]=='faculty'){
+                filterFaculty =filterTemp.split("=")[1];
+                console.log(filterFaculty)
+                var encodeFaculty =decodeURI(filterFaculty)
+                selectMajorButton.innerHTML=encodeFaculty;
+                selectMajorButton.style.borderColor='#FF4081'
+                selectMajorButton.style.color='#FF4081'
+                filterFaculty='faculty=="'+filterFaculty+'"'
+                wholeFilter=wholeFilter+'AND '+filterFaculty   
+                console.log(wholeFilter)
+            }else{
+                    filterKeywords=filterTemp.split("=")[1];
+                    console.log(filterKeywords)
+                    filterKeywords='title CONTAINS"'+filterKeywords+'"'
+                    wholeFilter=wholeFilter+'AND '+filterKeywords
+                    console.log(wholeFilter)
+
+                }
+
+            }
+            
+
+        }else{
+
+            console.log('no filter after third?')
+            
+        }
+      
+        callback(null);
+    },
+    function(callback) {
+
+         $.ajax({
+        url: `/project/query?`+wholeFilter,
         datatype: 'json',
         type: 'get',
         success: function (data) {
-            console.log(data.result)
-            //console.log(projectData)
             var resultList = new Vue({
             el: '#resultList',
             data: data
-    })
+            })
 
 
         }
     });
+    callback(null);
+    }
+], function (err, result) {
+    // result now equals 'done'
+});
 
-    var userinfo = new Vue({
-        el: '#userinfo',
-        data: userInfoData
-    })
+
+
+
+
 
 
 
 
 });
 
-function signInAuth(){
 
-    var username=document.getElementById('usernameAuthen').value
-    var userpassword=document.getElementById('userpasswordAuthen').value
-    var zzForEmail = /^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}$/;
-    var zzForPassword =/^[a-zA-Z]\w{5,17}$/;
-    if(username==''||userpassword==''){
-        console.log('invalid input')
-    }else{
-
-            $.ajax({
-            url: "",
-            type: "post",
-            dataType: "json",
-            data: "{username:"+username+",userpassword:"+userpassword+"}",
-            success: function (res) {
-
-            }
-
-            });
-
-
-}
-
-}
 
 window.onload = (e) => {
 

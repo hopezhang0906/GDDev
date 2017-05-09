@@ -44,8 +44,10 @@ app.post('/portal/signup', (req, res) => {
     }
 
     body.id = shortid.generate()
-    body.signUpOn = new Date()
+    body.signupOn = new Date()
     database.portal.signup(body)
+
+    res.redirect('/portal?signin')
 })
 
 app.get('/portal/signout', (req, res) => {
@@ -70,7 +72,7 @@ app.get('/portal/signout', (req, res) => {
 })
 
 app.get('/portal/token/:token', (req, res) => {
-    var token = req.param.token
+    var token = req.params.token
     if (token != null) {
         if (database.portal.validate(token)) {
             res.json({
@@ -213,7 +215,7 @@ app.post('/project/add', (req, res) => {
         body.uploadedOn = body.lastModifiedOn = new Date()
         body.finishedOn = new Date(body.finishedOn)
         database.project.add(body)
-        res.redirect(`/project?id=${body.id}`)
+        res.redirect(`/project?${body.id}`)
     })
 
     function combineArray(obj, keys, names, cb) {

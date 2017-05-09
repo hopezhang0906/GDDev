@@ -14,7 +14,8 @@ var DB = {
                 schemas.MakerSchema,
                 schemas.ProjectSchema,
                 schemas.TagSchema,
-                schemas.UserSchema
+                schemas.UserSchema,
+                schemas.TokenSchema
             ]
         })
     },
@@ -28,15 +29,18 @@ var DB = {
 
         auth: (cred, cb) => {
             let users = realm.objects('User')
-            let user = users.filtered(`email == "${cred.email} AND password == "${cred.password}"`)
+            let user = users.filtered(`email == "${cred.email}" AND password == "${cred.password}"`)[0]
             if (user.length != 0) {
                 let date = new Date()
-                let token = realm.create('Token', {
-                    userId: user.id,
-                    token: md5(new Date().getMilliseconds) + randomstring.generate(30),
-                    expireOn: date.setDate(date.getDate() + 20)
+                date.setDate(date.getDate() + 20)
+                realm.write(() => {
+                    let token = realm.create('Token', {
+                        userId: `${user.id}`,
+                        token: md5(new Date().getMilliseconds) + randomstring.generate(30),
+                        expireOn: date
+                    })
+                    cb(null, token)
                 })
-                cb(null, token)
             } else cb(null, null)
         },
 

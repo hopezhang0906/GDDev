@@ -11,6 +11,39 @@ window.onload = (e) => {
     var signupButton=document.getElementById('signupButton')
     var signupModule = document.getElementById('signupModule')
     var signinModule = document.getElementById('signinModule')
+    var signinButton=document.getElementById('signinButton')
+    
+    signinButton.addEventListener('click',function(){
+    var username=document.getElementById('usernameAuthen').value
+    var password=document.getElementById('userpasswordAuthen').value
+    var zzForEmail = /^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}$/;
+    var zzForPassword =/^[a-zA-Z]\w{5,17}$/;
+         if(!zzForEmail.test(username)&&!zzForPassword.test(password)){
+        console.log('invalid input')
+         }else{
+         console.log('valid signin')
+            $.ajax({
+            url: "/portal/auth",
+            type: "post",
+            dataType: "json",
+            data: { username: username, password: password},
+            success: function (res) {
+
+                console.log(res.status)
+                console.log(res.token)
+                setCookie('token',JSON.stringify(res.token),20)
+                console.log( getCookie('token'))
+
+                 window.location.href = "/";
+
+
+            }
+
+            });
+
+
+        }
+    })
 
     backButton.addEventListener("click", function(){
      window.location.href = "/";
@@ -40,6 +73,32 @@ window.onload = (e) => {
 }
 
 
+
+function signInAuth(){
+
+    var username=document.getElementById('usernameAuthen').value
+    var userpassword=document.getElementById('userpasswordAuthen').value
+    var zzForEmail = /^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}$/;
+    var zzForPassword =/^[a-zA-Z]\w{5,17}$/;
+    if(!zzForEmail.test(username)&&!zzForPassword.test(userpassword)){
+        console.log('invalid input')
+    }else{
+         console.log('valid signin')
+            // $.ajax({
+            // url: "",
+            // type: "post",
+            // dataType: "json",
+            // data: "{username:"+username+",userpassword:"+userpassword+"}",
+            // success: function (res) {
+
+            // }
+
+            // });
+
+
+}
+
+}
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();

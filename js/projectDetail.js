@@ -4,7 +4,7 @@ require('../css/projectDetail.less')
 
 var projectData = {
 
-    uploadedOn: '2017-05-12BkegRx2py-',
+    uploadedOn: '2017-05-12',
     finishDate: '2017-05-12',
     uploaderId:'Aqdas Malik',
     type:'论文',
@@ -91,7 +91,7 @@ $.ajax({
             finishedOndate=finishedOndate.split("T")[0]
             projectData.uploadedOn=uploadedOndate
             projectData.finishedOn=finishedOndate
-            //console.log(projectData)
+            console.log(projectData)
             
 
 

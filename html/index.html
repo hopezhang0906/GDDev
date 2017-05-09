@@ -51,9 +51,9 @@
         <div id="menu" class="mdl-layout__drawer">
             <div id="personalInfo">
                 <div id="userinfo">
-                    <div id="headshot" v-bind:style="{backgroundImage: 'url(' + favicon + ')'}"></div>
-                    <p id="accountID">{{userEmail}}</p>
-                    <p id="personalStatement">{{userName}}</p>
+                    <div id="headshot" v-bind:style="{backgroundImage: 'url(public/img/' + avatar + ')'}"></div>
+                    <p id="accountID">{{email}}</p>
+                    <p id="personalStatement">{{name}}</p>
                 </div>
 
 
@@ -95,7 +95,7 @@
                             <p id="projectId" style="display: none">{{item.id}}</p>
                             <p id="moduleType">{{item.type}}</p>
                             <p id="uploaderId" style="display: none" >{{item.uploaderId}}</p>      
-                            <p id="uploaderName">发布人:{{item.uploaderId}} </p>
+                            <p id="uploaderName">学院:{{item.faculty}} </p>
                         </div>
                         <div id="action" >
                             <button v-bind:id="item.id" onclick="goToProjectDetailPage(this)" class="mdl-button mdl-js-button mdl-button--icon">
@@ -230,7 +230,7 @@
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">library_books</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterType('essay')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          论文
                         </button>
                     </span>
@@ -238,7 +238,7 @@
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">devices_other</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterType('software')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          游戏&软件
                         </button>
                     </span>
@@ -246,7 +246,7 @@
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">local_library</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterType('publication')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          出版物
                         </button>
                     </span>
@@ -254,7 +254,7 @@
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">videocam</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterType('art')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          影视&艺术
                         </button>
                     </span>
@@ -359,15 +359,56 @@
 
         function goToCreatePage(type){
             
-            window.location.href = "/create?"+type;
+            window.location.href = "/project/create?"+type;
 
         }
 
         function goToProjectDetailPage(item){
            var projectID=item.id
-           window.location.href = "/projectDetail?"+projectID;
+           window.location.href = "/project?"+projectID;
 
         }
+
+        function filterType(type){
+            var addReactInfo = window.location.href; 
+            if(addReactInfo.indexOf("type") > 0){
+                
+                var str = addReactInfo.split("?")[1]
+                console.log(addReactInfo.split("?")[1])
+                str = str.split("=")
+                console.log(str)
+                var tempType=str[1];
+                console.log('current filter type is'+tempType)
+                str= str[0]+"="+type
+                console.log('change filter type to '+str)
+                // var ipos = str.indexOf("+type");
+                // var str1=str.substring(0,ipos); //取前部分
+                // console.log(str1)
+                // var str2=str.substring(ipos,str.length);//取后部分
+                // console.log(str2)
+                var str1=''
+                var str2=''
+                var str3=''
+                if(addReactInfo.split("?")[0]){
+                    str1=addReactInfo.split("?")[0]
+                }else{
+
+                }
+                if(addReactInfo.split("?")[1]){
+                    str2=addReactInfo.split("?")[1]
+                }else{
+
+                }
+                var tempUrl=addReactInfo.split("?")[0]+"?"+str+"?"+addReactInfo.split("?")[2]+"?"+addReactInfo.split("?")[3]
+                console.log(tempUrl)
+            }else{
+                window.location.href = addReactInfo+"?type="+type
+            }
+
+
+
+        }
+
 
     </script>
 
