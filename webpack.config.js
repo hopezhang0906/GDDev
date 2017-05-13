@@ -10,11 +10,9 @@ module.exports = {
     entry: {
         index: path.join(__dirname, 'js/index.js'),
         login: path.join(__dirname, 'js/login.js'),
-        //...
-        alltypes: path.join(__dirname, 'js/alltypes.js'),
         createnewone: path.join(__dirname, 'js/createnewone.js'),
         projectDetail: path.join(__dirname, 'js/projectDetail.js'),
-        createTest: path.join(__dirname, 'js/createTest.js')
+        profile: path.join(__dirname, 'js/profile.js')
         //Server
         //database: path.join(__dirname, 'js/server/database.js'),
         //server: path.join(__dirname, 'js/server/server.js')
@@ -67,11 +65,11 @@ module.exports = {
             { from: 'img', to: path.resolve(__dirname, 'dist/public/img') },
             { from: 'html/index.html', to: path.resolve(__dirname, 'dist/') },
             { from: 'html/login.html', to: path.resolve(__dirname, 'dist/') },
-            { from: 'html/alltypes.html', to: path.resolve(__dirname, 'dist/') },
             { from: 'html/createnewone.html', to: path.resolve(__dirname, 'dist/') },
             { from: 'html/projectDetail.html', to: path.resolve(__dirname, 'dist/') },
             { from: 'js/server', to: path.resolve(__dirname, 'dist/') },
-            { from: 'html/createTest.html', to: path.resolve(__dirname, 'dist/') }
+            { from: 'html/profile.html', to: path.resolve(__dirname, 'dist/') },
+            { from: 'html/editProject.html', to: path.resolve(__dirname, 'dist/') }
 
         ], {
             ignore: [

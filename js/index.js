@@ -124,12 +124,18 @@ console.log("this document is ready")
 
 
     console.log(getCookie('token'));
-
-    var tempToken=JSON.parse(getCookie('token'))
+    if(getCookie('token')==''||getCookie('token')==null){
+        var userinfo=document.getElementById('userinfo')
+        userinfo.style.display='none'
+    }
+    else{
+     var tempToken=JSON.parse(getCookie('token'))
     console.log(tempToken);
     console.log(tempToken.token);
     var tempTokenString=tempToken.token;
     var tempUserId=tempToken.userId;
+    }
+
 
 
 async.waterfall([
@@ -235,7 +241,7 @@ async.waterfall([
                 selectMajorButton.innerHTML=encodeFaculty;
                 selectMajorButton.style.borderColor='#FF4081'
                 selectMajorButton.style.color='#FF4081'
-                filterFaculty='faculty=="'+filterFaculty+'"'
+                filterFaculty='faculty=="'+encodeFaculty+'"'
                 wholeFilter='filter='+filterFaculty   
                 console.log(wholeFilter)
                 }
@@ -298,9 +304,9 @@ async.waterfall([
                 selectMajorButton.innerHTML=encodeFaculty;
                 selectMajorButton.style.borderColor='#FF4081'
                 selectMajorButton.style.color='#FF4081'
-                filterFaculty='faculty=="'+filterFaculty+'"'
+                filterFaculty='faculty=="'+encodeFaculty+'"'
                 if(filterType=='ALL'){
-                    wholeFilter=filterFaculty
+                    wholeFilter='filter='+filterFaculty
                     console.log(wholeFilter)
                  }else{
                     wholeFilter=wholeFilter+'AND '+filterFaculty   
@@ -312,9 +318,16 @@ async.waterfall([
 
             }else{
                     filterKeywords=filterTemp.split("=")[1];
-                    console.log(filterKeywords)
-                    filterKeywords='title CONTAINS"'+filterKeywords+'"'
-                    wholeFilter=wholeFilter+'AND '+filterKeywords
+                    var decodeKeywords = decodeURI(filterKeywords)
+                    console.log(decodeKeywords)
+                    filterKeywords='title CONTAINS "'+decodeKeywords+'"'
+                    if(wholeFilter==''){
+                        wholeFilter='filter='+filterKeywords
+                    }else{
+                        wholeFilter=wholeFilter+'AND '+filterKeywords
+                        
+
+                    }
                     console.log(wholeFilter)
 
                 }
@@ -356,9 +369,19 @@ async.waterfall([
                 console.log(wholeFilter)
             }else{
                     filterKeywords=filterTemp.split("=")[1];
+
                     console.log(filterKeywords)
-                    filterKeywords='title CONTAINS"'+filterKeywords+'"'
-                    wholeFilter=wholeFilter+'AND '+filterKeywords
+                    var decodeKeywords = decodeURI(filterKeywords)
+                    console.log(decodeKeywords)
+                    filterKeywords='title CONTAINS "'+decodeKeywords+'"'
+
+                    if(wholeFilter==''){
+                        wholeFilter='filter='+filterKeywords
+                    }else{
+                        wholeFilter=wholeFilter+'AND '+filterKeywords
+                        
+
+                    }
                     console.log(wholeFilter)
 
                 }
@@ -375,6 +398,7 @@ async.waterfall([
         callback(null);
     },
     function(callback) {
+        console.log(wholeFilter)
 
          $.ajax({
         url: `/project/query?`+wholeFilter,
@@ -408,6 +432,7 @@ async.waterfall([
 
 
 window.onload = (e) => {
+
 
 
 }

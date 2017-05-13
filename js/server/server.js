@@ -23,13 +23,20 @@ app.get('/portal', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../dist/login.html'))
 })
 
+app.get('/portal/profile', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../dist/profile.html'))
+})
+
+
+
 app.get('/project/create', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/createnewone.html'))
 })
 
-app.get('/project/create/test', function (req, res) {
-    res.sendFile(path.resolve(__dirname, '../dist/createTest.html'))
+app.get('/projectEdit', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../dist/editProject.html'))
 })
+
 
 app.get('/project', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/projectDetail.html'))

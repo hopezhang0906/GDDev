@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>createNewOnePage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/createnewone.css" />
+    <script src="/public/createnewone.js"></script>
+
+    <!-- Material Design Lite -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <!-- Include Bootstrap Datepicker -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- Simple header with fixed tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <button type="button" id="backButton" id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
+             <i class="material-icons">arrow_back</i>
+        </button>
+                <!-- Title -->
+                <span class="mdl-layout-title">编辑成果</span>
+            </div>
+        </header>
+        <main class="mdl-layout__content">
+            <section>
+                <div class="page-content">
+                    <form id="fillOutForm" class="page-content" action="/project/add" method="post">
+                        <div id="wholePanel">
+                            <div style="background-image: url(/public/img/book.jpg)" id="chooseImg">
+                                <p id="hintToChooseImg">select a product/depict photo</p>
+                                <input id="fileInput" name="thumbnail" type="file" onchange="outputFileName()">
+                                <button type="button" onclick="selectFile()" id="addImg" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+                            <i class="material-icons">add_a_photo</i>
+                        </button>
+                            </div>
+                            <div id="basicInfo" class="inputSection">
+                                <p>基本信息</p>
+                                <input type="text" name="type" style="display: none" id="submitType">
+                                <input type="text" name="uploader" style="display: none" id="submitUploader">
+                                <div id="firstOne" class="form" action="#">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input id="projectTitle" name="title" value="高等数学轻松学" class="mdl-textfield__input" type="text" pattern="^.{4,40}$">
+                                        <label class="mdl-textfield__label">出版物名称</label>
+                                        <span class="mdl-textfield__error">限4-40个字符</span>
+                                    </div>
+                                </div>
+                                <div id="chooseFaculty" class="form">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input disabled="disabled" value="经管学部" class="mdl-textfield__input" type="text" >
+                                        <input name="faculty" id="submitFacultyInput" style="display:none;">
+                                        <label id="inputFaculty" class="mdl-textfield__label" >请选择学院</label>
+                                    </div>
+                                </div>
+                                <div id="option">
+                                    <button type="button" id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                                    <i class="material-icons">arrow_drop_down</i>
+                                    </button>
+                                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+                                        <li onclick="chooseFaculty(this)" class="mdl-menu__item">新闻传播学部</li>
+                                        <li onclick="chooseFaculty(this)" class="mdl-menu__item">艺术学部</li>
+                                        <li onclick="chooseFaculty(this)" class="mdl-menu__item">理工学部</li>
+                                        <li onclick="chooseFaculty(this)" class="mdl-menu__item">文法学部</li>
+                                        <li onclick="chooseFaculty(this)" class="mdl-menu__item">经管学部</li>
+                                        <li onclick="chooseFaculty(this)" class="mdl-menu__item">播音主持艺术学院</li>
+                                        <li onclick="chooseFaculty(this)" class="mdl-menu__item">外国语学院</li>
+                                        <li onclick="chooseFaculty(this)" class="mdl-menu__item">广告学院</li>
+                                        <li onclick="chooseFaculty(this)" class="mdl-menu__item">国际传媒教育学院</li>
+                                    </ul>
+                                </div>
+                                <div class="form" >
+                                    <div id="descriptionArea" class="mdl-textfield mdl-js-textfield">
+                                        <textarea id="descriptionTextArea" name="description" class="mdl-textfield__input" type="text" rows="3" >《高等数学轻松学》是一本教人如何学习高等数学的书。它的关注点不是定义、定理、性质，以及后两者的证明，而是以一道道具体的题为切入点，揭示数学问题的内在逻辑和方法选择的前因后果。它既可以帮助初学高等数学的本科生学好数学，也可以作为考研数学复习的参考书。</textarea>
+                                        <label id="descriptionLabel" class="mdl-textfield__label" ></label>
+                                    </div>
+                                </div>
+
+                                <div class="form" action="#">
+                                    <div class="form" id="dateRangeForm" method="post" class="form-horizontal">
+                                        <label id="labelforTextArea">出版日期</label>
+                                        <div class="form-group">
+                                            <div class=" date">
+                                                <div class="input-group input-append date" id="dateRangePicker">
+                                                    <input id="submitDateInpute" value="2017-06-12" type="text" class="form-control" name="finishedOn" />
+                                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="CustomDescriptionSection" class="inputSection">
+                                <p id="hintParagrah">自定义描述信息</p>
+                                <div class="oneCustomItem">
+                                    <div id="firstOne" class="form" action="none">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input placeholder="例:文档链接" id="descriptionTitle" class="mdl-textfield__input" type="text" pattern="^.{4,40}$">
+                                            <label class="mdl-textfield__label" >描述标题</label>
+                                            <span class="mdl-textfield__error">限制4-40个字符</span>
+                                        </div>
+                                    </div>
+                                    <div class="description form"  action="#">
+                                        <div class="mdl-textfield mdl-js-textfield">
+                                            <textarea id="descriptionText" class="mdl-textfield__input" type="text" rows="3"  ></textarea>
+                                            <label class="mdl-textfield__label" for="sample5">website link...</label>
+                                        </div>
+                                    </div>
+                                    <button type="button" id="addCustomDescriptionButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">添加描述</button>
+                                </div>
+                                <div class="oneCustomItem">
+                                    <div id="firstOne" class="form" action="none">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input placeholder="例:文档链接" value="出版社" id="descriptionTitle" class="mdl-textfield__input" type="text" pattern="^.{1,40}$">
+                                            <label class="mdl-textfield__label" >描述标题</label>
+                                            <span class="mdl-textfield__error">限制4-40个字符</span>
+                                        </div>
+                                    </div>
+                                    <div class="description form"  action="#">
+                                        <div class="mdl-textfield mdl-js-textfield">
+                                            <textarea id="descriptionText" class="mdl-textfield__input" type="text" rows="3"  >北京航空航天大学出版社</textarea>
+                                            <label class="mdl-textfield__label" for="sample5">website link...</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="oneCustomItem">
+                                    <div id="firstOne" class="form" action="none">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input placeholder="例:文档链接" value="ISBN" id="descriptionTitle" class="mdl-textfield__input" type="text" pattern="^.{1,40}$">
+                                            <label class="mdl-textfield__label" >描述标题</label>
+                                            <span class="mdl-textfield__error">限制4-40个字符</span>
+                                        </div>
+                                    </div>
+                                    <div class="description form"  action="#">
+                                        <div class="mdl-textfield mdl-js-textfield">
+                                            <textarea id="descriptionText" class="mdl-textfield__input" type="text" rows="3"  >9787512417465</textarea>
+                                            <label class="mdl-textfield__label" for="sample5">website link...</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div id="tagsSection" class="inputSection">
+                                <p id="hintPForTag">标签</p>
+                                <div id="firstOne" class="form" class="addInfoInput" action="#">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input id="inputForTag" placeholder="核心技术/特别之处" class="mdl-textfield__input"  pattern="^.{2,10}$" type="text">
+
+                                        <label class="mdl-textfield__label" >请输入自定义标签</label>
+                                        <span class="mdl-textfield__error">限2-10个字符</span>
+                                    </div>
+                                    <button type="button" id="addNewTagButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">添加标签</button>
+
+
+                                </div>
+
+                            </div>
+
+                            <div id="creditsSection" class="inputSection">
+                                <p id="hintPForMakers">成员与身份</p>
+                                <div id="inputForMaker" class="form" class="addInfoInput" action="#">
+                                    <div id="makerNameItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input id="makerName" placeholder="例:李某" class="mdl-textfield__input"  pattern="^.{2,10}$" type="text">
+                                        <label class="mdl-textfield__label" for="sample3">请输入成员姓名</label>
+                                        <span class="mdl-textfield__error">限2-10个字符</span>
+                                    </div>
+                                    <div id="makerCreditItem"  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input id="makerCredit" placeholder="例:主要作者" class="mdl-textfield__input"  pattern="^.{2,10}$" type="text">
+                                        <label class="mdl-textfield__label" for="sample3">请输入其身份</label>
+                                        <span class="mdl-textfield__error">限2-10个字符</span>
+                                    </div>
+                                    
+                                    <button type="button" id="addNewCreditButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">添加人员</button>
+
+                                </div>
+                                 <div id="inputForMaker" class="form" class="addInfoInput" action="#">
+                                    <div id="makerNameItem" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input id="makerName" placeholder="例:李某" value="王志超" class="mdl-textfield__input"  pattern="^.{2,10}$" type="text">
+                                        <label class="mdl-textfield__label" for="sample3">请输入成员姓名</label>
+                                        <span class="mdl-textfield__error">限2-10个字符</span>
+                                    </div>
+                                    <div id="makerCreditItem"  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input id="makerCredit" placeholder="例:主要作者" value="作者" class="mdl-textfield__input"  pattern="^.{2,10}$" type="text">
+                                        <label class="mdl-textfield__label" for="sample3">请输入其身份</label>
+                                        <span class="mdl-textfield__error">限2-10个字符</span>
+                                    </div>
+                                    
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="submitButtonOut">
+                             <button type="button" onclick="saveChanges()" id="finalSubmitButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">保存更改</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+$(document).ready(function () {
+    $('#dateRangePicker')
+        .datepicker({
+            format: 'yyyy-mm-dd',
+            startDate: '2000-01-01',
+            endDate: '2020-01-01'
+        })
+        .on('changeDate', function (e) {
+        });
+
+});
+
+function saveChanges(){
+    window.location.href = "/portal/profile"
+}
+
+function selectFile() {
+
+    //触发 文件选择的click事件 
+    $("#fileInput").trigger("click");
+    //其他code如 alert($("#file").attr("value")) 
+}
+
+//remove addible item
+function removeThisChip(item) {
+
+    item.parentNode.remove()
+
+
+}
+
+//link choose img button to input whoose type is file
+
+
+//get choosed img name and change the background-image url
+function outputFileName() {
+
+    var str = document.getElementById("fileInput").value
+    console.log(document.getElementById("fileInput").value)
+
+    console.log(str.split("\\")[2]);
+    var imgName = str.split("\\")[2];
+    var chooseImg = document.getElementById("chooseImg")
+    chooseImg.style.backgroundImage = "url('/public/img/" + imgName + "')"
+    if (document.getElementById("hintToChooseImg")) {
+        var hintToChooseImg = document.getElementById("hintToChooseImg")
+
+        hintToChooseImg.remove()
+    }
+
+}
+
+function chooseFaculty(item) {
+    var inputFaculty = document.getElementById("inputFaculty")
+    var submitFacultyInput = document.getElementById("submitFacultyInput")
+    inputFaculty.innerText = item.innerText
+    inputFaculty.style.color='#3e50b4'
+    inputFaculty.style.fontWeight='100'
+    submitFacultyInput.value=item.innerText
+
+}
+
+function finalSubmit(){
+
+    var myForm=document.getElementById('fillOutForm')
+
+    //console.log(checkThumNail())
+    //console.log(checkTitle())
+    console.log(checkDate())
+    if(checkThumNail()&&checkTitle()&&checkFaculty()&&checkDescription()&&checkDate())
+    {
+        myForm.submit()
+    }else{
+        console.log('submit failed invalid input')
+    }
+    //myForm.submit()
+
+
+}
+
+function checkThumNail(){
+
+    var fileInput=document.getElementById('fileInput')
+    var hintToChooseImg=document.getElementById('hintToChooseImg')
+    if(fileInput.value==null||fileInput.value=="")
+    {
+        console.log('invalid thumbnail')
+        hintToChooseImg.innerText='请选择图片！'
+        hintToChooseImg.style.color='#d50000'
+        return false
+    }else{
+        return true
+    }
+
+}
+
+function checkTitle(){
+    var projectTitle=document.getElementById('projectTitle').value
+    var zz = /^.{4,100}$/;
+    if (!zz.test(projectTitle)) {
+        console.log('invalid title')
+        return false
+    } else {
+        return true
+    }
+}
+
+function checkFaculty(){
+
+    var submitFacultyInput=document.getElementById('submitFacultyInput')
+    var inputFaculty=document.getElementById('inputFaculty')
+    if(submitFacultyInput.value==null||submitFacultyInput.value=="")
+    {
+        console.log('invalid faculty')
+        inputFaculty.style.color='#d50000'
+        //inputFaculty.style.fontWeight='100'
+        return false
+    }else{
+        return true
+    }
+}
+
+function checkDescription(){
+    
+    var descriptionTextArea=document.getElementById('descriptionTextArea').value
+    var zz = /^.{15,}$/;
+    if (!zz.test(descriptionTextArea)) {
+        var descriptionLabel=document.getElementById('descriptionLabel')
+        descriptionLabel.innerHTML='请输入15个字符以上！'
+        descriptionLabel.style.color='#d50000'
+        var descriptionArea=document.getElementById('descriptionArea')
+        descriptionArea.className='mdl-textfield mdl-js-textfield is-upgraded'
+        //document.getElementById('descriptionTextArea').value='';
+
+        console.log('invalid description')
+        return false
+    } else {
+        return true
+    }
+}
+
+function checkDate(){
+    var submitDateInpute=document.getElementById('submitDateInpute').value
+    var zz = /^\d{4}-\d{2}-\d{2}$/;
+    if (!zz.test(submitDateInpute)) {
+        console.log('invalid date')
+        var labelforTextArea=document.getElementById('labelforTextArea')
+        labelforTextArea.innerHTML='请输入正确日期格式'
+        labelforTextArea.style.color='#d50000'
+        return false
+    } else {
+        return true
+    }
+}
+
+
+    </script>
+
+
+</body>
+
+
+</html>

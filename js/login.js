@@ -34,7 +34,7 @@ window.onload = (e) => {
                 setCookie('token',JSON.stringify(res.token),20)
                 console.log( getCookie('token'))
 
-                 window.location.href = "/";
+                 window.location.href = "/?type=ALL?faculty=ALL";
 
 
             }
@@ -45,8 +45,10 @@ window.onload = (e) => {
         }
     })
 
+    clearCookie('token')
+
     backButton.addEventListener("click", function(){
-     window.location.href = "/";
+     window.location.href = "/?type=ALL?faculty=ALL";
     });
 
     signupButton.addEventListener("click", function(){

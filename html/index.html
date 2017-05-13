@@ -36,12 +36,17 @@
                     <a class="mdl-navigation__link" href="">Link</a>
                     <a class="mdl-navigation__link" href="">Link</a>-->
                 </nav>
+                   <div id="searchInput" style="display:none; position: fixed;width: 200px;right: 50px;" class="mdl-textfield mdl-js-textfield">
+                    <input  id="searchInputValue" style="border-bottom: 2px solid #FF4081;" class="mdl-textfield__input" type="text" id="sample1">
+                    <label  class="mdl-textfield__label" for="sample1">关键词...</label>
+                </div>
                 <div id="searchBox" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label">
 
-                    <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+                    <label id="clickOnce" onclick="searchFunction()" class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
                         <i class="material-icons">search</i>
                     </label>
+                   
 
                 </div>
 
@@ -69,9 +74,8 @@
 
 
                 <a id="menuListSelected" class="mdl-navigation__link" href=""> <i class="material-icons">description</i>浏览成果</a>
-                <a id="menuList" class="mdl-navigation__link" href=""><i class="material-icons">book</i>查看我的</a>
+                <a id="menuList" class="mdl-navigation__link" href="/portal/profile"><i class="material-icons">book</i>查看我的</a>
                 <a id="menuList" class="mdl-navigation__link" href=""><i class="material-icons">info</i>关于</a>
-                <a id="menuList" class="mdl-navigation__link" href=""><i class="material-icons">settings</i>其他设置</a>
 
             </nav>
         </div>
@@ -82,7 +86,7 @@
                 <div id="headPicture">
                     <h2 class="mdl-card__title-text">展示和浏览成果</h2>
                 </div>
-                <div id="optionCard" class="box">
+                <div  id="optionCard" class="box">
 
                     <button id="selectType">所有类型</button>
                     <button id="selectMajor">所有学院</button>
@@ -132,7 +136,7 @@
                 <li style="margin-top:-25px;" class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">cast_connected</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterFaculty('新闻传播学部')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          新闻传播学部
                         </button>
                     </span>
@@ -140,7 +144,7 @@
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">mode_edit</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterFaculty('艺术学部')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          艺术学部
                         </button>
                     </span>
@@ -148,7 +152,7 @@
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">developer_board</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterFaculty('理工学部')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          理工学部
                         </button>
                     </span>
@@ -156,7 +160,7 @@
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">assignment</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterFaculty('文法学部')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          文法学部
                         </button>
                     </span>
@@ -164,7 +168,7 @@
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">map</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterFaculty('经管学部')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          经管学部
                         </button>
                     </span>
@@ -172,7 +176,7 @@
                  <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">keyboard_voice</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterFaculty('播音主持艺术学院')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          播音主持艺术学院
                         </button>
                     </span>
@@ -180,7 +184,7 @@
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">language</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterFaculty('外国语学院')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          外国语学院
                         </button>
                     </span>
@@ -188,7 +192,7 @@
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">tap_and_play</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterFaculty('广告学院')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          广告学院
                         </button>
                     </span>
@@ -196,8 +200,15 @@
                 <li class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">public</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button onclick="filterFaculty('国际传媒教育学院')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          国际传媒教育学院
+                        </button>
+                    </span>
+                </li>
+                <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon"></i>
+                        <button onclick="filterFaculty('ALL')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         全部学院
                         </button>
                     </span>
                 </li>
@@ -222,7 +233,7 @@
                 <li style="margin-top:-25px;" class="mdl-list__item">
                     <span class="mdl-list__item-primary-content">
                         <i class="material-icons mdl-list__item-icon">school</i>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                        <button  onclick="filterType('patent')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          发明专利
                         </button>
                     </span>
@@ -256,6 +267,14 @@
                         <i class="material-icons mdl-list__item-icon">videocam</i>
                         <button onclick="filterType('art')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
                          影视&艺术
+                        </button>
+                    </span>
+                </li>
+                 <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon"></i>
+                        <button onclick="filterType('ALL')" class="mdl-button mdl-js-button mdl-js-ripple-effect selectTypeButton">
+                         全部类型
                         </button>
                     </span>
                 </li>
@@ -369,6 +388,52 @@
 
         }
 
+        function filterFaculty(type){
+            var addReactInfo = window.location.href; 
+            if(addReactInfo.indexOf("type") > 0){
+                
+                var str = addReactInfo.split("?")[2]
+                console.log(addReactInfo.split("?")[2])
+                str = str.split("=")
+                console.log(str)
+                var tempType=str[1];
+                console.log('current filter faculty is'+tempType)
+                str= str[0]+"="+type
+                console.log('change filter faculty to '+str)
+                // var ipos = str.indexOf("+type");
+                // var str1=str.substring(0,ipos); //取前部分
+                // console.log(str1)
+                // var str2=str.substring(ipos,str.length);//取后部分
+                // console.log(str2)
+                var str1=''
+                var str2=''
+                var str3=''
+                if(addReactInfo.split("?")[1]){
+                    str1=addReactInfo.split("?")[1]
+                }else{
+
+                }
+                if(addReactInfo.split("?")[2]){
+                    str2="?"+addReactInfo.split("?")[2]
+                }else{
+
+                }
+                if(addReactInfo.split("?")[3]){
+                    str3="?"+addReactInfo.split("?")[3]
+                }else{
+
+                }
+                var tempUrl=addReactInfo.split("?")[0]+"?"+str1+"?"+str
+                console.log(tempUrl)
+                window.location.href = tempUrl;
+            }else{
+                window.location.href = addReactInfo+"?faculty="+type
+            }
+
+
+
+        }
+        
         function filterType(type){
             var addReactInfo = window.location.href; 
             if(addReactInfo.indexOf("type") > 0){
@@ -389,24 +454,55 @@
                 var str1=''
                 var str2=''
                 var str3=''
-                if(addReactInfo.split("?")[0]){
-                    str1=addReactInfo.split("?")[0]
-                }else{
-
-                }
                 if(addReactInfo.split("?")[1]){
-                    str2=addReactInfo.split("?")[1]
+                    str1=addReactInfo.split("?")[1]
                 }else{
 
                 }
-                var tempUrl=addReactInfo.split("?")[0]+"?"+str+"?"+addReactInfo.split("?")[2]+"?"+addReactInfo.split("?")[3]
+                if(addReactInfo.split("?")[2]){
+                    str2="?"+addReactInfo.split("?")[2]
+                }else{
+
+                }
+                if(addReactInfo.split("?")[3]){
+                    str3="?"+addReactInfo.split("?")[3]
+                }else{
+
+                }
+                var tempUrl=addReactInfo.split("?")[0]+"?"+str+str2
                 console.log(tempUrl)
+                window.location.href = tempUrl;
             }else{
                 window.location.href = addReactInfo+"?type="+type
             }
 
 
 
+        }
+
+
+        function searchFunction(){
+            if(document.getElementById('clickOnce')){
+                console.log('open search input')
+                var searchInput=document.getElementById('searchInput')
+                searchInput.style.display='block'
+                var clickOnce=document.getElementById('clickOnce')
+                clickOnce.id='clickTwice'
+            }else{
+                var  clickTwice=document.getElementById('clickTwice')
+                var searchInputValue=document.getElementById('searchInputValue')
+                var addReactInfo = window.location.href;
+                if(!searchInputValue.value=='')
+                {
+                var str = addReactInfo.split("?")[0]+'?'+addReactInfo.split("?")[1]+'?'+addReactInfo.split("?")[2]+'?keywords='+searchInputValue.value
+                console.log('the url = '+str)
+                window.location.href=str
+                }else{
+                var str = addReactInfo.split("?")[0]+'?'+addReactInfo.split("?")[1]+'?'+addReactInfo.split("?")[2]
+                console.log('the url = '+str)
+                window.location.href=str
+                }
+            }
         }
 
 

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>createNewOnePage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/profile.css" />
+    <script src="/public/profile.js"></script>
+
+    <!-- Material Design Lite -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- Simple header with fixed tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header style="height:300px;" class="mdl-layout__header">
+            <div  class="mdl-layout__header-row">
+                <button onclick="gobacktoIndex()" type="button" id="backButton" id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
+             <i class="material-icons">arrow_back</i>
+            </button>
+            <button id="demo-menu-lower-right"
+        class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons">more_vert</i>
+</button>
+
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+    for="demo-menu-lower-right">
+  <li class="mdl-menu__item" onclick="editInfo()">修改信息</li>
+  <li class="mdl-menu__item" onclick="gotosignin()">注销</li>
+</ul>
+                <!-- Title -->
+                <span class="mdl-layout-title"></span>
+            </div>
+            <div id="avatar"></div>
+             <input style="display: none" id="fileInput" name="avatar" type="file" onchange="outputFileName()">
+            <button id="editAvatar" onclick="selectFile()" style="display: none" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+            <i class="material-icons">photo_camera</i>
+            </button>
+            <div id="stringConetnt">
+            <p id="email">zhanghuo0906@qq.com</p>
+            </div>
+
+            
+        </header>
+        <main class="mdl-layout__content">
+            <section>
+                <div class="page-content">
+                 <div class="form">
+                     <div id="postAndFavorite">
+                        <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="3">favorite</div>
+                        <div  onclick="gotoMyPorject()" style="margin-left:30px" class="material-icons mdl-badge mdl-badge--overlap" data-badge="1">file_upload</div>
+                     </div>
+                     <div>
+
+                     </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input disabled="disabled" id="signupName" value="zhanghuo" name="name" class="mdl-textfield__input" type="text" pattern="^[\\u4e00-\\u9fa5_a-zA-Z0-9-]{1,16}$">
+                                <label class="mdl-textfield__label" for="sample3">用户名称</label>
+                                <span class="mdl-textfield__error">限16个字符，仅支持中英文、数字、减号或下划线</span>
+                            </div>
+                        </div>
+                        <div class="form">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <textarea disabled="disabled" id="bio" name="bio" class="mdl-textfield__input" type="text" rows="3">student</textarea>
+                                <label id="personalIntro" class="mdl-textfield__label" for="sample5"></label>
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="submitChanges()" id="submitButton" style="display: none" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">提交修改</button>
+                   
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+
+    function gotoMyPorject(){
+
+        window.location.href = "/?type=publication?faculty=ALL?"
+
+    }
+
+    function gotosignin(){
+        window.location.href = "/portal?signin";
+        
+    }
+
+    function selectFile() {
+
+    //触发 文件选择的click事件 
+    $("#fileInput").trigger("click");
+    //其他code如 alert($("#file").attr("value")) 
+    }
+
+    function outputFileName() {
+
+    var str = document.getElementById("fileInput").value
+    console.log(document.getElementById("fileInput").value)
+
+    console.log(str.split("\\")[2]);
+    var imgName = str.split("\\")[2];
+    var avatar = document.getElementById("avatar")
+    avatar.style.backgroundImage = "url('/public/img/" + imgName + "')"
+
+}
+
+    function gobacktoIndex(){
+        window.location.href = "/?type=ALL?faculty=ALL?";
+    }
+
+
+    function editInfo(){
+
+        var editAvatar=document.getElementById('editAvatar')
+        editAvatar.style.display='block'
+        var signupName=document.getElementById('signupName')
+        signupName.disabled=''
+        var bio=document.getElementById('bio')
+        bio.disabled=''
+        var submitButton=document.getElementById('submitButton')
+        submitButton.style.display='block'
+
+
+
+    }
+
+    function submitChanges(){
+        var editAvatar=document.getElementById('editAvatar')
+        editAvatar.style.display='none'
+        var signupName=document.getElementById('signupName')
+        signupName.disabled='disabled'
+        var bio=document.getElementById('bio')
+        bio.disabled='disabled'
+        var submitButton=document.getElementById('submitButton')
+        submitButton.style.display='none'
+
+    }
+
+    </script>
+
+
+</body>
+
+
+</html>
